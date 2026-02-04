@@ -5,25 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PEXX | Hand Block Printed Textiles</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-main: #F7F3EE;
+      --bg-main: #F6F2EB;
       --bg-alt: #FFFFFF;
-      --text-main: #1F2937;
-      --text-muted: #6B7280;
-      --accent-blue: #1F2A44;
-      --accent-gold: #C9A24D;
-      --border-soft: #E6E0D8;
+      --text-main: #1E2430;
+      --text-muted: #6B6F76;
+      --accent-primary: #1F2A44;
+      --accent-secondary: #C3A24D;
+      --border-soft: #E2DDD5;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -32,9 +27,8 @@
       line-height: 1.7;
     }
 
-    /* HEADER */
     header {
-      padding: 2rem 4rem;
+      padding: 1.2rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -43,227 +37,342 @@
     }
 
     .logo-img {
-      height: 60px;
+      height: 96px;
       width: auto;
     }
 
     nav a {
-      margin-left: 2.5rem;
+      margin-left: 3rem;
       text-decoration: none;
-      font-size: 0.85rem;
       color: var(--text-main);
+      font-size: 1.2rem;
+      letter-spacing: 0.06em;
     }
 
-    nav a:hover {
-      color: var(--accent-gold);
+    .logo-img { height: 58px; }
+
+    nav a {
+      margin-left: 2.4rem;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.85rem;
     }
+
+    nav a:hover { color: var(--accent-secondary); }
 
     /* HERO */
     .hero {
-      padding: 4rem 4rem 6rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .hero-img {
-      display: block;
+      position: relative;
+      height: 85vh;
       width: 100%;
-      max-width: 1200px;
-      height: 560px;
-      object-fit: contain;
-      object-position: center center;
-      margin: 0 auto 3.5rem;
-      background: var(--bg-main);
-      border-radius: 2px;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 3.2rem;
-      line-height: 1.25;
-      color: var(--accent-blue);
-      margin-bottom: 1.8rem;
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
-    .hero p {
-      max-width: 640px;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 4rem;
-      background: var(--bg-alt);
-      border-top: 1px solid var(--border-soft);
-    }
-
-    .section-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 2.2rem;
-      color: var(--accent-blue);
-      margin-bottom: 1.5rem;
-    }
-
-    .editorial {
-      max-width: 720px;
-      color: var(--text-muted);
-    }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 3rem;
-      margin-top: 4rem;
-    }
-
-    .card {
-      padding-top: 1.5rem;
-      border-top: 2px solid var(--accent-gold);
-    }
-
-    .card h3 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.1rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* CTA */
-    .cta {
-      margin-top: 4rem;
-      font-size: 0.9rem;
-    }
-
-    .cta a {
-      text-decoration: none;
-      color: var(--accent-blue);
-      border-bottom: 1px solid var(--accent-gold);
-      padding-bottom: 2px;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 4rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: var(--bg-alt);
-      border-top: 1px solid var(--border-soft);
+    .hero-overlay {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 4rem 4rem 5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0));
       text-align: center;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header, .hero, section, footer {
-        padding: 2rem;
-      }
+    .hero-overlay h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 3rem;
+      color: #fff;
+      margin-bottom: 1.4rem;
+      line-height: 1.25;
+    }
 
-      .hero h1 {
-        font-size: 2.4rem;
-      }
+    .hero-overlay p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #E5E7EB;
+      font-size: 1.05rem;
+    }
 
-      .hero-img {
-        height: auto;
+    /* CONTAINERS */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 4rem;
+    }
+
+    h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.4rem;
+      color: var(--accent-primary);
+      margin-bottom: 1.2rem;
+    }
+
+    .section-accent {
+      width: 48px;
+      height: 2px;
+      background: var(--accent-secondary);
+      margin-bottom: 2.5rem;
+    }
+
+    .editorial {
+      max-width: 640px;
+      color: var(--text-muted);
+    }
+
+    /* CATEGORIES */
+    .categories {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3rem;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.category img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  margin-bottom: 1.2rem;
+}
+
+.category h3 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.category p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  max-width: 90%;
+}
+
+    .category h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .category p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* DETAIL SECTIONS */
+    .detail-section {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .detail-row.reverse {
+      direction: rtl;
+    }
+
+    .detail-row.reverse > * {
+      direction: ltr;
+    }
+
+    .detail-row img {
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+    }
+
+    footer {
+      padding: 4rem;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .detail-row,
+      .category-grid {
+        grid-template-columns: 1fr;
       }
+      header, .container, footer { padding: 2rem; }
+      .hero-overlay h1 { font-size: 2.2rem; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <img src="logo-pexx.png" alt="PEXX logo" class="logo-img">
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Collections</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+<header>
+  <img src="logo-pexx.png" alt="PEXX logo" class="logo-img">
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="interiors.html">Interiors</a>
+    <a href="little.html">Little</a>
+    <a href="wear.html">Wear</a>
+    <a href="carry.html">Carry</a>
+    <a href="workshops.html">Workshops</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-  <!-- HERO -->
-  <div class="hero">
-    <img src="hero-pexx.jpeg"
-         alt="Hand block printed textiles and lifestyle products by PEXX"
-         class="hero-img">
-
-    <h1>
-      Hand Block Printed Textiles,<br>
-      Refined for Modern Living
-    </h1>
-
-    <p>
-      PEXX creates thoughtfully crafted textiles rooted in traditional Indian
-      block printing, refined for contemporary homes, lifestyle brands and
-      international buyers.
-    </p>
+<section class="hero">
+  <img src="hero-pexx.jpeg" alt="Hand block printed textiles by PEXX">
+  <div class="hero-overlay">
+    <h1>Hand Block Printed Textiles,<br>Crafted in India for Modern Living</h1>
+    <p>PEXX creates premium hand block printed textiles shaped by generational expertise, refined processes, and a quiet commitment to quality across every stage of making.</p>
   </div>
+</section>
 
-  <!-- APPROACH -->
-  <section>
-    <div class="section-inner">
-      <h2>Our Approach</h2>
-      <p class="editorial">
-        We work at the intersection of heritage craft and modern production
-        discipline. Every fabric is developed with attention to material quality,
-        colour harmony and finishing standards — ensuring consistency and
-        reliability at scale.
-      </p>
+<section class="categories">
+  <div class="container">
+    <div class="category-grid">
+
+      <a href="interiors.html" class="category" style="text-decoration:none; color:inherit;">
+        <img src="category-interiors.jpeg" alt="Interiors textiles by PEXX">
+        <h3>Interiors</h3>
+        <p>Quietly luxurious textiles for everyday rituals.</p>
+      </a>
+
+      <a href="little.html" class="category" style="text-decoration:none; color:inherit;">
+        <img src="category-little.jpeg" alt="Little textiles by PEXX">
+        <h3>Little</h3>
+        <p>Gentle textiles for little lives and growing moments.</p>
+      </a>
+
+      <a href="wear.html" class="category" style="text-decoration:none; color:inherit;">
+        <img src="category-wear.jpeg" alt="Wear by PEXX">
+        <h3>Wear</h3>
+        <p>Soft layers designed for comfort and calm.</p>
+      </a>
+
+      <a href="carry.html" class="category" style="text-decoration:none; color:inherit;">
+        <img src="category-carry.jpeg" alt="Carry essentials by PEXX">
+        <h3>Carry</h3>
+        <p>Thoughtful essentials for life on the move.</p>
+      </a>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CATEGORIES -->
-  <section>
-    <div class="section-inner">
-      <h2>Product Categories</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>Home</h3>
-          <p>Cushions, quilts, throws and soft furnishings.</p>
-        </div>
-
-        <div class="card">
-          <h3>Dining</h3>
-          <p>Table linens, runners, napkins and placemats.</p>
-        </div>
-
-        <div class="card">
-          <h3>Bath</h3>
-          <p>Towels, bath mats and coordinated sets.</p>
-        </div>
-
-        <div class="card">
-          <h3>Apparel</h3>
-          <p>Block printed garments for men and women.</p>
-        </div>
-
-        <div class="card">
-          <h3>Kids</h3>
-          <p>Nursery, bedding and kids lifestyle products.</p>
-        </div>
-      </div>
-
-      <div class="cta">
-        <a href="#">Enquire for wholesale & custom development</a>
+<section class="detail-section" style="background:#EFEAE2;">
+  <div class="container">
+    <div class="detail-row">
+      <img src="fabric-handfeel.jpeg" alt="Fabric handfeel and texture">
+      <div>
+        <h2>Fabric, Material & Performance</h2>
+        <div class="section-accent"></div>
+        <p class="editorial">Fabric selection is where every PEXX product begins. We work with natural, non-synthetic cotton fabrics chosen for softness, breathability, and long-term comfort.</p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    © PEXX – Poddar Exports. Crafted in India.
-  </footer>
+<section class="detail-section">
+  <div class="container">
+    <div class="detail-row reverse">
+      <img src="development-blocks.jpg" alt="Design development blocks">
+      <div>
+        <h2>Custom Development & Design Support</h2>
+        <div class="section-accent"></div>
+        <p class="editorial">Development at PEXX is collaborative. From Pantone-aligned colour work to motif adaptation and sampling, we support buyers through thoughtful, flexible development cycles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="container">
+    <div class="detail-row">
+      <img src="production-qc.jpg" alt="Quality control inspection">
+      <div>
+        <h2>Integrated Production & Quality Control</h2>
+        <div class="section-accent"></div>
+        <p class="editorial">Our integrated setup allows quality to be monitored across printing, washing, stitching, and finishing, supporting consistency and scale without compromise.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="container">
+    <div class="detail-row reverse">
+      <img src="export-ready.jpg" alt="Export-ready packaging">
+      <div>
+        <h2>Export Readiness</h2>
+        <div class="section-accent"></div>
+        <p class="editorial">Finished goods are prepared as retail-ready products, supported by coordinated packaging, labelling, and export documentation aligned to buyer expectations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="container">
+    <div class="detail-row">
+      <img src="responsible-practices.jpg" alt="Responsible dye practices">
+      <div>
+        <h2>Responsible Practices</h2>
+        <div class="section-accent"></div>
+        <p class="editorial">We use azo-free, skin-friendly dyes and disciplined water management practices, prioritising colour longevity and product durability.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="container">
+    <h2>Work with PEXX</h2>
+    <div class="category-grid" style="margin-top:3rem;">
+      <div class="category" style="border:1px solid var(--border-soft); padding:2.5rem;">
+        <h3>Contact</h3>
+        <p>For general enquiries, collaborations, or to learn more about our work, feel free to reach out.</p>
+        <p style="margin-top:1.4rem;"><a href="mailto:info@poddarexp.com" style="color:var(--accent-primary); text-decoration:none; border-bottom:1px solid var(--accent-secondary); padding-bottom:2px;">Email us</a></p>
+      </div>
+      <div class="category" style="border:1px solid var(--border-soft); padding:2.5rem;">
+        <h3>Bulk & Trade</h3>
+        <p>For bulk orders, custom development, or long-term partnerships, connect with our export team.</p>
+        <p style="margin-top:1.4rem;"><a href="mailto:info@poddarexp.com?subject=Bulk%20Enquiry&body=Products%20of%20interest:%0AApprox.%20order%20quantity:%0ATarget%20market:%0A" style="color:var(--accent-primary); text-decoration:none; border-bottom:1px solid var(--accent-secondary); padding-bottom:2px;">Bulk enquiry</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="detail-section">
+  <div class="container">
+    <h2>Visit Us & Print Workshops</h2>
+    <div class="detail-row">
+      <div>
+        <p class="editorial">Experience the craft of hand block printing through guided workshops held at our factory. These sessions offer an opportunity to engage closely with materials, tools, and techniques that have shaped our textiles for decades.</p>
+        <p class="editorial" style="margin-top:1.2rem;">Workshops are designed for individuals, small groups, and design-led visits seeking a deeper understanding of the process.</p>
+        <p style="margin-top:1.8rem;"><a href="workshops.html" style="color:var(--accent-primary); text-decoration:none; border-bottom:1px solid var(--accent-secondary); padding-bottom:2px;">Explore workshops</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © PEXX – Poddar Exports. Crafted in India.
+</footer>
 
 </body>
 </html>
