@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PEXX | Hand Block Printed Textiles</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #F7F3EE;
+      --bg-alt: #FFFFFF;
+      --text-main: #1F2937;
+      --text-muted: #6B7280;
+      --accent-blue: #1F2A44;
+      --accent-gold: #C9A24D;
+      --border-soft: #E6E0D8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+    header {
+      padding: 2rem 4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--bg-alt);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .logo-img {
+      height: 60px;
+      width: auto;
+    }
+
+    nav a {
+      margin-left: 2.5rem;
+      text-decoration: none;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    nav a:hover {
+      color: var(--accent-gold);
+    }
+
+    /* HERO */
+    .hero {
+      padding: 4rem 4rem 6rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-img {
+      display: block;
+      width: 100%;
+      max-width: 1200px;
+      height: 560px;
+      object-fit: contain;
+      object-position: center center;
+      margin: 0 auto 3.5rem;
+      background: var(--bg-main);
+      border-radius: 2px;
+    }
+
+    .hero h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 3.2rem;
+      line-height: 1.25;
+      color: var(--accent-blue);
+      margin-bottom: 1.8rem;
+    }
+
+    .hero p {
+      max-width: 640px;
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 4rem;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    section h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.2rem;
+      color: var(--accent-blue);
+      margin-bottom: 1.5rem;
+    }
+
+    .editorial {
+      max-width: 720px;
+      color: var(--text-muted);
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .card {
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--accent-gold);
+    }
+
+    .card h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* CTA */
+    .cta {
+      margin-top: 4rem;
+      font-size: 0.9rem;
+    }
+
+    .cta a {
+      text-decoration: none;
+      color: var(--accent-blue);
+      border-bottom: 1px solid var(--accent-gold);
+      padding-bottom: 2px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 4rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+      text-align: center;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      header, .hero, section, footer {
+        padding: 2rem;
+      }
+
+      .hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .hero-img {
+        height: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <img src="logo-pexx.png" alt="PEXX logo" class="logo-img">
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Collections</a>
+      <a href="#">Contact</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="hero-pexx.jpeg"
+         alt="Hand block printed textiles and lifestyle products by PEXX"
+         class="hero-img">
+
+    <h1>
+      Hand Block Printed Textiles,<br>
+      Refined for Modern Living
+    </h1>
+
+    <p>
+      PEXX creates thoughtfully crafted textiles rooted in traditional Indian
+      block printing, refined for contemporary homes, lifestyle brands and
+      international buyers.
+    </p>
+  </div>
+
+  <!-- APPROACH -->
+  <section>
+    <div class="section-inner">
+      <h2>Our Approach</h2>
+      <p class="editorial">
+        We work at the intersection of heritage craft and modern production
+        discipline. Every fabric is developed with attention to material quality,
+        colour harmony and finishing standards — ensuring consistency and
+        reliability at scale.
+      </p>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section>
+    <div class="section-inner">
+      <h2>Product Categories</h2>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Home</h3>
+          <p>Cushions, quilts, throws and soft furnishings.</p>
+        </div>
+
+        <div class="card">
+          <h3>Dining</h3>
+          <p>Table linens, runners, napkins and placemats.</p>
+        </div>
+
+        <div class="card">
+          <h3>Bath</h3>
+          <p>Towels, bath mats and coordinated sets.</p>
+        </div>
+
+        <div class="card">
+          <h3>Apparel</h3>
+          <p>Block printed garments for men and women.</p>
+        </div>
+
+        <div class="card">
+          <h3>Kids</h3>
+          <p>Nursery, bedding and kids lifestyle products.</p>
+        </div>
+      </div>
+
+      <div class="cta">
+        <a href="#">Enquire for wholesale & custom development</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    © PEXX – Poddar Exports. Crafted in India.
+  </footer>
+
+</body>
+</html>
