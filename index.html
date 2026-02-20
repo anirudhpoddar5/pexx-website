@@ -4,26 +4,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PEXX | Hand Block Printed Textiles</title>
+  <meta name="description" content="PEXX creates premium hand block printed textiles shaped by generational expertise, refined processes, and a quiet commitment to quality. Crafted in India for modern living." />
 
-  <!-- Fonts -->
+  <!-- Open Graph -->
+  <meta property="og:title" content="PEXX | Hand Block Printed Textiles" />
+  <meta property="og:description" content="Premium hand block printed textiles crafted in India for modern living." />
+  <meta property="og:image" content="hero-pexx.jpeg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
     :root {
-      --bg-main: #F7F3EE;
-      --bg-alt: #FFFFFF;
-      --text-main: #1F2937;
-      --text-muted: #6B7280;
-      --accent-blue: #1F2A44;
-      --accent-gold: #C9A24D;
-      --border-soft: #E6E0D8;
+      --bg-main:           #F6F2EB;
+      --bg-alt:            #FFFFFF;
+      --text-main:         #1E2430;
+      --text-muted:        #6B6F76;
+      --accent-primary:    #1F2A44;
+      --accent-secondary:  #C3A24D;
+      --border-soft:       #E2DDD5;
+      --transition:        0.2s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -32,9 +40,28 @@
       line-height: 1.7;
     }
 
-    /* HEADER */
+    img { display: block; max-width: 100%; }
+
+    /* ── SKIP LINK ───────────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      z-index: 200;
+      transition: top var(--transition);
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ── HEADER / NAV ────────────────────────────────────────── */
     header {
-      padding: 2rem 4rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 1rem 4rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -43,227 +70,503 @@
     }
 
     .logo-img {
-      height: 60px;
+      height: 58px;
       width: auto;
     }
 
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+    }
+
     nav a {
-      margin-left: 2.5rem;
       text-decoration: none;
-      font-size: 0.85rem;
       color: var(--text-main);
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      transition: color var(--transition);
     }
 
-    nav a:hover {
-      color: var(--accent-gold);
-    }
+    nav a:hover,
+    nav a[aria-current="page"] { color: var(--accent-secondary); }
 
-    /* HERO */
-    .hero {
-      padding: 4rem 4rem 6rem;
-      max-width: 1200px;
-      margin: 0 auto;
+    /* Hamburger — hidden on desktop */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
     }
-
-    .hero-img {
+    .nav-toggle span {
       display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 85vh;
       width: 100%;
-      max-width: 1200px;
-      height: 560px;
-      object-fit: contain;
-      object-position: center center;
-      margin: 0 auto 3.5rem;
-      background: var(--bg-main);
-      border-radius: 2px;
+      overflow: hidden;
     }
 
-    .hero h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 3.2rem;
-      line-height: 1.25;
-      color: var(--accent-blue);
-      margin-bottom: 1.8rem;
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
-    .hero p {
-      max-width: 640px;
-      color: var(--text-muted);
-      font-size: 1.05rem;
-    }
-
-    /* SECTIONS */
-    section {
-      padding: 6rem 4rem;
-      background: var(--bg-alt);
-      border-top: 1px solid var(--border-soft);
-    }
-
-    .section-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 2.2rem;
-      color: var(--accent-blue);
-      margin-bottom: 1.5rem;
-    }
-
-    .editorial {
-      max-width: 720px;
-      color: var(--text-muted);
-    }
-
-    /* GRID */
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 3rem;
-      margin-top: 4rem;
-    }
-
-    .card {
-      padding-top: 1.5rem;
-      border-top: 2px solid var(--accent-gold);
-    }
-
-    .card h3 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.1rem;
-      margin-bottom: 0.6rem;
-    }
-
-    .card p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* CTA */
-    .cta {
-      margin-top: 4rem;
-      font-size: 0.9rem;
-    }
-
-    .cta a {
-      text-decoration: none;
-      color: var(--accent-blue);
-      border-bottom: 1px solid var(--accent-gold);
-      padding-bottom: 2px;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 4rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      background: var(--bg-alt);
-      border-top: 1px solid var(--border-soft);
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem 4rem 5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%);
       text-align: center;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      header, .hero, section, footer {
-        padding: 2rem;
+    .hero-overlay h1 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      color: #fff;
+      margin-bottom: 1.2rem;
+      line-height: 1.25;
+    }
+
+    .hero-overlay p {
+      max-width: 680px;
+      margin: 0 auto;
+      color: #E5E7EB;
+      font-size: 1.05rem;
+    }
+
+    /* ── LAYOUT HELPERS ──────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 6rem 4rem;
+    }
+
+    h2 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 2.2rem;
+      color: var(--accent-primary);
+      margin-bottom: 1rem;
+    }
+
+    .section-accent {
+      width: 48px;
+      height: 2px;
+      background: var(--accent-secondary);
+      margin-bottom: 2.2rem;
+    }
+
+    .editorial {
+      max-width: 600px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* ── CATEGORIES ──────────────────────────────────────────── */
+    .categories {
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+    }
+
+    .category {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .category img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      margin-bottom: 1.2rem;
+      transition: opacity var(--transition);
+    }
+
+    .category:hover img { opacity: 0.85; }
+
+    .category h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .category p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* ── DETAIL SECTIONS ─────────────────────────────────────── */
+    .detail-section {
+      border-top: 1px solid var(--border-soft);
+    }
+
+    .detail-section.bg-white  { background: var(--bg-alt); }
+    .detail-section.bg-warm   { background: #EFEAE2; }
+
+    .detail-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .detail-row.reverse .detail-img { order: 2; }
+    .detail-row.reverse .detail-text { order: 1; }
+
+    .detail-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    /* ── WORK WITH PEXX CARDS ────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .contact-card {
+      border: 1px solid var(--border-soft);
+      padding: 2.5rem;
+    }
+
+    .contact-card h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .text-link {
+      display: inline-block;
+      margin-top: 1.6rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-secondary);
+      padding-bottom: 2px;
+      font-size: 0.9rem;
+      transition: color var(--transition);
+    }
+    .text-link:hover { color: var(--accent-secondary); }
+
+    /* ── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      padding: 3rem 4rem;
+      background: var(--bg-alt);
+      border-top: 1px solid var(--border-soft);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      header { padding: 1rem 1.5rem; }
+
+      .nav-toggle { display: flex; }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        background: var(--bg-alt);
+        border-bottom: 1px solid var(--border-soft);
+        padding: 1rem 1.5rem 1.5rem;
       }
 
-      .hero h1 {
-        font-size: 2.4rem;
-      }
+      nav.open { display: flex; }
 
-      .hero-img {
-        height: auto;
+      nav a {
+        padding: 0.7rem 0;
+        font-size: 0.95rem;
+        width: 100%;
+        border-bottom: 1px solid var(--border-soft);
       }
+      nav a:last-child { border-bottom: none; }
+
+      .container { padding: 3.5rem 1.5rem; }
+      footer     { padding: 2rem 1.5rem; }
+
+      .hero-overlay { padding: 2rem 1.5rem 3rem; }
+
+      .detail-row,
+      .detail-row.reverse {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+      .detail-row.reverse .detail-img,
+      .detail-row.reverse .detail-text { order: unset; }
+
+      .category-grid { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 500px) {
+      .category-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
-
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <img src="logo-pexx.png" alt="PEXX logo" class="logo-img">
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Collections</a>
-      <a href="#">Contact</a>
-    </nav>
-  </header>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <a href="index.html" aria-label="PEXX — go to homepage">
+    <img src="logo-pexx.png" alt="PEXX" class="logo-img">
+  </a>
+
+  <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav id="primary-nav" aria-label="Primary navigation">
+    <a href="index.html" aria-current="page">Home</a>
+    <a href="interiors.html">Interiors</a>
+    <a href="little.html">Little</a>
+    <a href="wear.html">Wear</a>
+    <a href="carry.html">Carry</a>
+    <a href="workshops.html">Workshops</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main id="main-content">
 
   <!-- HERO -->
-  <div class="hero">
-    <img src="hero-pexx.jpeg"
-         alt="Hand block printed textiles and lifestyle products by PEXX"
-         class="hero-img">
-
-    <h1>
-      Hand Block Printed Textiles,<br>
-      Refined for Modern Living
-    </h1>
-
-    <p>
-      PEXX creates thoughtfully crafted textiles rooted in traditional Indian
-      block printing, refined for contemporary homes, lifestyle brands and
-      international buyers.
-    </p>
-  </div>
-
-  <!-- APPROACH -->
-  <section>
-    <div class="section-inner">
-      <h2>Our Approach</h2>
-      <p class="editorial">
-        We work at the intersection of heritage craft and modern production
-        discipline. Every fabric is developed with attention to material quality,
-        colour harmony and finishing standards — ensuring consistency and
-        reliability at scale.
-      </p>
+  <section class="hero" aria-label="Hero banner">
+    <img src="hero-pexx.jpeg" alt="Artisan pressing a hand-carved block onto printed textile fabric" fetchpriority="high">
+    <div class="hero-overlay">
+      <h1>Hand Block Printed Textiles,<br>Crafted in India for Modern Living</h1>
+      <p>PEXX creates premium hand block printed textiles shaped by generational expertise, refined processes, and a quiet commitment to quality across every stage of making.</p>
     </div>
   </section>
 
   <!-- CATEGORIES -->
-  <section>
-    <div class="section-inner">
-      <h2>Product Categories</h2>
+  <section class="categories" aria-labelledby="categories-heading">
+    <div class="container">
+      <h2 id="categories-heading" class="sr-only">Product categories</h2>
+      <div class="category-grid">
 
-      <div class="grid">
-        <div class="card">
-          <h3>Home</h3>
-          <p>Cushions, quilts, throws and soft furnishings.</p>
-        </div>
+        <a href="interiors.html" class="category">
+          <img src="category-interiors.jpeg" alt="Hand block printed bed linen and cushions by PEXX" loading="lazy">
+          <h3>Interiors</h3>
+          <p>Quietly luxurious textiles for everyday rituals.</p>
+        </a>
 
-        <div class="card">
-          <h3>Dining</h3>
-          <p>Table linens, runners, napkins and placemats.</p>
-        </div>
+        <a href="little.html" class="category">
+          <img src="category-little.jpeg" alt="Soft printed textiles for children by PEXX" loading="lazy">
+          <h3>Little</h3>
+          <p>Gentle textiles for little lives and growing moments.</p>
+        </a>
 
-        <div class="card">
-          <h3>Bath</h3>
-          <p>Towels, bath mats and coordinated sets.</p>
-        </div>
+        <a href="wear.html" class="category">
+          <img src="category-wear.jpeg" alt="Hand block printed garments by PEXX" loading="lazy">
+          <h3>Wear</h3>
+          <p>Soft layers designed for comfort and calm.</p>
+        </a>
 
-        <div class="card">
-          <h3>Apparel</h3>
-          <p>Block printed garments for men and women.</p>
-        </div>
+        <a href="carry.html" class="category">
+          <img src="category-carry.jpeg" alt="Printed totes and bags by PEXX" loading="lazy">
+          <h3>Carry</h3>
+          <p>Thoughtful essentials for life on the move.</p>
+        </a>
 
-        <div class="card">
-          <h3>Kids</h3>
-          <p>Nursery, bedding and kids lifestyle products.</p>
-        </div>
-      </div>
-
-      <div class="cta">
-        <a href="#">Enquire for wholesale & custom development</a>
       </div>
     </div>
   </section>
 
-  <!-- FOOTER -->
-  <footer>
-    © PEXX – Poddar Exports. Crafted in India.
-  </footer>
+  <!-- DETAIL: FABRIC -->
+  <section class="detail-section bg-warm" aria-labelledby="fabric-heading">
+    <div class="container">
+      <div class="detail-row">
+        <img class="detail-img" src="fabric-handfeel.jpeg" alt="Close-up of natural cotton fabric showing texture and handfeel" loading="lazy">
+        <div class="detail-text">
+          <h2 id="fabric-heading">Fabric, Material &amp; Performance</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">Fabric selection is where every PEXX product begins. We work with natural, non-synthetic cotton fabrics chosen for softness, breathability, and long-term comfort.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: DEVELOPMENT -->
+  <section class="detail-section bg-white" aria-labelledby="development-heading">
+    <div class="container">
+      <div class="detail-row reverse">
+        <img class="detail-img" src="development-blocks.jpg" alt="Hand-carved printing blocks used in PEXX design development" loading="lazy">
+        <div class="detail-text">
+          <h2 id="development-heading">Custom Development &amp; Design Support</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">Development at PEXX is collaborative. From Pantone-aligned colour work to motif adaptation and sampling, we support buyers through thoughtful, flexible development cycles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: QC -->
+  <section class="detail-section bg-warm" aria-labelledby="qc-heading">
+    <div class="container">
+      <div class="detail-row">
+        <img class="detail-img" src="production-qc.jpg" alt="Quality control inspection of printed textiles on the production floor" loading="lazy">
+        <div class="detail-text">
+          <h2 id="qc-heading">Integrated Production &amp; Quality Control</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">Our integrated setup allows quality to be monitored across printing, washing, stitching, and finishing, supporting consistency and scale without compromise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: EXPORT -->
+  <section class="detail-section bg-white" aria-labelledby="export-heading">
+    <div class="container">
+      <div class="detail-row reverse">
+        <img class="detail-img" src="export-ready.jpg" alt="Retail-ready packaged PEXX textiles prepared for export" loading="lazy">
+        <div class="detail-text">
+          <h2 id="export-heading">Export Readiness</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">Finished goods are prepared as retail-ready products, supported by coordinated packaging, labelling, and export documentation aligned to buyer expectations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL: RESPONSIBLE -->
+  <section class="detail-section bg-warm" aria-labelledby="responsible-heading">
+    <div class="container">
+      <div class="detail-row">
+        <img class="detail-img" src="responsible-practices.jpg" alt="Azo-free dyes and natural pigments used in PEXX production" loading="lazy">
+        <div class="detail-text">
+          <h2 id="responsible-heading">Responsible Practices</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">We use azo-free, skin-friendly dyes and disciplined water management practices, prioritising colour longevity and product durability.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK WITH PEXX -->
+  <section class="detail-section bg-white" aria-labelledby="work-heading">
+    <div class="container">
+      <h2 id="work-heading">Work with PEXX</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3>Contact</h3>
+          <p>For general enquiries, collaborations, or to learn more about our work, feel free to reach out.</p>
+          <a class="text-link" href="mailto:info@poddarexp.com">Email us</a>
+        </div>
+        <div class="contact-card">
+          <h3>Bulk &amp; Trade</h3>
+          <p>For bulk orders, custom development, or long-term partnerships, connect with our export team.</p>
+          <a class="text-link" href="mailto:info@poddarexp.com?subject=Bulk%20Enquiry&body=Products%20of%20interest:%0AApprox.%20order%20quantity:%0ATarget%20market:%0A">Bulk enquiry</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOPS -->
+  <section class="detail-section bg-warm" aria-labelledby="workshops-heading">
+    <div class="container">
+      <div class="detail-row">
+        <div class="detail-text">
+          <h2 id="workshops-heading">Visit Us &amp; Print Workshops</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">Experience the craft of hand block printing through guided workshops held at our factory. These sessions offer an opportunity to engage closely with materials, tools, and techniques that have shaped our textiles for decades.</p>
+          <p class="editorial" style="margin-top: 1rem;">Workshops are designed for individuals, small groups, and design-led visits seeking a deeper understanding of the process.</p>
+          <a class="text-link" href="workshops.html">Explore workshops</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <address style="font-style: normal;">
+    &copy; PEXX &ndash; Poddar Exports. Crafted in India.
+  </address>
+</footer>
+
+<!-- Visually hidden utility -->
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>
+
+<script>
+  // Mobile nav toggle
+  const toggle = document.querySelector('.nav-toggle');
+  const nav    = document.querySelector('#primary-nav');
+
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('open', !open);
+  });
+
+  // Close nav when a link is clicked
+  nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    });
+  });
+
+  // Close nav on outside click
+  document.addEventListener('click', e => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    }
+  });
+</script>
 
 </body>
 </html>
