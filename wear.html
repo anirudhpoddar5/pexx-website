@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wear | PEXX Hand Block Printed Textiles</title>
+  <meta name="description" content="Hand block printed garments by PEXX — kaftans, kurtas, shirts, and loose layers in natural cotton. Comfortable, considered, crafted in India." />
+  <meta property="og:title" content="Wear | PEXX" />
+  <meta property="og:description" content="Soft layers designed for comfort and calm — hand block printed garments by PEXX." />
+  <meta property="og:image" content="category-wear.jpeg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #F6F2EB; --bg-alt: #FFFFFF;
+      --text-main: #1E2430; --text-muted: #6B6F76;
+      --accent-primary: #1F2A44; --accent-secondary: #C3A24D;
+      --border-soft: #E2DDD5; --transition: 0.2s ease;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.7; }
+    img { display: block; max-width: 100%; }
+
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--accent-primary); color: #fff; padding: 0.5rem 1rem; font-size: 0.85rem; z-index: 200; transition: top var(--transition); }
+    .skip-link:focus { top: 1rem; }
+
+    header { position: sticky; top: 0; z-index: 100; padding: 1rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); }
+    .logo-img { height: 58px; width: auto; }
+    nav { display: flex; align-items: center; gap: 2.4rem; }
+    nav a { text-decoration: none; color: var(--text-main); font-size: 0.85rem; letter-spacing: 0.04em; transition: color var(--transition); }
+    nav a:hover, nav a[aria-current="page"] { color: var(--accent-secondary); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-main); transition: transform var(--transition), opacity var(--transition); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .page-hero { position: relative; height: 55vh; overflow: hidden; }
+    .page-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+    .page-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 4rem 4rem; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%); }
+    .page-hero-overlay h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 4vw, 3rem); color: #fff; line-height: 1.2; margin-bottom: 0.6rem; }
+    .page-hero-overlay p { color: #E5E7EB; font-size: 1rem; max-width: 560px; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 2rem; color: var(--accent-primary); margin-bottom: 1rem; }
+    .section-accent { width: 48px; height: 2px; background: var(--accent-secondary); margin-bottom: 2rem; }
+    .editorial { max-width: 620px; color: var(--text-muted); font-size: 0.95rem; }
+
+    .intro-section { background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .intro-img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+
+    .products-section { background: var(--bg-main); }
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3rem; }
+    .product-card { display: flex; flex-direction: column; }
+    .product-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; margin-bottom: 1rem; transition: opacity var(--transition); }
+    .product-card:hover img { opacity: 0.85; }
+    .product-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; margin-bottom: 0.3rem; }
+    .product-card p { color: var(--text-muted); font-size: 0.875rem; }
+    .product-tag { display: inline-block; margin-top: 0.6rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-secondary); }
+
+    /* SIZE/SPEC TABLE */
+    .specs-section { background: #EFEAE2; border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+    .spec-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.9rem; }
+    .spec-table th { text-align: left; padding: 0.75rem 1rem; background: var(--accent-primary); color: #fff; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.06em; }
+    .spec-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-soft); color: var(--text-muted); background: var(--bg-alt); }
+    .spec-table tr:last-child td { border-bottom: none; }
+
+    .cta-section { background: var(--accent-primary); }
+    .cta-inner { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+    .cta-inner h2 { color: #fff; font-size: 1.8rem; margin: 0; }
+    .cta-inner p { color: rgba(255,255,255,0.7); font-size: 0.95rem; margin-top: 0.5rem; }
+    .btn { display: inline-block; padding: 0.85rem 2rem; background: var(--accent-secondary); color: var(--accent-primary); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; transition: opacity var(--transition); white-space: nowrap; }
+    .btn:hover { opacity: 0.85; }
+
+    footer { padding: 3rem 4rem; background: var(--bg-alt); border-top: 1px solid var(--border-soft); font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 900px) {
+      header { padding: 1rem 1.5rem; }
+      .nav-toggle { display: flex; }
+      nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); padding: 1rem 1.5rem 1.5rem; }
+      nav.open { display: flex; }
+      nav a { padding: 0.7rem 0; font-size: 0.95rem; width: 100%; border-bottom: 1px solid var(--border-soft); }
+      nav a:last-child { border-bottom: none; }
+      .container { padding: 3.5rem 1.5rem; }
+      .page-hero-overlay { padding: 2rem 1.5rem 3rem; }
+      .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+      .cta-inner { flex-direction: column; align-items: flex-start; padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; }
+      .spec-table { font-size: 0.8rem; }
+      .spec-table th, .spec-table td { padding: 0.6rem 0.75rem; }
+    }
+    @media (max-width: 500px) {
+      .product-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <a href="index.html" aria-label="PEXX — go to homepage">
+    <img src="logo-pexx.png" alt="PEXX" class="logo-img">
+  </a>
+  <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="interiors.html">Interiors</a>
+    <a href="little.html">Little</a>
+    <a href="wear.html" aria-current="page">Wear</a>
+    <a href="carry.html">Carry</a>
+    <a href="workshops.html">Workshops</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <section class="page-hero" aria-label="Wear category banner">
+    <img src="category-wear.jpeg" alt="Model wearing a loose hand block printed cotton kaftan in natural light" fetchpriority="high">
+    <div class="page-hero-overlay">
+      <h1>Wear</h1>
+      <p>Soft layers designed for comfort and calm.</p>
+    </div>
+  </section>
+
+  <section class="intro-section" aria-labelledby="intro-heading">
+    <div class="container">
+      <div class="intro-grid">
+        <div>
+          <h2 id="intro-heading">Clothing as Craft</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">The Wear range applies the same principles as our home textiles to garments: natural fabric, deliberate pattern placement, and hand-applied print. Each piece is cut and sewn at our integrated facility, allowing us to control quality across cloth, print, and stitch.</p>
+          <p class="editorial" style="margin-top:1rem;">Silhouettes are relaxed — designed for ease, layering, and cross-cultural appeal. We work with hospitality buyers, independent boutiques, and fashion-adjacent export clients who want something that carries genuine craft value.</p>
+        </div>
+        <img class="intro-img" src="category-wear.jpeg" alt="Close-up of hand block printed pattern on a cotton garment" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="products-section" aria-labelledby="products-heading">
+    <div class="container">
+      <h2 id="products-heading">What We Make</h2>
+      <div class="section-accent" aria-hidden="true"></div>
+      <div class="product-grid">
+
+        <div class="product-card">
+          <img src="category-wear.jpeg" alt="Hand block printed long kaftan in earthy cotton" loading="lazy">
+          <h3>Kaftans &amp; Tunics</h3>
+          <p>Loose, floor-to-mid-length silhouettes in soft cotton. All-over print or border detail options.</p>
+          <span class="product-tag">XS – XXL available</span>
+        </div>
+
+        <div class="product-card">
+          <img src="fabric-handfeel.jpeg" alt="Hand block printed men's shirt in natural cotton" loading="lazy">
+          <h3>Shirts &amp; Kurtas</h3>
+          <p>Relaxed-fit shirts and kurtas with scattered or geometric block-print motifs. Unisex options available.</p>
+          <span class="product-tag">Custom sizing</span>
+        </div>
+
+        <div class="product-card">
+          <img src="development-blocks.jpg" alt="Block printed wide-leg trousers folded flat" loading="lazy">
+          <h3>Trousers &amp; Palazzos</h3>
+          <p>Wide-leg and drawstring-waist trousers designed to pair with tunics or stand alone.</p>
+          <span class="product-tag">Coordinated sets</span>
+        </div>
+
+        <div class="product-card">
+          <img src="responsible-practices.jpg" alt="Block printed co-ord set laid flat on linen surface" loading="lazy">
+          <h3>Co-ord Sets</h3>
+          <p>Matching top and bottom sets in the same print, designed for retail display and gifting.</p>
+          <span class="product-tag">Retail-ready packs</span>
+        </div>
+
+        <div class="product-card">
+          <img src="production-qc.jpg" alt="Hand block printed beach cover-up in cotton" loading="lazy">
+          <h3>Cover-Ups &amp; Wraps</h3>
+          <p>Lightweight printed wraps and beach cover-ups for resort and lifestyle retail buyers.</p>
+          <span class="product-tag">Resort ranges</span>
+        </div>
+
+        <div class="product-card">
+          <img src="export-ready.jpg" alt="Custom labelled printed garments in export packaging" loading="lazy">
+          <h3>Private Label</h3>
+          <p>Full private label development — silhouette, print, label, packaging — for fashion and lifestyle brands.</p>
+          <span class="product-tag">MOQ applies</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="specs-section" aria-labelledby="specs-heading">
+    <div class="container">
+      <h2 id="specs-heading">Production Specifications</h2>
+      <div class="section-accent" aria-hidden="true"></div>
+      <table class="spec-table" aria-label="Wear production specifications">
+        <thead>
+          <tr>
+            <th scope="col">Attribute</th>
+            <th scope="col">Detail</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Fabric</td><td>100% natural cotton (60s, 80s, or mulmul as required)</td></tr>
+          <tr><td>Print method</td><td>Hand block printing with carved wooden blocks</td></tr>
+          <tr><td>Dyes</td><td>Azo-free, skin-safe reactive dyes</td></tr>
+          <tr><td>Sizes</td><td>XS to XXL standard; custom sizing on request</td></tr>
+          <tr><td>Finishing</td><td>Washed, pressed, hang-tagged, and bagged per buyer specification</td></tr>
+          <tr><td>MOQ</td><td>From 50 units per style (custom development may vary)</td></tr>
+          <tr><td>Lead time</td><td>Sample: 2–3 weeks. Bulk: 6–10 weeks from approval</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="cta-section" aria-labelledby="cta-heading">
+    <div class="cta-inner">
+      <div>
+        <h2 id="cta-heading">Interested in the Wear range?</h2>
+        <p>For bulk orders, samples, or private label development, get in touch.</p>
+      </div>
+      <a class="btn" href="mailto:info@poddarexp.com?subject=Wear%20Enquiry&body=Products%20of%20interest:%0AApprox.%20order%20quantity:%0ATarget%20market:%0A">Send an enquiry</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <address style="font-style:normal;">&copy; PEXX &ndash; Poddar Exports. Crafted in India.</address>
+</footer>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('#primary-nav');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('open', !open);
+  });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('open');
+  }));
+  document.addEventListener('click', e => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    }
+  });
+</script>
+
+</body>
+</html>

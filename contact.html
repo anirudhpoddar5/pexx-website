@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | PEXX Hand Block Printed Textiles</title>
+  <meta name="description" content="Get in touch with PEXX — for general enquiries, bulk and trade orders, workshop bookings, or custom development. Crafted in India." />
+  <meta property="og:title" content="Contact | PEXX" />
+  <meta property="og:description" content="Reach the PEXX team for enquiries, trade orders, or workshop bookings." />
+  <meta property="og:image" content="hero-pexx.jpeg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #F6F2EB; --bg-alt: #FFFFFF;
+      --text-main: #1E2430; --text-muted: #6B6F76;
+      --accent-primary: #1F2A44; --accent-secondary: #C3A24D;
+      --border-soft: #E2DDD5; --transition: 0.2s ease;
+      --error: #C0392B;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg-main); color: var(--text-main); line-height: 1.7; }
+    img { display: block; max-width: 100%; }
+
+    .skip-link { position: absolute; top: -100%; left: 1rem; background: var(--accent-primary); color: #fff; padding: 0.5rem 1rem; font-size: 0.85rem; z-index: 200; transition: top var(--transition); }
+    .skip-link:focus { top: 1rem; }
+
+    header { position: sticky; top: 0; z-index: 100; padding: 1rem 4rem; display: flex; justify-content: space-between; align-items: center; background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); }
+    .logo-img { height: 58px; width: auto; }
+    nav { display: flex; align-items: center; gap: 2.4rem; }
+    nav a { text-decoration: none; color: var(--text-main); font-size: 0.85rem; letter-spacing: 0.04em; transition: color var(--transition); }
+    nav a:hover, nav a[aria-current="page"] { color: var(--accent-secondary); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 24px; height: 2px; background: var(--text-main); transition: transform var(--transition), opacity var(--transition); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* HERO */
+    .page-hero-text { background: var(--accent-primary); padding: 7rem 4rem 6rem; text-align: center; }
+    .page-hero-text h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.2rem, 5vw, 3.4rem); color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    .page-hero-text p { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 540px; margin: 0 auto; }
+
+    /* MAIN CONTACT SECTION */
+    .contact-section { background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); }
+    .container { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
+    .contact-layout { display: grid; grid-template-columns: 3fr 2fr; gap: 6rem; align-items: start; }
+
+    /* FORM */
+    h2 { font-family: 'Libre Baskerville', serif; font-size: 2rem; color: var(--accent-primary); margin-bottom: 1rem; }
+    .section-accent { width: 48px; height: 2px; background: var(--accent-secondary); margin-bottom: 2rem; }
+
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: var(--bg-main);
+      border: 1px solid var(--border-soft);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(31,42,68,0.08);
+    }
+    .form-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B6F76' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer; }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+
+    .btn-submit {
+      display: inline-block;
+      padding: 0.9rem 2.4rem;
+      background: var(--accent-primary);
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      border: none;
+      cursor: pointer;
+      transition: opacity var(--transition);
+      margin-top: 0.5rem;
+    }
+    .btn-submit:hover { opacity: 0.85; }
+
+    /* FORM SUCCESS STATE */
+    .form-success {
+      display: none;
+      background: #F0F7F0;
+      border: 1px solid #C3DFC3;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 0.9rem;
+      color: #2D5A2D;
+    }
+
+    /* DETAILS SIDEBAR */
+    .details-sidebar { padding-top: 0.5rem; }
+    .detail-block { margin-bottom: 2.5rem; }
+    .detail-block h3 { font-family: 'Libre Baskerville', serif; font-size: 1rem; color: var(--accent-primary); margin-bottom: 0.6rem; }
+    .detail-block p, .detail-block a { color: var(--text-muted); font-size: 0.9rem; text-decoration: none; display: block; }
+    .detail-block a { color: var(--accent-primary); border-bottom: 1px solid var(--accent-secondary); display: inline; padding-bottom: 1px; transition: color var(--transition); }
+    .detail-block a:hover { color: var(--accent-secondary); }
+    .divider { height: 1px; background: var(--border-soft); margin-bottom: 2.5rem; }
+
+    /* LOCATION SECTION */
+    .location-section { background: var(--bg-main); }
+    .location-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .location-img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+    .editorial { max-width: 540px; color: var(--text-muted); font-size: 0.95rem; }
+
+    footer { padding: 3rem 4rem; background: var(--bg-alt); border-top: 1px solid var(--border-soft); font-size: 0.8rem; color: var(--text-muted); text-align: center; }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 900px) {
+      header { padding: 1rem 1.5rem; }
+      .nav-toggle { display: flex; }
+      nav { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); padding: 1rem 1.5rem 1.5rem; }
+      nav.open { display: flex; }
+      nav a { padding: 0.7rem 0; font-size: 0.95rem; width: 100%; border-bottom: 1px solid var(--border-soft); }
+      nav a:last-child { border-bottom: none; }
+      .page-hero-text { padding: 5rem 1.5rem 4rem; }
+      .container { padding: 3.5rem 1.5rem; }
+      .contact-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .location-grid { grid-template-columns: 1fr; gap: 2rem; }
+      footer { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <a href="index.html" aria-label="PEXX — go to homepage">
+    <img src="logo-pexx.png" alt="PEXX" class="logo-img">
+  </a>
+  <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+  <nav id="primary-nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="interiors.html">Interiors</a>
+    <a href="little.html">Little</a>
+    <a href="wear.html">Wear</a>
+    <a href="carry.html">Carry</a>
+    <a href="workshops.html">Workshops</a>
+    <a href="contact.html" aria-current="page">Contact</a>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <section class="page-hero-text" aria-label="Contact page header">
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you — whether you're a buyer, a designer, or curious about what we make.</p>
+  </section>
+
+  <section class="contact-section" aria-labelledby="contact-form-heading">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- FORM -->
+        <div>
+          <h2 id="contact-form-heading">Send Us a Message</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+
+          <form id="contact-form" action="mailto:info@poddarexp.com" method="POST" enctype="text/plain" novalidate aria-label="Contact form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Your name <span aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name" autocomplete="name" required placeholder="Full name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address <span aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required placeholder="you@example.com">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="company">Company / Organisation</label>
+              <input type="text" id="company" name="company" autocomplete="organization" placeholder="Optional">
+            </div>
+
+            <div class="form-group">
+              <label for="enquiry-type">Enquiry type <span aria-hidden="true">*</span></label>
+              <select id="enquiry-type" name="enquiry_type" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="General enquiry">General enquiry</option>
+                <option value="Bulk / trade order">Bulk &amp; trade order</option>
+                <option value="Custom development">Custom development</option>
+                <option value="Workshop booking">Workshop booking</option>
+                <option value="Press / media">Press &amp; media</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message <span aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" required placeholder="Tell us what you're looking for — products of interest, approximate quantities, target market, or any other details."></textarea>
+            </div>
+
+            <button type="submit" class="btn-submit">Send message</button>
+          </form>
+
+          <div class="form-success" id="form-success" role="status" aria-live="polite">
+            Thank you — your message has been prepared in your email client. Please send it to complete your enquiry.
+          </div>
+        </div>
+
+        <!-- DETAILS SIDEBAR -->
+        <aside class="details-sidebar" aria-label="Contact details">
+          <div class="detail-block">
+            <h3>Email</h3>
+            <p><a href="mailto:info@poddarexp.com">info@poddarexp.com</a></p>
+          </div>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="detail-block">
+            <h3>Bulk &amp; Trade</h3>
+            <p>For export orders, MOQ enquiries, and custom development:</p>
+            <p style="margin-top:0.5rem;"><a href="mailto:info@poddarexp.com?subject=Bulk%20Enquiry">info@poddarexp.com</a></p>
+          </div>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="detail-block">
+            <h3>Workshops</h3>
+            <p>To book a factory visit or printing session:</p>
+            <p style="margin-top:0.5rem;"><a href="workshops.html">See workshop details</a></p>
+          </div>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="detail-block">
+            <h3>Location</h3>
+            <p>Jaipur, Rajasthan, India.</p>
+            <p style="margin-top:0.4rem;">Full address shared on booking confirmation.</p>
+          </div>
+
+          <div class="divider" aria-hidden="true"></div>
+
+          <div class="detail-block">
+            <h3>Response time</h3>
+            <p>We aim to respond to all enquiries within 2 working days.</p>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section class="location-section" aria-labelledby="location-heading">
+    <div class="container">
+      <div class="location-grid">
+        <img class="location-img" src="production-qc.jpg" alt="Inside the PEXX production facility — artisans working at printing tables" loading="lazy">
+        <div>
+          <h2 id="location-heading">Based in Jaipur</h2>
+          <div class="section-accent" aria-hidden="true"></div>
+          <p class="editorial">Our production facility is located in Jaipur, Rajasthan — the heart of India's hand block printing tradition. The city's centuries-old craft infrastructure, skilled artisan community, and proximity to natural dye suppliers shape everything we make.</p>
+          <p class="editorial" style="margin-top:1rem;">Buyers, designers, and visitors are welcome to arrange a factory visit alongside a workshop session. Please <a href="mailto:info@poddarexp.com?subject=Factory%20Visit" style="color:var(--accent-primary);border-bottom:1px solid var(--accent-secondary);text-decoration:none;">email us</a> to arrange a suitable time.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <address style="font-style:normal;">&copy; PEXX &ndash; Poddar Exports. Crafted in India.</address>
+</footer>
+
+<script>
+  // Mobile nav
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('#primary-nav');
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!open));
+    nav.classList.toggle('open', !open);
+  });
+  nav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    toggle.setAttribute('aria-expanded', 'false');
+    nav.classList.remove('open');
+  }));
+  document.addEventListener('click', e => {
+    if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+      toggle.setAttribute('aria-expanded', 'false');
+      nav.classList.remove('open');
+    }
+  });
+
+  // Form — show confirmation note after submit
+  document.getElementById('contact-form').addEventListener('submit', () => {
+    setTimeout(() => {
+      document.getElementById('form-success').style.display = 'block';
+    }, 300);
+  });
+</script>
+
+</body>
+</html>
