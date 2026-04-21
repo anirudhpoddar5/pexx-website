@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Wear | PEXX Hand Block Printed Textiles</title>
-  <meta name="description" content="Hand block printed garments by PEXX — kaftans, kurtas, shirts, and loose layers in natural cotton. Comfortable, considered, crafted in India." />
+  <meta name="description" content="Hand block printed cotton garments by PEXX crafted for softness, calm, and conscious living with eco-friendly dyes and ethical production in India." />
   <meta property="og:title" content="Wear | PEXX" />
-  <meta property="og:description" content="Soft layers designed for comfort and calm — hand block printed garments by PEXX." />
-  <meta property="og:image" content="wear-hero.jpg" />
+  <meta property="og:description" content="Soft block printed cotton layers shaped for comfort, slow living, and mindful colour." />
+  <meta property="og:image" content="wear-kaftans-tunics.jpg" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,9 +38,13 @@
     .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    .page-hero { position: relative; height: 55vh; overflow: hidden; }
-    .page-hero img { width: 100%; height: 100%; object-fit: cover; object-position: center top; }
-    .page-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 4rem 4rem; background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 60%); }
+    .page-hero { position: relative; min-height: 60vh; overflow: hidden; background: #D8CDBE; }
+    .page-hero-collage { position: absolute; inset: 0; display: grid; grid-template-columns: 1.15fr 0.75fr 1fr; gap: 1rem; padding: 1rem; }
+    .hero-panel { min-height: 100%; border-radius: 26px; background-size: cover; background-repeat: no-repeat; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12); }
+    .hero-panel--kaftans { background-image: url('wear-kaftans-tunics.jpg'); background-position: center 22%; }
+    .hero-panel--trousers { background-image: url('wear-trousers-palazzos.jpg'); background-position: center 58%; }
+    .hero-panel--coord { background-image: url('wear-coord-sets.jpg'); background-position: center 24%; }
+    .page-hero-overlay { position: absolute; inset: 0; z-index: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 4rem 4rem; background: linear-gradient(to top, rgba(21, 18, 15, 0.6) 0%, rgba(21, 18, 15, 0.22) 40%, rgba(21, 18, 15, 0) 72%); }
     .page-hero-overlay h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2rem, 4vw, 3rem); color: #fff; line-height: 1.2; margin-bottom: 0.6rem; }
     .page-hero-overlay p { color: #E5E7EB; font-size: 1rem; max-width: 560px; }
 
@@ -50,16 +54,16 @@
     .editorial { max-width: 620px; color: var(--text-muted); font-size: 0.95rem; }
 
     .intro-section { background: var(--bg-alt); border-bottom: 1px solid var(--border-soft); }
-    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .intro-img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
 
     .products-section { background: var(--bg-main); }
     .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; margin-top: 3rem; }
-    .product-card { display: flex; flex-direction: column; }
+    .product-card { display: flex; flex-direction: column; height: 100%; }
     .product-card img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; margin-bottom: 1rem; transition: opacity var(--transition); }
     .product-card:hover img { opacity: 0.85; }
     .product-card h3 { font-family: 'Libre Baskerville', serif; font-size: 1.05rem; margin-bottom: 0.3rem; }
-    .product-card p { color: var(--text-muted); font-size: 0.875rem; }
+    .product-card p { color: var(--text-muted); font-size: 0.875rem; flex-grow: 1; }
     .product-tag { display: inline-block; margin-top: 0.6rem; font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-secondary); }
 
     /* SIZE/SPEC TABLE */
@@ -67,6 +71,7 @@
     .spec-table { width: 100%; border-collapse: collapse; margin-top: 2rem; font-size: 0.9rem; }
     .spec-table th { text-align: left; padding: 0.75rem 1rem; background: var(--accent-primary); color: #fff; font-weight: 500; font-size: 0.8rem; letter-spacing: 0.06em; }
     .spec-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border-soft); color: var(--text-muted); background: var(--bg-alt); }
+    .spec-table td:first-child { width: 30%; color: var(--accent-primary); font-weight: 500; }
     .spec-table tr:last-child td { border-bottom: none; }
 
     .cta-section { background: var(--accent-primary); }
@@ -88,6 +93,9 @@
       nav a { padding: 0.7rem 0; font-size: 0.95rem; width: 100%; border-bottom: 1px solid var(--border-soft); }
       nav a:last-child { border-bottom: none; }
       .container { padding: 3.5rem 1.5rem; }
+      .page-hero { min-height: 62vh; }
+      .page-hero-collage { grid-template-columns: 1fr 1fr; gap: 0.75rem; padding: 0.75rem; }
+      .hero-panel--trousers { display: none; }
       .page-hero-overlay { padding: 2rem 1.5rem 3rem; }
       .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
       .product-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
@@ -97,6 +105,7 @@
       .spec-table th, .spec-table td { padding: 0.6rem 0.75rem; }
     }
     @media (max-width: 500px) {
+      .page-hero { min-height: 68vh; }
       .product-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -126,10 +135,14 @@
 <main id="main-content">
 
   <section class="page-hero" aria-label="Wear category banner">
-    <img src="wear-hero.jpg" alt="Editorial collage of hand block printed cotton garments in coordinated floral palettes" fetchpriority="high">
+    <div class="page-hero-collage" aria-hidden="true">
+      <div class="hero-panel hero-panel--kaftans"></div>
+      <div class="hero-panel hero-panel--trousers"></div>
+      <div class="hero-panel hero-panel--coord"></div>
+    </div>
     <div class="page-hero-overlay">
       <h1>Wear</h1>
-      <p>Soft layers designed for comfort and calm.</p>
+      <p>Breathable block printed cotton layers for comfort, slow living, and mindful colour.</p>
     </div>
   </section>
 
@@ -137,10 +150,10 @@
     <div class="container">
       <div class="intro-grid">
         <div>
-          <h2 id="intro-heading">Clothing as Craft</h2>
+          <h2 id="intro-heading">Softness as Craft</h2>
           <div class="section-accent" aria-hidden="true"></div>
-          <p class="editorial">The Wear range applies the same principles as our home textiles to garments: natural fabric, deliberate pattern placement, and hand-applied print. Each piece is cut and sewn at our integrated facility, allowing us to control quality across cloth, print, and stitch.</p>
-          <p class="editorial" style="margin-top:1rem;">Silhouettes are relaxed — designed for ease, layering, and cross-cultural appeal. We work with hospitality buyers, independent boutiques, and fashion-adjacent export clients who want something that carries genuine craft value.</p>
+          <p class="editorial">The Wear range brings our hand block printing practice into everyday clothing through breathable cotton, gentle washed handfeel, and calm colour stories that feel easy to live in. Every piece is made to sit softly on the body and age beautifully with wear.</p>
+          <p class="editorial" style="margin-top:1rem;">We work with eco-friendly azo-free dyes, small-batch printing, and ethically supervised stitching at our integrated facility, so softness, comfort, and responsible production stay present from fabric to final finish.</p>
         </div>
         <img class="intro-img" src="wear-shirts-kurtas.jpg" alt="Hand block printed cotton kurta in a mauve floral motif" loading="lazy">
       </div>
@@ -149,50 +162,50 @@
 
   <section class="products-section" aria-labelledby="products-heading">
     <div class="container">
-      <h2 id="products-heading">What We Make</h2>
+      <h2 id="products-heading">Made for Ease</h2>
       <div class="section-accent" aria-hidden="true"></div>
       <div class="product-grid">
 
         <div class="product-card">
           <img src="wear-kaftans-tunics.jpg" alt="Hand block printed cotton kaftan with turquoise and magenta floral motifs" loading="lazy">
           <h3>Kaftans &amp; Tunics</h3>
-          <p>Loose, floor-to-mid-length silhouettes in soft cotton. All-over print or border detail options.</p>
-          <span class="product-tag">XS – XXL available</span>
+          <p>Easy silhouettes in breathable cotton, designed to drape lightly and carry the softness of hand block print through every fold.</p>
+          <span class="product-tag">Breathable cotton</span>
         </div>
 
         <div class="product-card">
           <img src="wear-shirts-kurtas.jpg" alt="Hand block printed cotton shirt and kurta in a mauve floral print" loading="lazy">
           <h3>Shirts &amp; Kurtas</h3>
-          <p>Relaxed-fit shirts and kurtas with scattered or geometric block-print motifs. Unisex options available.</p>
-          <span class="product-tag">Custom sizing</span>
+          <p>Relaxed layers with a soft washed feel, easy structure, and gentle colour that makes everyday dressing feel calm and natural.</p>
+          <span class="product-tag">Low-impact colour</span>
         </div>
 
         <div class="product-card">
           <img src="wear-trousers-palazzos.jpg" alt="Hand block printed wide-leg palazzo trousers in ivory cotton with mustard floral vines" loading="lazy">
           <h3>Trousers &amp; Palazzos</h3>
-          <p>Wide-leg and drawstring-waist trousers designed to pair with tunics or stand alone.</p>
-          <span class="product-tag">Coordinated sets</span>
+          <p>Fluid bottoms shaped for movement and comfort, with airy volume and a softened finish that works beautifully across seasons.</p>
+          <span class="product-tag">Easy movement</span>
         </div>
 
         <div class="product-card">
           <img src="wear-coord-sets.jpg" alt="Hand block printed cotton co-ord set in a blush pink floral print" loading="lazy">
           <h3>Co-ord Sets</h3>
-          <p>Matching top and bottom sets in the same print, designed for retail display and gifting.</p>
-          <span class="product-tag">Retail-ready packs</span>
+          <p>Thoughtful matching sets that bring print, comfort, and quiet polish together for wardrobes built around slow living.</p>
+          <span class="product-tag">Slow living essentials</span>
         </div>
 
         <div class="product-card">
           <img src="wear-coverups-wraps.jpg" alt="Lightweight hand block printed cotton cover-up in turquoise and magenta florals" loading="lazy">
           <h3>Cover-Ups &amp; Wraps</h3>
-          <p>Lightweight printed wraps and beach cover-ups for resort and lifestyle retail buyers.</p>
-          <span class="product-tag">Resort ranges</span>
+          <p>Light layers with an airy handfeel and easy movement, ideal for travel, resort settings, and unhurried days at home.</p>
+          <span class="product-tag">Lightweight layering</span>
         </div>
 
         <div class="product-card">
           <img src="wear-private-label.jpg" alt="Curated rail of hand block printed garments prepared for private label development" loading="lazy">
           <h3>Private Label</h3>
-          <p>Full private label development — silhouette, print, label, packaging — for fashion and lifestyle brands.</p>
-          <span class="product-tag">MOQ applies</span>
+          <p>Collaborative development for brands seeking soft cotton, responsible dyes, considered colour, and ethically made block print apparel.</p>
+          <span class="product-tag">Ethically made</span>
         </div>
 
       </div>
@@ -201,9 +214,9 @@
 
   <section class="specs-section" aria-labelledby="specs-heading">
     <div class="container">
-      <h2 id="specs-heading">Production Specifications</h2>
+      <h2 id="specs-heading">Made Thoughtfully</h2>
       <div class="section-accent" aria-hidden="true"></div>
-      <table class="spec-table" aria-label="Wear production specifications">
+      <table class="spec-table" aria-label="Wear craft and care details">
         <thead>
           <tr>
             <th scope="col">Attribute</th>
@@ -211,13 +224,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>Fabric</td><td>100% natural cotton (60s, 80s, or mulmul as required)</td></tr>
-          <tr><td>Print method</td><td>Hand block printing with carved wooden blocks</td></tr>
-          <tr><td>Dyes</td><td>Azo-free, skin-safe reactive dyes</td></tr>
-          <tr><td>Sizes</td><td>XS to XXL standard; custom sizing on request</td></tr>
-          <tr><td>Finishing</td><td>Washed, pressed, hang-tagged, and bagged per buyer specification</td></tr>
-          <tr><td>MOQ</td><td>From 50 units per style (custom development may vary)</td></tr>
-          <tr><td>Lead time</td><td>Sample: 2–3 weeks. Bulk: 6–10 weeks from approval</td></tr>
+          <tr><td>Fabric</td><td>Natural cotton chosen for softness, breathability, and an easy everyday drape.</td></tr>
+          <tr><td>Print process</td><td>Hand block printing with carved wooden blocks, bringing rhythm, texture, and human touch to each piece.</td></tr>
+          <tr><td>Dyes &amp; colour</td><td>Azo-free dyes and mindful colour palettes developed to feel gentle, calm, and lasting.</td></tr>
+          <tr><td>Finish</td><td>Carefully washed and softened so the garments feel comfortable from the first wear onward.</td></tr>
+          <tr><td>Production</td><td>Ethically supervised cutting, stitching, and finishing at our integrated facility in India.</td></tr>
+          <tr><td>Approach</td><td>Designed for slow living, thoughtful retail, and wardrobes meant to be worn and loved over time.</td></tr>
         </tbody>
       </table>
     </div>
@@ -227,7 +239,7 @@
     <div class="cta-inner">
       <div>
         <h2 id="cta-heading">Interested in the Wear range?</h2>
-        <p>For bulk orders, samples, or private label development, get in touch.</p>
+        <p>For private label development, calm colour stories, or ethically made cotton apparel, get in touch.</p>
       </div>
       <a class="btn" href="mailto:info@poddarexp.com?subject=Wear%20Enquiry&body=Products%20of%20interest:%0AApprox.%20order%20quantity:%0ATarget%20market:%0A">Send an enquiry</a>
     </div>
