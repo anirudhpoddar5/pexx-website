@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal | PEXX</title>
+  <meta name="description" content="Stories from PEXX on hand block printing, textile craft, and thoughtful production." />
+  <meta property="og:title" content="Journal | PEXX" />
+  <meta property="og:description" content="Craft stories, process notes, and material conversations from PEXX." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="../assets/blog/block-print.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #f6f2eb;
+      --bg-alt: #fffdf9;
+      --bg-panel: rgba(255, 253, 249, 0.78);
+      --text-main: #1e2430;
+      --text-muted: #6b6f76;
+      --accent-primary: #1f2a44;
+      --accent-secondary: #b38a3d;
+      --border-soft: #e2ddd5;
+      --shadow-soft: 0 24px 60px rgba(33, 27, 18, 0.08);
+      --transition: 0.25s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(179, 138, 61, 0.08), transparent 30%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--bg-main) 40%, #f1ebe1 100%);
+      color: var(--text-main);
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      z-index: 200;
+      transition: top var(--transition);
+    }
+    .skip-link:focus { top: 1rem; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding: 1rem 4rem;
+      background: rgba(255, 253, 249, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226, 221, 213, 0.9);
+    }
+
+    .logo-img { height: 58px; width: auto; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    nav a:hover, nav a[aria-current="page"] { color: var(--accent-secondary); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero {
+      padding: 5.5rem 4rem 2.5rem;
+    }
+
+    .hero-shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.95fr);
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .hero-copy {
+      padding: 4rem 0 3rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--accent-secondary);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    .hero-copy h1 {
+      max-width: 11ch;
+      font-size: clamp(2.6rem, 6vw, 4.6rem);
+      margin-bottom: 1.2rem;
+      color: var(--accent-primary);
+    }
+
+    .hero-copy p {
+      max-width: 560px;
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+
+    .hero-panel {
+      position: relative;
+      min-height: 460px;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+      background: #d8cdbf;
+    }
+
+    .hero-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(18, 18, 18, 0.04) 0%, rgba(18, 18, 18, 0.34) 100%);
+    }
+
+    .hero-note {
+      position: absolute;
+      right: 1.25rem;
+      bottom: 1.25rem;
+      z-index: 1;
+      max-width: 240px;
+      padding: 1rem 1.1rem;
+      background: var(--bg-panel);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-note strong {
+      display: block;
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 400;
+      margin-bottom: 0.35rem;
+    }
+
+    .hero-note span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem 4rem 5rem;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1rem;
+      align-items: end;
+      margin-bottom: 2.2rem;
+    }
+
+    .toolbar-copy p {
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+
+    .toolbar-controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 0.85rem;
+    }
+
+    .search-input,
+    .filter-select {
+      appearance: none;
+      min-height: 48px;
+      border: 1px solid var(--border-soft);
+      background: rgba(255, 253, 249, 0.9);
+      color: var(--text-main);
+      padding: 0.85rem 1rem;
+      font: inherit;
+    }
+
+    .search-input {
+      min-width: min(320px, 100%);
+    }
+
+    .results-meta {
+      margin-bottom: 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .featured-post {
+      display: none;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: 2rem;
+      align-items: stretch;
+      margin-bottom: 2rem;
+      padding: 1.4rem;
+      background: rgba(255, 253, 249, 0.72);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .featured-post.active { display: grid; }
+
+    .featured-post img {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      object-fit: cover;
+    }
+
+    .featured-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem 0.5rem;
+    }
+
+    .post-date {
+      color: var(--accent-secondary);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .featured-copy p {
+      color: var(--text-muted);
+      max-width: 48ch;
+    }
+
+    .read-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      width: fit-content;
+      padding-bottom: 0.2rem;
+      border-bottom: 1px solid rgba(31, 42, 68, 0.18);
+      color: var(--accent-primary);
+      text-decoration: none;
+      transition: gap var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .read-link:hover {
+      gap: 0.8rem;
+      color: var(--accent-secondary);
+      border-color: rgba(179, 138, 61, 0.45);
+    }
+
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+    }
+
+    .post-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      text-decoration: none;
+      background: rgba(255, 253, 249, 0.68);
+      border: 1px solid rgba(226, 221, 213, 0.92);
+      box-shadow: 0 14px 34px rgba(33, 27, 18, 0.04);
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+
+    .post-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 42px rgba(33, 27, 18, 0.08);
+      border-color: rgba(179, 138, 61, 0.45);
+    }
+
+    .post-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .post-card-copy {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      gap: 0.9rem;
+      padding: 1.4rem;
+    }
+
+    .post-card-copy p {
+      color: var(--text-muted);
+      font-size: 0.94rem;
+    }
+
+    .post-card h3 {
+      font-size: 1.24rem;
+      color: var(--accent-primary);
+    }
+
+    .card-tag-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .category-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0.2rem 0.65rem;
+      border: 1px solid rgba(179, 138, 61, 0.35);
+      color: var(--accent-secondary);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 2rem;
+      background: rgba(255, 253, 249, 0.74);
+      border: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    .empty-state.active { display: block; }
+
+    footer {
+      padding: 2.5rem 1.5rem 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 1040px) {
+      .hero-shell,
+      .featured-post,
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .toolbar-controls {
+        justify-content: flex-start;
+      }
+
+      .posts-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 1rem 1.5rem; }
+      .nav-toggle { display: flex; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 1rem 1.5rem 1.5rem;
+        background: rgba(255, 253, 249, 0.97);
+        border-bottom: 1px solid var(--border-soft);
+      }
+      nav.open { display: flex; }
+      nav a {
+        width: 100%;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--border-soft);
+      }
+      nav a:last-child { border-bottom: none; }
+      .hero,
+      .section { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .hero { padding-top: 3.5rem; }
+      .hero-copy { padding: 1rem 0 0; }
+      .hero-panel { min-height: 360px; }
+    }
+
+    @media (max-width: 640px) {
+      .posts-grid { grid-template-columns: 1fr; }
+      .search-input { min-width: 100%; }
+      .toolbar-controls { flex-direction: column; }
+      .featured-post { padding: 1rem; }
+      .featured-post img { min-height: 260px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <a href="../index.html" aria-label="PEXX — go to homepage">
+      <img src="../logo-pexx.png" alt="PEXX" class="logo-img">
+    </a>
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="primary-nav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+      <a href="../interiors.html">Interiors</a>
+      <a href="../little.html">Little</a>
+      <a href="../wear.html">Wear</a>
+      <a href="../carry.html">Carry</a>
+      <a href="../workshops.html">Workshops</a>
+      <a href="../contact.html">Contact</a>
+      <a href="./index.html" aria-current="page">Journal</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="blog-hero-title">
+      <div class="hero-shell">
+        <div class="hero-copy">
+          <span class="eyebrow">PEXX Journal</span>
+          <h1 id="blog-hero-title">Craft, material, and the rhythm behind every print.</h1>
+          <p>Stories that stay close to the hand: process notes, textile insights, and the quiet details that shape block printed work.</p>
+        </div>
+        <div class="hero-panel">
+          <img src="../assets/blog/block-print.jpg" alt="Carved wooden blocks laid beside hand printed fabric" fetchpriority="high">
+          <div class="hero-note">
+            <strong>From studio to surface</strong>
+            <span>Read how colour, cotton, and careful repetition shape the final textile.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="posts-heading">
+      <div class="toolbar">
+        <div class="toolbar-copy">
+          <h2 id="posts-heading">Latest Essays</h2>
+          <p>Browse every story, or narrow the list by topic and keyword. Everything here is rendered from a static JSON feed for easy GitHub Pages publishing.</p>
+        </div>
+        <div class="toolbar-controls">
+          <label class="sr-only" for="blog-search">Search blog posts</label>
+          <input id="blog-search" class="search-input" type="search" placeholder="Search by title, excerpt, or category">
+          <label class="sr-only" for="category-filter">Filter by category</label>
+          <select id="category-filter" class="filter-select">
+            <option value="all">All categories</option>
+          </select>
+        </div>
+      </div>
+
+      <p id="results-meta" class="results-meta" aria-live="polite">Loading stories...</p>
+
+      <article id="featured-post" class="featured-post" aria-label="Featured article"></article>
+
+      <div id="posts-grid" class="posts-grid" aria-live="polite"></div>
+      <div id="empty-state" class="empty-state" role="status">No posts matched your search. Try a different keyword or category.</div>
+    </section>
+  </main>
+
+  <footer>
+    <address style="font-style: normal;">&copy; PEXX &ndash; Poddar Exports. Crafted in India.</address>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('#primary-nav');
+      const searchInput = document.querySelector('#blog-search');
+      const categoryFilter = document.querySelector('#category-filter');
+      const postsGrid = document.querySelector('#posts-grid');
+      const featuredPost = document.querySelector('#featured-post');
+      const resultsMeta = document.querySelector('#results-meta');
+      const emptyState = document.querySelector('#empty-state');
+
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        nav.classList.toggle('open', !open);
+      });
+
+      nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          toggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+          toggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('open');
+        }
+      });
+
+      const basePath = window.location.pathname.replace(/\/blog\/index\.html$/, '/').replace(/\/blog\/$/, '/');
+      const resolveAssetPath = (path) => {
+        if (!path) return '';
+        if (/^(https?:)?\/\//.test(path)) return path;
+        if (path.startsWith('/')) return basePath.replace(/\/$/, '') + path;
+        return new URL(path, window.location.href).href;
+      };
+
+      const formatDate = (dateString) => new Date(dateString + 'T00:00:00').toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      const buildPostUrl = (id) => './post.html?id=' + encodeURIComponent(id);
+
+      const renderFeaturedPost = (post) => {
+        if (!post) {
+          featuredPost.classList.remove('active');
+          featuredPost.innerHTML = '';
+          return;
+        }
+
+        featuredPost.classList.add('active');
+        featuredPost.innerHTML = [
+          '<img src="' + resolveAssetPath(post.image) + '" alt="' + (post.imageAlt || post.title) + '" loading="lazy">',
+          '<div class="featured-copy">',
+          '<span class="post-date">' + formatDate(post.date) + '</span>',
+          '<h3>' + post.title + '</h3>',
+          '<p>' + post.excerpt + '</p>',
+          '<a class="read-link" href="' + buildPostUrl(post.id) + '">Read the article <span aria-hidden="true">&rarr;</span></a>',
+          '</div>'
+        ].join('');
+      };
+
+      const renderPosts = (posts) => {
+        postsGrid.innerHTML = posts.map((post) => [
+          '<a class="post-card" href="' + buildPostUrl(post.id) + '">',
+          '<img src="' + resolveAssetPath(post.image) + '" alt="' + (post.imageAlt || post.title) + '" loading="lazy">',
+          '<div class="post-card-copy">',
+          '<span class="post-date">' + formatDate(post.date) + '</span>',
+          '<h3>' + post.title + '</h3>',
+          '<p>' + post.excerpt + '</p>',
+          '<div class="card-tag-row">',
+          '<span class="category-chip">' + (post.category || 'Journal') + '</span>',
+          '<span class="read-link">Read more <span aria-hidden="true">&rarr;</span></span>',
+          '</div>',
+          '</div>',
+          '</a>'
+        ].join('')).join('');
+      };
+
+      fetch('../data/posts.json')
+        .then((response) => {
+          if (!response.ok) throw new Error('Unable to load posts');
+          return response.json();
+        })
+        .then((posts) => {
+          const sortedPosts = posts.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+          const categories = Array.from(new Set(sortedPosts.map((post) => post.category).filter(Boolean)));
+
+          categories.forEach((category) => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.textContent = category;
+            categoryFilter.appendChild(option);
+          });
+
+          const applyFilters = () => {
+            const searchValue = searchInput.value.trim().toLowerCase();
+            const categoryValue = categoryFilter.value;
+            const filteredPosts = sortedPosts.filter((post) => {
+              const matchesCategory = categoryValue === 'all' || post.category === categoryValue;
+              const haystack = [post.title, post.excerpt, post.category, post.keywords || ''].join(' ').toLowerCase();
+              const matchesSearch = !searchValue || haystack.includes(searchValue);
+              return matchesCategory && matchesSearch;
+            });
+
+            resultsMeta.textContent = filteredPosts.length === 1
+              ? '1 story available'
+              : filteredPosts.length + ' stories available';
+
+            renderFeaturedPost(filteredPosts[0] || null);
+            renderPosts(filteredPosts.slice(1));
+
+            const hasPosts = filteredPosts.length > 0;
+            emptyState.classList.toggle('active', !hasPosts);
+            postsGrid.style.display = filteredPosts.length > 1 ? 'grid' : 'none';
+            if (filteredPosts.length <= 1) {
+              postsGrid.innerHTML = '';
+            }
+          };
+
+          searchInput.addEventListener('input', applyFilters);
+          categoryFilter.addEventListener('change', applyFilters);
+          applyFilters();
+        })
+        .catch(() => {
+          resultsMeta.textContent = 'The journal could not be loaded right now.';
+          emptyState.classList.add('active');
+          emptyState.textContent = 'Check that the site is being served from a local server or GitHub Pages so JSON files can be fetched correctly.';
+        });
+    }());
+  </script>
+</body>
+</html>

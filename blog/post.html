@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Journal | PEXX</title>
+  <meta name="description" content="Stories from PEXX on hand block printing, textile craft, and thoughtful production." />
+  <meta property="og:title" content="Journal | PEXX" />
+  <meta property="og:description" content="Craft stories, process notes, and material conversations from PEXX." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="../assets/blog/block-print.jpg" />
+  <style>
+    :root {
+      --bg-main: #f6f2eb;
+      --bg-alt: #fffdf9;
+      --text-main: #1e2430;
+      --text-muted: #6b6f76;
+      --accent-primary: #1f2a44;
+      --accent-secondary: #b38a3d;
+      --border-soft: #e2ddd5;
+      --shadow-soft: 0 24px 60px rgba(33, 27, 18, 0.08);
+      --transition: 0.25s ease;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(179, 138, 61, 0.08), transparent 26%),
+        linear-gradient(180deg, #faf7f0 0%, var(--bg-main) 34%, #f2ece3 100%);
+      color: var(--text-main);
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--accent-primary);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      z-index: 200;
+      transition: top var(--transition);
+    }
+    .skip-link:focus { top: 1rem; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding: 1rem 4rem;
+      background: rgba(255, 253, 249, 0.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(226, 221, 213, 0.9);
+    }
+
+    .logo-img { height: 58px; width: auto; }
+    nav { display: flex; align-items: center; gap: 2rem; }
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    nav a:hover, nav a[aria-current="page"] { color: var(--accent-secondary); }
+
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .nav-toggle span {
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      transition: transform var(--transition), opacity var(--transition);
+    }
+    .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .page {
+      padding: 3.5rem 4rem 5rem;
+    }
+
+    .article-shell {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.65rem;
+      margin-bottom: 2rem;
+      color: var(--accent-primary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .back-link:hover { color: var(--accent-secondary); }
+
+    .article-hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      gap: 2rem;
+      align-items: end;
+      margin-bottom: 2.5rem;
+    }
+
+    .article-meta {
+      padding: 0.5rem 0;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--accent-secondary);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Libre Baskerville', serif;
+      font-weight: 400;
+      line-height: 1.2;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      color: var(--accent-primary);
+      margin-bottom: 1.1rem;
+      max-width: 13ch;
+    }
+
+    .article-meta p {
+      max-width: 56ch;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .post-date {
+      display: inline-block;
+      margin-bottom: 1rem;
+      color: var(--accent-secondary);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-image-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: var(--shadow-soft);
+      background: #d8cdbf;
+      min-height: 320px;
+    }
+
+    .hero-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .article-card,
+    .related-posts,
+    .error-card {
+      background: rgba(255, 253, 249, 0.74);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .article-card {
+      padding: clamp(1.5rem, 3vw, 3rem);
+    }
+
+    .article-body {
+      max-width: 760px;
+      margin: 0 auto;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .article-body > * + * { margin-top: 1.2rem; }
+    .article-body h2 { margin-top: 2.6rem; font-size: clamp(1.55rem, 3vw, 2rem); color: var(--accent-primary); }
+    .article-body h3 { margin-top: 2rem; font-size: 1.25rem; color: var(--accent-primary); }
+    .article-body p, .article-body li { color: #364152; }
+    .article-body ul, .article-body ol { padding-left: 1.2rem; }
+    .article-body figure { margin: 2rem 0; }
+    .article-body figure img {
+      width: 100%;
+      max-height: 520px;
+      object-fit: cover;
+    }
+    .article-body figcaption {
+      margin-top: 0.7rem;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      text-align: center;
+    }
+    .article-body blockquote {
+      margin: 2rem 0;
+      padding: 1.2rem 1.4rem;
+      border-left: 2px solid var(--accent-secondary);
+      background: rgba(179, 138, 61, 0.08);
+      color: var(--accent-primary);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    .related-posts {
+      margin-top: 2.2rem;
+      padding: 1.5rem;
+    }
+
+    .related-posts h2 {
+      margin-bottom: 1.2rem;
+      font-size: 1.4rem;
+    }
+
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .related-card {
+      display: flex;
+      flex-direction: column;
+      text-decoration: none;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      transition: transform var(--transition), border-color var(--transition);
+    }
+
+    .related-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(179, 138, 61, 0.45);
+    }
+
+    .related-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .related-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 1rem;
+    }
+
+    .related-copy p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .error-card {
+      max-width: 680px;
+      margin: 4rem auto 0;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .error-card p {
+      color: var(--text-muted);
+      margin-top: 0.9rem;
+    }
+
+    footer {
+      padding: 2.5rem 1.5rem 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 1040px) {
+      .article-hero,
+      .related-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 1rem 1.5rem; }
+      .nav-toggle { display: flex; }
+      nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        padding: 1rem 1.5rem 1.5rem;
+        background: rgba(255, 253, 249, 0.97);
+        border-bottom: 1px solid var(--border-soft);
+      }
+      nav.open { display: flex; }
+      nav a {
+        width: 100%;
+        padding: 0.8rem 0;
+        border-bottom: 1px solid var(--border-soft);
+      }
+      nav a:last-child { border-bottom: none; }
+      .page { padding: 2.5rem 1.5rem 4rem; }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <a href="../index.html" aria-label="PEXX — go to homepage">
+      <img src="../logo-pexx.png" alt="PEXX" class="logo-img">
+    </a>
+    <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="primary-nav" aria-label="Primary navigation">
+      <a href="../index.html">Home</a>
+      <a href="../interiors.html">Interiors</a>
+      <a href="../little.html">Little</a>
+      <a href="../wear.html">Wear</a>
+      <a href="../carry.html">Carry</a>
+      <a href="../workshops.html">Workshops</a>
+      <a href="../contact.html">Contact</a>
+      <a href="./index.html" aria-current="page">Journal</a>
+    </nav>
+  </header>
+
+  <main id="main-content" class="page">
+    <div id="article-shell" class="article-shell" hidden>
+      <a class="back-link" href="./index.html"><span aria-hidden="true">&larr;</span> Back to Blog</a>
+
+      <section class="article-hero" aria-labelledby="post-title">
+        <div class="article-meta">
+          <span class="eyebrow" id="post-category">Journal</span>
+          <span class="post-date" id="post-date"></span>
+          <h1 id="post-title"></h1>
+          <p id="post-excerpt"></p>
+        </div>
+        <div class="hero-image-wrap">
+          <img id="post-image" src="" alt="" fetchpriority="high">
+        </div>
+      </section>
+
+      <article class="article-card">
+        <div id="post-content" class="article-body"></div>
+      </article>
+
+      <aside id="related-posts" class="related-posts" hidden>
+        <h2>Related posts</h2>
+        <div id="related-grid" class="related-grid"></div>
+      </aside>
+    </div>
+
+    <div id="error-card" class="error-card" hidden>
+      <h1 style="max-width:none; font-size:2rem; margin-bottom:0;">Post not found</h1>
+      <p>The article you requested could not be loaded. Return to the journal and choose another story.</p>
+      <p><a class="back-link" style="margin:1.25rem 0 0; justify-content:center;" href="./index.html"><span aria-hidden="true">&larr;</span> Back to Blog</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <address style="font-style: normal;">&copy; PEXX &ndash; Poddar Exports. Crafted in India.</address>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const nav = document.querySelector('#primary-nav');
+      const articleShell = document.querySelector('#article-shell');
+      const errorCard = document.querySelector('#error-card');
+      const postTitle = document.querySelector('#post-title');
+      const postDate = document.querySelector('#post-date');
+      const postExcerpt = document.querySelector('#post-excerpt');
+      const postCategory = document.querySelector('#post-category');
+      const postImage = document.querySelector('#post-image');
+      const postContent = document.querySelector('#post-content');
+      const relatedPosts = document.querySelector('#related-posts');
+      const relatedGrid = document.querySelector('#related-grid');
+
+      toggle.addEventListener('click', () => {
+        const open = toggle.getAttribute('aria-expanded') === 'true';
+        toggle.setAttribute('aria-expanded', String(!open));
+        nav.classList.toggle('open', !open);
+      });
+
+      nav.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          toggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('open');
+        });
+      });
+
+      document.addEventListener('click', (event) => {
+        if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+          toggle.setAttribute('aria-expanded', 'false');
+          nav.classList.remove('open');
+        }
+      });
+
+      const params = new URLSearchParams(window.location.search);
+      const postId = params.get('id');
+      const basePath = window.location.pathname.replace(/\/blog\/post\.html$/, '/');
+      const resolveAssetPath = (path) => {
+        if (!path) return '';
+        if (/^(https?:)?\/\//.test(path)) return path;
+        if (path.startsWith('/')) return basePath.replace(/\/$/, '') + path;
+        return new URL(path, window.location.href).href;
+      };
+      const formatDate = (dateString) => new Date(dateString + 'T00:00:00').toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+
+      const showError = () => {
+        articleShell.hidden = true;
+        errorCard.hidden = false;
+        document.title = 'Post not found | PEXX';
+      };
+
+      if (!postId) {
+        showError();
+        return;
+      }
+
+      fetch('../data/posts.json')
+        .then((response) => {
+          if (!response.ok) throw new Error('Unable to load posts');
+          return response.json();
+        })
+        .then((posts) => {
+          const post = posts.find((item) => item.id === postId);
+          if (!post) {
+            showError();
+            return null;
+          }
+
+          postTitle.textContent = post.title;
+          postDate.textContent = formatDate(post.date);
+          postExcerpt.textContent = post.excerpt;
+          postCategory.textContent = post.category || 'Journal';
+          postImage.src = resolveAssetPath(post.image);
+          postImage.alt = post.imageAlt || post.title;
+
+          document.title = post.title + ' | PEXX Journal';
+          const description = document.querySelector('meta[name="description"]');
+          const ogTitle = document.querySelector('meta[property="og:title"]');
+          const ogDescription = document.querySelector('meta[property="og:description"]');
+          const ogImage = document.querySelector('meta[property="og:image"]');
+
+          description.setAttribute('content', post.excerpt);
+          ogTitle.setAttribute('content', post.title + ' | PEXX Journal');
+          ogDescription.setAttribute('content', post.excerpt);
+          ogImage.setAttribute('content', resolveAssetPath(post.image));
+
+          const related = posts
+            .filter((item) => item.id !== post.id && item.category === post.category)
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .slice(0, 2);
+
+          if (related.length) {
+            relatedPosts.hidden = false;
+            relatedGrid.innerHTML = related.map((item) => [
+              '<a class="related-card" href="./post.html?id=' + encodeURIComponent(item.id) + '">',
+              '<img src="' + resolveAssetPath(item.image) + '" alt="' + (item.imageAlt || item.title) + '" loading="lazy">',
+              '<div class="related-copy">',
+              '<span class="post-date">' + formatDate(item.date) + '</span>',
+              '<h3>' + item.title + '</h3>',
+              '<p>' + item.excerpt + '</p>',
+              '</div>',
+              '</a>'
+            ].join('')).join('');
+          }
+
+          return fetch(resolveAssetPath(post.file));
+        })
+        .then((response) => {
+          if (!response) return null;
+          if (!response.ok) throw new Error('Unable to load post file');
+          return response.text();
+        })
+        .then((html) => {
+          if (!html) return;
+          postContent.innerHTML = html;
+          articleShell.hidden = false;
+          errorCard.hidden = true;
+        })
+        .catch(() => {
+          showError();
+        });
+    }());
+  </script>
+</body>
+</html>
