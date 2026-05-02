@@ -7,7 +7,7 @@
   <meta name="description" content="Guided hand block printing workshops at the PEXX factory in India. Designed for individuals, small groups, and design-led visits." />
   <meta property="og:title" content="Workshops | PEXX" />
   <meta property="og:description" content="Experience the craft of hand block printing through guided workshops at our factory in India." />
-  <meta property="og:image" content="hero-pexx.jpeg" />
+  <meta property="og:image" content="workshop-hero-collage.jpeg" />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,14 +38,11 @@
     .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
     .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-    /* HERO — text only, warm background */
-    .page-hero-text {
-      background: var(--accent-primary);
-      padding: 7rem 4rem 6rem;
-      text-align: center;
-    }
-    .page-hero-text h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.2rem, 5vw, 3.4rem); color: #fff; line-height: 1.2; margin-bottom: 1rem; }
-    .page-hero-text p { color: rgba(255,255,255,0.75); font-size: 1.05rem; max-width: 600px; margin: 0 auto; }
+    .page-hero { position: relative; min-height: 60vh; overflow: hidden; background: #E8E0D3; }
+    .page-hero img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+    .page-hero-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 3rem 4rem 4rem; background: linear-gradient(to top, rgba(21,18,15,0.62) 0%, rgba(21,18,15,0.22) 42%, rgba(21,18,15,0) 72%); }
+    .page-hero-overlay h1 { font-family: 'Libre Baskerville', serif; font-size: clamp(2.2rem, 5vw, 3.4rem); color: #fff; line-height: 1.2; margin-bottom: 1rem; }
+    .page-hero-overlay p { color: rgba(255,255,255,0.82); font-size: 1.05rem; max-width: 600px; }
 
     .container { max-width: 1200px; margin: 0 auto; padding: 6rem 4rem; }
     h2 { font-family: 'Libre Baskerville', serif; font-size: 2rem; color: var(--accent-primary); margin-bottom: 1rem; }
@@ -100,7 +97,8 @@
       nav.open { display: flex; }
       nav a { padding: 0.7rem 0; font-size: 0.95rem; width: 100%; border-bottom: 1px solid var(--border-soft); }
       nav a:last-child { border-bottom: none; }
-      .page-hero-text { padding: 5rem 1.5rem 4rem; }
+      .page-hero { min-height: 62vh; }
+      .page-hero-overlay { padding: 2rem 1.5rem 3rem; }
       .container { padding: 3.5rem 1.5rem; }
       .overview-grid { grid-template-columns: 1fr; gap: 2rem; }
       .expect-grid { grid-template-columns: repeat(2, 1fr); }
@@ -139,10 +137,12 @@
 
 <main id="main-content">
 
-  <!-- TEXT HERO -->
-  <section class="page-hero-text" aria-label="Workshops introduction">
-    <h1>Print Workshops</h1>
-    <p>Guided sessions at our factory — where you work directly with the tools, dyes, and blocks that have shaped PEXX textiles for decades.</p>
+  <section class="page-hero" aria-label="Workshops introduction">
+    <img src="workshop-hero-collage.jpeg" alt="Collage of visitors participating in hands-on hand block printing workshops at the PEXX factory" fetchpriority="high">
+    <div class="page-hero-overlay">
+      <h1>Print Workshops</h1>
+      <p>Guided sessions at our factory where guests work directly with blocks, colour, cloth, and the rhythm of real production.</p>
+    </div>
   </section>
 
   <!-- OVERVIEW -->
@@ -156,7 +156,7 @@
           <p class="editorial" style="margin-top:1rem;">Sessions take place inside our production facility, so you see the full process: from raw cloth and block carving to printing, washing, and drying. The workshop is structured around that production rhythm, not a studio simulation of it.</p>
           <p class="editorial" style="margin-top:1rem;">No prior experience is needed. Sessions are available in English and Hindi. Groups of all backgrounds — design students, travelling creatives, heritage tourists, and corporate teams — have participated.</p>
         </div>
-        <img class="overview-img" src="development-blocks.jpg" alt="Hand-carved wooden printing blocks laid out on a fabric surface at PEXX" loading="lazy">
+        <img class="overview-img" src="workshop-experience.jpeg" alt="Guest learning hand block printing with an artisan at the PEXX workshop" loading="lazy">
       </div>
     </div>
   </section>
