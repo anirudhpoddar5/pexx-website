@@ -14,18 +14,20 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* ── TOKENS ─────────────────────────────────────────────── */
     :root {
-      --bg-main:           #F6F2EB;
-      --bg-alt:            #FFFFFF;
-      --text-main:         #1E2430;
-      --text-muted:        #6B6F76;
-      --accent-primary:    #1F2A44;
-      --accent-secondary:  #C3A24D;
-      --border-soft:       #E2DDD5;
+      --bg-main:           #F3EDE3;
+      --bg-alt:            #FBF7F0;
+      --bg-panel:          rgba(251, 247, 240, 0.76);
+      --text-main:         #2B241F;
+      --text-muted:        #6F655B;
+      --accent-primary:    #362A22;
+      --accent-secondary:  #B48D59;
+      --border-soft:       #E4D9CA;
+      --shadow-soft:       0 22px 50px rgba(45, 33, 22, 0.08);
       --transition:        0.2s ease;
     }
 
@@ -34,8 +36,10 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-main);
+      font-family: 'Manrope', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(180, 141, 89, 0.08), transparent 32%),
+        linear-gradient(180deg, #FBF7F0 0%, var(--bg-main) 36%, #EEE5D8 100%);
       color: var(--text-main);
       line-height: 1.7;
     }
@@ -61,35 +65,73 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 1rem 4rem;
-      display: flex;
-      justify-content: space-between;
+      padding: 0.95rem 3.2rem;
+      display: grid;
+      grid-template-columns: auto 1fr;
       align-items: center;
-      background: var(--bg-alt);
-      border-bottom: 1px solid var(--border-soft);
+      gap: 2rem;
+      background: rgba(251, 247, 240, 0.82);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(228, 217, 202, 0.95);
+      box-shadow: 0 10px 28px rgba(45, 33, 22, 0.04);
+    }
+
+    .brand-lockup {
+      display: inline-flex;
+      align-items: flex-end;
+      gap: 0.9rem;
+      text-decoration: none;
+      color: inherit;
+      min-width: max-content;
     }
 
     .logo-img {
-      height: 58px;
+      height: 64px;
       width: auto;
+    }
+
+    .brand-note {
+      padding-bottom: 0.45rem;
+      color: var(--text-muted);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 2.4rem;
+      justify-self: end;
+      gap: 1.45rem;
     }
 
     nav a {
       text-decoration: none;
       color: var(--text-main);
-      font-size: 0.85rem;
-      letter-spacing: 0.04em;
-      transition: color var(--transition);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      transition: color var(--transition), border-color var(--transition), background var(--transition);
     }
 
     nav a:hover,
     nav a[aria-current="page"] { color: var(--accent-secondary); }
+
+    .nav-cta {
+      padding: 0.8rem 1.2rem;
+      border: 1px solid rgba(180, 141, 89, 0.45);
+      background: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(244,236,223,0.92) 100%);
+      letter-spacing: 0.12em;
+    }
+
+    .nav-cta:hover,
+    .nav-cta[aria-current="page"] {
+      color: var(--accent-primary);
+      border-color: var(--accent-secondary);
+      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(237,228,214,0.98) 100%);
+    }
 
     /* Hamburger — hidden on desktop */
     .nav-toggle {
@@ -134,23 +176,25 @@
       flex-direction: column;
       justify-content: flex-end;
       padding: 4rem 4rem 5rem;
-      background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%);
+      background: linear-gradient(to top, rgba(28,21,16,0.68) 0%, rgba(28,21,16,0.22) 48%, rgba(28,21,16,0) 72%);
       text-align: center;
     }
 
     .hero-overlay h1 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 5.4vw, 4.5rem);
+      font-weight: 500;
       color: #fff;
-      margin-bottom: 1.2rem;
-      line-height: 1.25;
+      margin-bottom: 1rem;
+      line-height: 1.08;
+      letter-spacing: 0.01em;
     }
 
     .hero-overlay p {
-      max-width: 680px;
+      max-width: 720px;
       margin: 0 auto;
-      color: #E5E7EB;
-      font-size: 1.05rem;
+      color: rgba(245, 239, 232, 0.92);
+      font-size: 1rem;
     }
 
     /* ── LAYOUT HELPERS ──────────────────────────────────────── */
@@ -161,8 +205,9 @@
     }
 
     h2 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 2.2rem;
+      font-weight: 500;
       color: var(--accent-primary);
       margin-bottom: 1rem;
     }
@@ -199,6 +244,7 @@
       align-items: flex-start;
       text-decoration: none;
       color: inherit;
+      transition: transform var(--transition);
     }
 
     .category img {
@@ -209,12 +255,14 @@
       transition: opacity var(--transition);
     }
 
-    .category:hover img { opacity: 0.85; }
+    .category:hover { transform: translateY(-4px); }
+    .category:hover img { opacity: 0.9; }
 
     .category h3 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.15rem;
-      margin-bottom: 0.6rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 500;
+      margin-bottom: 0.45rem;
     }
 
     .category p {
@@ -285,8 +333,9 @@
     }
 
     .journal-card-copy h3 {
-      font-family: 'Libre Baskerville', serif;
+      font-family: 'Cormorant Garamond', serif;
       font-size: 1.1rem;
+      font-weight: 500;
       margin-bottom: 0.7rem;
     }
 
@@ -343,11 +392,13 @@
     .contact-card {
       border: 1px solid var(--border-soft);
       padding: 2.5rem;
+      background: rgba(251, 247, 240, 0.62);
     }
 
     .contact-card h3 {
-      font-family: 'Libre Baskerville', serif;
-      font-size: 1.15rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 500;
       margin-bottom: 0.8rem;
     }
 
@@ -380,7 +431,7 @@
 
     /* ── RESPONSIVE ──────────────────────────────────────────── */
     @media (max-width: 900px) {
-      header { padding: 1rem 1.5rem; }
+      header { padding: 1rem 1.25rem; grid-template-columns: auto auto; }
 
       .nav-toggle { display: flex; }
 
@@ -393,7 +444,7 @@
         flex-direction: column;
         align-items: flex-start;
         gap: 0;
-        background: var(--bg-alt);
+        background: rgba(251, 247, 240, 0.98);
         border-bottom: 1px solid var(--border-soft);
         padding: 1rem 1.5rem 1.5rem;
       }
@@ -402,11 +453,19 @@
 
       nav a {
         padding: 0.7rem 0;
-        font-size: 0.95rem;
+        font-size: 0.82rem;
         width: 100%;
         border-bottom: 1px solid var(--border-soft);
       }
       nav a:last-child { border-bottom: none; }
+
+      .brand-note { display: none; }
+      .logo-img { height: 58px; }
+      .nav-cta {
+        width: 100%;
+        text-align: center;
+        margin-top: 0.9rem;
+      }
 
       .container { padding: 3.5rem 1.5rem; }
       footer     { padding: 2rem 1.5rem; }
@@ -443,8 +502,9 @@
 <a href="#main-content" class="skip-link">Skip to main content</a>
 
 <header>
-  <a href="index.html" aria-label="PEXX — go to homepage">
+  <a href="index.html" class="brand-lockup" aria-label="PEXX — go to homepage">
     <img src="logo-pexx.png" alt="PEXX" class="logo-img">
+    <span class="brand-note">Crafted in India</span>
   </a>
 
   <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -459,7 +519,7 @@
     <a href="carry.html">Carry</a>
     <a href="workshops.html">Workshops</a>
     <a href="blog/index.html">Journal</a>
-    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="nav-cta">Enquire</a>
   </nav>
 </header>
 
@@ -469,8 +529,8 @@
   <section class="hero" aria-label="Hero banner">
     <img src="hero-pexx.jpeg" alt="Artisan pressing a hand-carved block onto printed textile fabric" fetchpriority="high">
     <div class="hero-overlay">
-      <h1>Hand Block Printed Textiles,<br>Crafted in India for Modern Living</h1>
-      <p>PEXX creates premium hand block printed textiles shaped by generational expertise, refined processes, and a quiet commitment to quality across every stage of making.</p>
+      <h1>Hand Block Printed Textiles for Quiet, Considered Living</h1>
+      <p>PEXX brings together generational craft, softened natural cotton, and a more refined approach to colour, making textiles that feel tactile, grounded, and quietly luxurious.</p>
     </div>
   </section>
 
@@ -514,7 +574,7 @@
         <div>
           <h2 id="journal-heading">From the Journal</h2>
           <div class="section-accent" aria-hidden="true"></div>
-          <p class="editorial">Read the latest stories on hand block printing, natural materials, and the quieter details behind how PEXX makes textiles.</p>
+          <p class="editorial">Read notes on process, materiality, and the slower decisions behind the textiles we make.</p>
         </div>
         <a class="journal-link" href="blog/index.html">View all stories</a>
       </div>
