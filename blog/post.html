@@ -8,7 +8,10 @@
   <meta property="og:title" content="Journal | PEXX" />
   <meta property="og:description" content="Craft stories, process notes, and material conversations from PEXX." />
   <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.poddarexp.com/blog/post.html" />
   <meta property="og:image" content="../assets/blog/block-print.jpg" />
+  <link rel="canonical" href="https://www.poddarexp.com/blog/post.html" />
+  <script id="article-structured-data" type="application/ld+json">{}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
@@ -217,6 +220,12 @@
       max-height: 520px;
       object-fit: cover;
     }
+    .article-body figure.detail-figure img,
+    .article-body figure.portrait-figure img {
+      max-height: 720px;
+      object-fit: contain;
+      background: rgba(244, 236, 223, 0.72);
+    }
     .article-body figcaption {
       margin-top: 0.7rem;
       color: var(--text-muted);
@@ -363,7 +372,7 @@
 
   <main id="main-content" class="page">
     <div id="article-shell" class="article-shell" hidden>
-      <a class="back-link" href="./index.html"><span aria-hidden="true">&larr;</span> Back to Blog</a>
+      <a class="back-link" href="./index.html"><span aria-hidden="true">&larr;</span> Back to Journal</a>
 
       <section class="article-hero" aria-labelledby="post-title">
         <div class="article-meta">
@@ -412,6 +421,9 @@
       const postContent = document.querySelector('#post-content');
       const relatedPosts = document.querySelector('#related-posts');
       const relatedGrid = document.querySelector('#related-grid');
+      const canonicalLink = document.querySelector('link[rel="canonical"]');
+      const structuredData = document.querySelector('#article-structured-data');
+      const siteUrl = 'https://www.poddarexp.com';
 
       toggle.addEventListener('click', () => {
         const open = toggle.getAttribute('aria-expanded') === 'true';
@@ -472,22 +484,51 @@
           }
 
           postTitle.textContent = post.title;
-          postDate.textContent = formatDate(post.date);
+          postDate.textContent = formatDate(post.date) + (post.readTime ? ' · ' + post.readTime : '');
           postExcerpt.textContent = post.excerpt;
           postCategory.textContent = post.category || 'Journal';
           postImage.src = resolveAssetPath(post.image);
           postImage.alt = post.imageAlt || post.title;
 
-          document.title = post.title + ' | PEXX Journal';
+          const metaTitle = post.seoTitle || (post.title + ' | PEXX Journal');
+          const metaDescription = post.metaDescription || post.excerpt;
+          const canonicalUrl = siteUrl + '/blog/post.html?id=' + encodeURIComponent(post.id);
+
+          document.title = metaTitle;
           const description = document.querySelector('meta[name="description"]');
           const ogTitle = document.querySelector('meta[property="og:title"]');
           const ogDescription = document.querySelector('meta[property="og:description"]');
+          const ogUrl = document.querySelector('meta[property="og:url"]');
           const ogImage = document.querySelector('meta[property="og:image"]');
 
-          description.setAttribute('content', post.excerpt);
-          ogTitle.setAttribute('content', post.title + ' | PEXX Journal');
-          ogDescription.setAttribute('content', post.excerpt);
+          description.setAttribute('content', metaDescription);
+          ogTitle.setAttribute('content', metaTitle);
+          ogDescription.setAttribute('content', metaDescription);
+          ogUrl.setAttribute('content', canonicalUrl);
           ogImage.setAttribute('content', resolveAssetPath(post.image));
+          canonicalLink.setAttribute('href', canonicalUrl);
+          structuredData.textContent = JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: post.title,
+            description: metaDescription,
+            image: [resolveAssetPath(post.image)],
+            datePublished: post.date,
+            dateModified: post.date,
+            author: {
+              '@type': 'Organization',
+              name: 'PEXX'
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'PEXX',
+              logo: {
+                '@type': 'ImageObject',
+                url: siteUrl + '/logo-pexx.png'
+              }
+            },
+            mainEntityOfPage: canonicalUrl
+          });
 
           const related = posts
             .filter((item) => item.id !== post.id && item.category === post.category)
