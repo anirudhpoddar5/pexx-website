@@ -501,11 +501,11 @@
     <section class="section" aria-labelledby="posts-heading">
       <div class="toolbar">
         <div class="toolbar-copy">
-          <h2 id="posts-heading">Latest Essays</h2>
-          <p>Browse every story, or narrow the list by topic and keyword. Everything here is rendered from a static JSON feed for easy GitHub Pages publishing.</p>
+          <h2 id="posts-heading">Latest Journal Stories</h2>
+          <p>Browse every entry, or narrow the list by topic and keyword to explore craft notes, textile insights, and process stories from PEXX.</p>
         </div>
         <div class="toolbar-controls">
-          <label class="sr-only" for="blog-search">Search blog posts</label>
+          <label class="sr-only" for="blog-search">Search journal entries</label>
           <input id="blog-search" class="search-input" type="search" placeholder="Search by title, excerpt, or category">
           <label class="sr-only" for="category-filter">Filter by category</label>
           <select id="category-filter" class="filter-select">
@@ -514,12 +514,12 @@
         </div>
       </div>
 
-      <p id="results-meta" class="results-meta" aria-live="polite">Loading stories...</p>
+      <p id="results-meta" class="results-meta" aria-live="polite">Loading journal entries...</p>
 
-      <article id="featured-post" class="featured-post" aria-label="Featured article"></article>
+      <article id="featured-post" class="featured-post" aria-label="Featured journal entry"></article>
 
       <div id="posts-grid" class="posts-grid" aria-live="polite"></div>
-      <div id="empty-state" class="empty-state" role="status">No posts matched your search. Try a different keyword or category.</div>
+      <div id="empty-state" class="empty-state" role="status">No journal entries matched your search. Try a different keyword or category.</div>
     </section>
   </main>
 
@@ -637,8 +637,8 @@
             });
 
             resultsMeta.textContent = filteredPosts.length === 1
-              ? '1 story available'
-              : filteredPosts.length + ' stories available';
+              ? '1 journal entry available'
+              : filteredPosts.length + ' journal entries available';
 
             renderFeaturedPost(filteredPosts[0] || null);
             renderPosts(filteredPosts.slice(1));
