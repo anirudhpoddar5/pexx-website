@@ -8,9 +8,9 @@
   <meta property="og:title" content="Journal | PEXX" />
   <meta property="og:description" content="Craft stories, process notes, and material conversations from PEXX." />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://www.poddarexp.com/blog/post.html" />
-  <meta property="og:image" content="../assets/blog/block-print.jpg" />
-  <link rel="canonical" href="https://www.poddarexp.com/blog/post.html" />
+  <meta property="og:url" content="https://www.poddarexp.com/blog/how-to-identify-genuine-hand-block-printed-fabric/" />
+  <meta property="og:image" content="../../assets/blog/block-print.jpg" />
+  <link rel="canonical" href="https://www.poddarexp.com/blog/how-to-identify-genuine-hand-block-printed-fabric/" />
   <script id="article-structured-data" type="application/ld+json">{}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -371,28 +371,28 @@
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
   <header>
-    <a href="../index.html" class="brand-lockup" aria-label="PEXX — go to homepage">
-      <img src="../logo-pexx.png" alt="PEXX" class="logo-img">
+    <a href="../../index.html" class="brand-lockup" aria-label="PEXX — go to homepage">
+      <img src="../../logo-pexx.png" alt="PEXX" class="logo-img">
       <span class="brand-note">Quiet Textiles for Considered Living</span>
     </a>
     <button class="nav-toggle" aria-controls="primary-nav" aria-expanded="false" aria-label="Toggle navigation">
       <span></span><span></span><span></span>
     </button>
     <nav id="primary-nav" aria-label="Primary navigation">
-      <a href="../index.html">Home</a>
-      <a href="../interiors.html">Interiors</a>
-      <a href="../little.html">Little</a>
-      <a href="../wear.html">Wear</a>
-      <a href="../carry.html">Carry</a>
-      <a href="../workshops.html">Workshops</a>
-      <a href="./index.html" aria-current="page">Journal</a>
-      <a href="../contact.html" class="nav-cta">Enquire</a>
+      <a href="../../index.html">Home</a>
+      <a href="../../interiors.html">Interiors</a>
+      <a href="../../little.html">Little</a>
+      <a href="../../wear.html">Wear</a>
+      <a href="../../carry.html">Carry</a>
+      <a href="../../workshops.html">Workshops</a>
+      <a href="../index.html" aria-current="page">Journal</a>
+      <a href="../../contact.html" class="nav-cta">Enquire</a>
     </nav>
   </header>
 
   <main id="main-content" class="page">
     <div id="article-shell" class="article-shell" hidden>
-      <a class="back-link" href="./index.html"><span aria-hidden="true">&larr;</span> Back to Journal</a>
+      <a class="back-link" href="../index.html"><span aria-hidden="true">&larr;</span> Back to Journal</a>
 
       <section class="article-hero" aria-labelledby="post-title">
         <div class="article-meta">
@@ -419,7 +419,7 @@
     <div id="error-card" class="error-card" hidden>
       <h1 style="max-width:none; font-size:2rem; margin-bottom:0;">Post not found</h1>
       <p>The article you requested could not be loaded. Return to the journal and choose another story.</p>
-      <p><a class="back-link" style="margin:1.25rem 0 0; justify-content:center;" href="./index.html"><span aria-hidden="true">&larr;</span> Back to Blog</a></p>
+      <p><a class="back-link" style="margin:1.25rem 0 0; justify-content:center;" href="../index.html"><span aria-hidden="true">&larr;</span> Back to Blog</a></p>
     </div>
   </main>
 
@@ -444,6 +444,7 @@
       const canonicalLink = document.querySelector('link[rel="canonical"]');
       const structuredData = document.querySelector('#article-structured-data');
       const siteUrl = 'https://www.poddarexp.com';
+      const fixedSlug = 'how-to-identify-genuine-hand-block-printed-fabric';
 
       toggle.addEventListener('click', () => {
         const open = toggle.getAttribute('aria-expanded') === 'true';
@@ -465,14 +466,10 @@
         }
       });
 
-      const params = new URLSearchParams(window.location.search);
-      const postId = params.get('id');
-      const postSlug = params.get('slug');
-      const basePath = window.location.pathname.replace(/\/blog\/post\.html$/, '/');
       const resolveAssetPath = (path) => {
         if (!path) return '';
         if (/^(https?:)?\/\//.test(path)) return path;
-        if (path.startsWith('/')) return basePath.replace(/\/$/, '') + path;
+        if (path.startsWith('/')) return window.location.origin + path;
         return new URL(path, window.location.href).href;
       };
       const formatDate = (dateString) => new Date(dateString + 'T00:00:00').toLocaleDateString('en-US', {
@@ -480,6 +477,9 @@
         month: 'long',
         day: 'numeric'
       });
+      const buildPostUrl = (post) => post.slug
+        ? '../' + post.slug + '/'
+        : '../post.html?id=' + encodeURIComponent(post.id);
 
       const showError = () => {
         articleShell.hidden = true;
@@ -487,22 +487,13 @@
         document.title = 'Post not found | PEXX';
       };
 
-      if (!postId && !postSlug) {
-        showError();
-        return;
-      }
-
-      fetch('../data/posts.json')
+      fetch('../../data/posts.json')
         .then((response) => {
           if (!response.ok) throw new Error('Unable to load posts');
           return response.json();
         })
         .then((posts) => {
-          const post = posts.find((item) => {
-            const idMatch = postId && (item.id === postId || (Array.isArray(item.legacyIds) && item.legacyIds.includes(postId)));
-            const slugMatch = postSlug && item.slug === postSlug;
-            return idMatch || slugMatch;
-          });
+          const post = posts.find((item) => item.slug === fixedSlug);
           if (!post) {
             showError();
             return null;
@@ -517,9 +508,7 @@
 
           const metaTitle = post.seoTitle || (post.title + ' | PEXX Journal');
           const metaDescription = post.metaDescription || post.excerpt;
-          const canonicalUrl = post.slug
-            ? siteUrl + '/blog/' + post.slug + '/'
-            : siteUrl + '/blog/post.html?id=' + encodeURIComponent(post.id);
+          const canonicalUrl = siteUrl + '/blog/' + post.slug + '/';
 
           document.title = metaTitle;
           const description = document.querySelector('meta[name="description"]');
@@ -534,6 +523,7 @@
           ogUrl.setAttribute('content', canonicalUrl);
           ogImage.setAttribute('content', resolveAssetPath(post.image));
           canonicalLink.setAttribute('href', canonicalUrl);
+
           const articleSchema = {
             '@type': 'Article',
             headline: post.title,
@@ -583,7 +573,7 @@
           if (related.length) {
             relatedPosts.hidden = false;
             relatedGrid.innerHTML = related.map((item) => [
-              '<a class="related-card" href="' + (item.slug ? './' + item.slug + '/' : './post.html?id=' + encodeURIComponent(item.id)) + '">',
+              '<a class="related-card" href="' + buildPostUrl(item) + '">',
               '<img src="' + resolveAssetPath(item.image) + '" alt="' + (item.imageAlt || item.title) + '" loading="lazy">',
               '<div class="related-copy">',
               '<span class="post-date">' + formatDate(item.date) + '</span>',

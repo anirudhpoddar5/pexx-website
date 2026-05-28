@@ -1,17 +1,55 @@
 [
   {
-    "id": "hand-block-print-imperfections-authenticity",
-    "title": "Why Tiny Imperfections in Hand Block Prints Are a Sign of Authenticity",
-    "seoTitle": "Why Imperfections in Hand Block Prints Signal Authenticity | PEXX",
-    "date": "2026-05-19",
-    "readTime": "5 min read",
-    "excerpt": "Small overlaps, tonal shifts, and uneven repeats are not flaws in hand block printing. They are often the clearest signs of genuine handmade craftsmanship.",
-    "metaDescription": "Learn why small variations in hand block printed fabrics are signs of authentic craftsmanship, not flaws, and how to identify genuine handmade textiles.",
-    "image": "/assets/blog/hand-block-print-imperfections-hero.jpg",
+    "id": "how-to-identify-genuine-hand-block-printed-fabric",
+    "legacyIds": [
+      "hand-block-print-imperfections-authenticity"
+    ],
+    "slug": "how-to-identify-genuine-hand-block-printed-fabric",
+    "title": "How to Identify Genuine Hand Block Printed Fabric",
+    "seoTitle": "How to Identify Genuine Hand Block Printed Fabric (Expert Guide)",
+    "date": "2026-05-28",
+    "readTime": "8 min read",
+    "excerpt": "A practical guide to spotting authentic hand block printed fabric through imperfections, dye penetration, natural dye behavior, and machine-print red flags.",
+    "metaDescription": "Learn how to identify authentic hand block printed fabric—imperfection cues, dye penetration, natural dye behavior, and machine-print red flags.",
+    "image": "/assets/blog/genuine-block-print-hero.png",
     "imageAlt": "Hand block printed cotton fabric with layered floral motifs in warm natural light",
     "file": "/posts/hand-block-print-imperfections-authenticity.html",
     "category": "Craft",
-    "keywords": "hand block print imperfections authenticity handmade textile genuine block print fabric how to identify hand block print"
+    "keywords": "genuine hand block printed fabric how to identify authentic block print hand block print vs machine print natural dye block printing Jaipur Bagru Sanganer",
+    "faq": [
+      {
+        "question": "How can you tell if fabric is hand block printed?",
+        "answer": "Look for small variations in alignment, slight overlaps at repeat edges, and gentle tonal shifts in color. Check the reverse side: genuine hand block printed fabric often shows dye penetration with a softer mirror of the design. Authentic prints also feel integrated into the fabric rather than sitting as a flat surface coating."
+      },
+      {
+        "question": "Do genuine block prints have imperfections?",
+        "answer": "Yes. Minor irregularities such as tiny smudges, uneven pressure, or small motif shifts are common in authentic hand block printing because each impression is stamped by hand. These are process signatures rather than defects. Perfect repetition is often a sign of machine production."
+      },
+      {
+        "question": "Why does block printed fabric show color on the back?",
+        "answer": "In many authentic prints, dye absorbs into the yarns and travels through the weave, creating visible penetration on the reverse side. The back typically appears lighter and more ghosted than the front. Machine or digital prints may leave the reverse relatively white because ink often sits on the surface."
+      },
+      {
+        "question": "Are natural dyes used in authentic block printing?",
+        "answer": "Often, yes, especially in traditions associated with natural dye practices such as indigo and vegetable-dye families. Natural dyes typically produce earthy depth and subtle tonal variation because they absorb into fibers differently than synthetic inks. However, authenticity is defined by the hand process, not only by dye type."
+      },
+      {
+        "question": "Is hand block printing sustainable?",
+        "answer": "Hand block printing can be more sustainable than high-volume industrial printing because it is slower, frequently batch-based, and often compatible with natural fibers like cotton and linen. Sustainability depends on dye chemistry, water management, and finishing practices, so responsible sourcing and transparent manufacturing standards still matter."
+      },
+      {
+        "question": "Why are handmade block prints expensive?",
+        "answer": "They require skilled labor at multiple stages: block carving, dye preparation, careful hand stamping, layered color printing, and controlled drying and finishing. Production is slower and quality control is more hands-on. The cost reflects time, artisan expertise, and the complexity of producing consistent results through a manual craft process."
+      },
+      {
+        "question": "What is the difference between digital print and block print?",
+        "answer": "Digital prints are produced by machines that spray ink with precise repetition and speed, often leaving a flatter surface feel and less dye penetration. Hand block prints are stamped manually with carved blocks, showing subtle variations, more tactile character, and process evidence like tiny overlaps and alignment shifts across repeats."
+      },
+      {
+        "question": "Which Indian regions are famous for block printing?",
+        "answer": "Rajasthan is especially well known, particularly Jaipur, Bagru, and Sanganer, each with distinct visual identities and process traditions. Other Indian regions also have rich block-print legacies, but these Rajasthan clusters are globally recognized for artisan communities, motif languages, and long-standing craft infrastructure."
+      }
+    ]
   },
   {
     "id": "block-printing-process",

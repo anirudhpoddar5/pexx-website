@@ -572,7 +572,9 @@
         day: 'numeric'
       });
 
-      const buildPostUrl = (id) => './post.html?id=' + encodeURIComponent(id);
+      const buildPostUrl = (post) => post.slug
+        ? './' + post.slug + '/'
+        : './post.html?id=' + encodeURIComponent(post.id);
 
       const renderFeaturedPost = (post) => {
         if (!post) {
@@ -588,14 +590,14 @@
           '<span class="post-date">' + formatDate(post.date) + '</span>',
           '<h3>' + post.title + '</h3>',
           '<p>' + post.excerpt + '</p>',
-          '<a class="read-link" href="' + buildPostUrl(post.id) + '">Read the article <span aria-hidden="true">&rarr;</span></a>',
+          '<a class="read-link" href="' + buildPostUrl(post) + '">Read the article <span aria-hidden="true">&rarr;</span></a>',
           '</div>'
         ].join('');
       };
 
       const renderPosts = (posts) => {
         postsGrid.innerHTML = posts.map((post) => [
-          '<a class="post-card" href="' + buildPostUrl(post.id) + '">',
+          '<a class="post-card" href="' + buildPostUrl(post) + '">',
           '<img src="' + resolveAssetPath(post.image) + '" alt="' + (post.imageAlt || post.title) + '" loading="lazy">',
           '<div class="post-card-copy">',
           '<span class="post-date">' + formatDate(post.date) + '</span>',
