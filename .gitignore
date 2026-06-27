@@ -1,1 +1,5 @@
 .DS_Store
+
+# Shopify secrets — never commit
+.shopify-token
+.shopify-secrets
