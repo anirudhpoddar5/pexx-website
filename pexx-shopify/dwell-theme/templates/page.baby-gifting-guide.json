@@ -1,0 +1,527 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+/* PEXX baby gifting guide */{
+  "sections": {
+    "h": {
+      "type": "hero",
+      "blocks": {
+        "text_KJqzT8": {
+          "type": "text",
+          "settings": {
+            "text": "<h2><em>A baby gift that's actually kept</em></h2>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h1",
+            "font": "var(--font-primary--family)",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "text_color": "{{ settings.color_palette.background }}",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 16,
+            "padding-inline-end": 16
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["text_KJqzT8"],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "media_type_2": "image",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "flex-end",
+        "gap": 16,
+        "section_width": "full-width",
+        "section_height": "medium",
+        "section_height_custom": 50,
+        "background_color": "rgba(0,0,0,0)",
+        "toggle_overlay": true,
+        "overlay_color": "#1C130C8C",
+        "overlay_style": "solid",
+        "gradient_direction": "to right",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "image_1": "shopify://shop_images/hero-pexx.jpg"
+      }
+    },
+    "why": {
+      "type": "section",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Gifting guide</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h6",
+            "font": "var(--font-accent--family)",
+            "letter_spacing": "heading-loose",
+            "case": "uppercase",
+            "text_color": "{{ settings.color_palette.color1 }}"
+          },
+          "blocks": {}
+        },
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>The right gift, for the moment</h2>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "text_color": "{{ settings.color_palette.foreground }}"
+          },
+          "blocks": {}
+        },
+        "body": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Indian baby gifting has its own calendar — godh bharai, namkaran, the first birthday. Each moment calls for something soft, safe and worth keeping, not another toy that's forgotten by the next visit. Here's what we'd send for each.</p>",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "center",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "text_color": "{{ settings.color_palette.foreground }}"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["eyebrow", "heading", "body"],
+      "name": "Pull quote",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "center",
+        "vertical_alignment": "center",
+        "gap": 24,
+        "section_width": "full-width",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    },
+    "m1": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image_position": "cover",
+            "image": "shopify://shop_images/little-kids-pouches.jpg"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "text_eEy4hr": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Baby shower &middot; Godh Bharai</p>",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "h6",
+                "font": "var(--font-primary--family)",
+                "text_color": "{{ settings.color_palette.color1 }}"
+              },
+              "blocks": {}
+            },
+            "group_WG7cBJ": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "width": "fill",
+                "width_mobile": "fill"
+              },
+              "blocks": {
+                "text_pp7GaT": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>Something soft for the mother-to-be</h2>",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-primary--family)",
+                    "text_color": "{{ settings.color_palette.foreground }}"
+                  },
+                  "blocks": {}
+                },
+                "text_VzkkLz": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>A godh bharai gift works best when it's gentle and useful from day one — swaddles, wraps and layette pieces in breathable, azo-free cotton that a newborn can wear straight out of the box.</p>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-primary--family)",
+                    "text_color": "{{ settings.color_palette.foreground }}"
+                  },
+                  "blocks": {}
+                },
+                "button_cta": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Shop new-baby gifts",
+                    "link": "/collections/gifting"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["text_pp7GaT", "text_VzkkLz", "button_cta"]
+            }
+          },
+          "block_order": ["text_eEy4hr", "group_WG7cBJ"]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "right",
+        "media_width": "large",
+        "media_height": "56svh",
+        "section_width": "page-width",
+        "extend_media": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "m2": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image_position": "cover",
+            "image": "shopify://shop_images/little-hero-collage.jpg"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "text_eEy4hr": {
+              "type": "text",
+              "settings": {
+                "text": "<p>Naming ceremony &middot; Namkaran</p>",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "h6",
+                "font": "var(--font-primary--family)",
+                "text_color": "{{ settings.color_palette.color1 }}"
+              },
+              "blocks": {}
+            },
+            "group_WG7cBJ": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "width": "fill",
+                "width_mobile": "fill"
+              },
+              "blocks": {
+                "text_pp7GaT": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>A keepsake for the day their name is given</h2>",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-primary--family)",
+                    "text_color": "{{ settings.color_palette.foreground }}"
+                  },
+                  "blocks": {}
+                },
+                "text_VzkkLz": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Namkaran gifts tend to be kept rather than used right away — a printed quilt, a set of soft caps, or a pouch for the mementos of the day. Pick a piece that ages well; it's often the first thing folded away for later.</p>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-primary--family)",
+                    "text_color": "{{ settings.color_palette.foreground }}"
+                  },
+                  "blocks": {}
+                },
+                "button_cta": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Shop naming-day gifts",
+                    "link": "/collections/gifting"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["text_pp7GaT", "text_VzkkLz", "button_cta"]
+            }
+          },
+          "block_order": ["text_eEy4hr", "group_WG7cBJ"]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "left",
+        "media_width": "large",
+        "media_height": "56svh",
+        "section_width": "page-width",
+        "extend_media": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "m3": {
+      "type": "media-with-content",
+      "blocks": {
+        "media": {
+          "type": "_media-without-appearance",
+          "static": true,
+          "settings": {
+            "media_type": "image",
+            "image_position": "cover",
+            "image": "shopify://shop_images/workshop-experience.jpg"
+          },
+          "blocks": {}
+        },
+        "content": {
+          "type": "_content-without-appearance",
+          "static": true,
+          "settings": {
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 24
+          },
+          "blocks": {
+            "text_eEy4hr": {
+              "type": "text",
+              "settings": {
+                "text": "<p>First birthday</p>",
+                "width": "fit-content",
+                "alignment": "left",
+                "type_preset": "h6",
+                "font": "var(--font-primary--family)",
+                "text_color": "{{ settings.color_palette.color1 }}"
+              },
+              "blocks": {}
+            },
+            "group_WG7cBJ": {
+              "type": "group",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 16,
+                "width": "fill",
+                "width_mobile": "fill"
+              },
+              "blocks": {
+                "text_pp7GaT": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h2>For the child who's finally choosing favourites</h2>",
+                    "width": "fit-content",
+                    "alignment": "left",
+                    "type_preset": "h2",
+                    "font": "var(--font-primary--family)",
+                    "text_color": "{{ settings.color_palette.foreground }}"
+                  },
+                  "blocks": {}
+                },
+                "text_VzkkLz": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>By the first birthday, a child has opinions — bold prints and colour outperform pastel newborn sets. A carry pouch, a play mat or an outing set works well, especially wrapped and gift-noted for the party.</p>",
+                    "width": "fit-content",
+                    "max_width": "narrow",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-primary--family)",
+                    "text_color": "{{ settings.color_palette.foreground }}"
+                  },
+                  "blocks": {}
+                },
+                "button_cta": {
+                  "type": "button",
+                  "settings": {
+                    "label": "Shop birthday gifts",
+                    "link": "/collections/gifting"
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["text_pp7GaT", "text_VzkkLz", "button_cta"]
+            }
+          },
+          "block_order": ["text_eEy4hr", "group_WG7cBJ"]
+        }
+      },
+      "name": "t:names.media_with_text",
+      "settings": {
+        "media_position": "right",
+        "media_width": "large",
+        "media_height": "56svh",
+        "section_width": "page-width",
+        "extend_media": true,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "faq": {
+      "type": "main-page",
+      "blocks": {
+        "eyebrow": {
+          "type": "text",
+          "settings": {
+            "text": "<p>FAQ</p>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h6",
+            "text_color": "{{ settings.color_palette.color1 }}"
+          },
+          "blocks": {}
+        },
+        "heading": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>Frequently asked questions</h2>",
+            "width": "100%",
+            "alignment": "center",
+            "type_preset": "h2"
+          },
+          "blocks": {}
+        },
+        "faq_accordion": {
+          "type": "accordion",
+          "settings": {},
+          "blocks": {
+            "row_1": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "<h3 style=\"margin:0;font:inherit;\">What's a good gift for an Indian baby shower (godh bharai)?</h3>"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Something the baby can use immediately and safely — a soft cotton swaddle, wrap or layette piece in azo-free dyes works well for every family, regardless of region or ritual. Skip anything synthetic or heavily embellished; newborn skin does better with plain, breathable, hand block-printed cotton.</p>"
+                  }
+                }
+              },
+              "block_order": ["text"]
+            },
+            "row_2": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "<h3 style=\"margin:0;font:inherit;\">What do you gift at a naming ceremony (namkaran)?</h3>"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Naming-ceremony gifts are usually kept as a keepsake rather than used right away, so a printed quilt, a soft cap set or a small pouch for mementos works better than anything disposable. Choose a piece that still looks good in photographs years later.</p>"
+                  }
+                }
+              },
+              "block_order": ["text"]
+            },
+            "row_3": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "<h3 style=\"margin:0;font:inherit;\">What's a good first-birthday gift for a toddler?</h3>"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>At one year old, bold prints and colour outperform pastel newborn sets — a carry pouch, a play mat or an outing set suits a toddler who's starting to have preferences. Gift-wrap it and add a note; it's usually opened in front of the whole party.</p>"
+                  }
+                }
+              },
+              "block_order": ["text"]
+            },
+            "row_4": {
+              "type": "_accordion-row",
+              "settings": {
+                "heading": "<h3 style=\"margin:0;font:inherit;\">Can I get these gifts personalised with the baby's name?</h3>"
+              },
+              "blocks": {
+                "text": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p>Not yet — name personalisation is on our roadmap but isn't available today. Every occasion gift can still be gift-wrapped with your own note, so it still feels personal on arrival.</p>"
+                  }
+                }
+              },
+              "block_order": ["text"]
+            }
+          },
+          "block_order": ["row_1", "row_2", "row_3", "row_4"]
+        }
+      },
+      "block_order": ["eyebrow", "heading", "faq_accordion"],
+      "settings": {
+        "content_direction": "column",
+        "gap": 24,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    }
+  },
+  "order": ["h", "why", "m1", "m2", "m3", "faq"]
+}

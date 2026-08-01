@@ -1,0 +1,61 @@
+<style>
+  .pexx-pop { position:fixed; inset:0; background:rgba(28,20,12,.55); display:none; align-items:center; justify-content:center; z-index:99999; padding:20px; }
+  .pexx-pop.is-open { display:flex; }
+  .pexx-pop__box { background:#F3EDE3; max-width:440px; width:100%; padding:44px 38px 38px; position:relative; text-align:center; border:1px solid #D8C7AD; }
+  .pexx-pop__x { position:absolute; top:14px; right:16px; background:none; border:none; font-size:22px; line-height:1; color:#6F655B; cursor:pointer; }
+  .pexx-pop__ey { font-family:var(--font-body--family); font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:#9E3B2F; margin:0 0 10px; }
+  .pexx-pop h2 { font-family:var(--font-primary--family); font-weight:400; font-size:1.9rem; color:#2B241F; margin:0 0 10px; line-height:1.15; }
+  .pexx-pop__sub { font-family:var(--font-body--family); font-size:14px; color:#6F655B; margin:0 0 22px; line-height:1.6; }
+  .pexx-pop input { width:100%; padding:13px 14px; margin:0 0 12px; border:1px solid #D8C7AD; background:#FBF7F0; font-family:var(--font-body--family); font-size:15px; color:#2B241F; }
+  .pexx-pop button[type=submit] { width:100%; padding:14px; background:#2B241F; color:#F3EDE3; border:none; font-family:var(--font-body--family); font-size:12px; letter-spacing:.16em; text-transform:uppercase; cursor:pointer; }
+  .pexx-pop__fine { font-family:var(--font-body--family); font-size:11px; color:#9c8a6c; margin:12px 0 0; }
+  .pexx-pop__code { display:inline-block; margin:6px 0 0; font-family:var(--font-body--family); letter-spacing:.18em; font-size:18px; color:#2B241F; border-bottom:2px solid #9E3B2F; padding-bottom:3px; }
+  .pexx-pop__consent { display:flex; align-items:flex-start; gap:8px; text-align:left; font-family:var(--font-body--family); font-size:12px; color:#6F655B; margin:0 0 14px; line-height:1.5; }
+  .pexx-pop__consent input { width:auto; margin:2px 0 0; }
+</style>
+
+<div id="pexx-pop" class="pexx-pop" aria-hidden="true" role="dialog" aria-label="Welcome offer">
+  <div class="pexx-pop__box">
+    <button class="pexx-pop__x" aria-label="Close">&times;</button>
+    {%- form 'customer', id: 'pexx-pop-form' -%}
+      {%- if form.posted_successfully? -%}
+        <div data-pexx-ok>
+          <p class="pexx-pop__ey">You're in</p>
+          <h2>Welcome to PEXX</h2>
+          <p class="pexx-pop__sub">Here's 15% off your first order — use it at checkout.</p>
+          <span class="pexx-pop__code">WELCOME15</span>
+        </div>
+      {%- else -%}
+        <p class="pexx-pop__ey">First order</p>
+        <h2>15% off, and first to know</h2>
+        <p class="pexx-pop__sub">Be first when new blocks drop — soft, skin-safe pieces for little ones and everyday carry.</p>
+        <input type="hidden" name="contact[tags]" id="pexx-pop-tags" value="newsletter, popup">
+        <input type="hidden" name="contact[accepts_marketing]" value="1">
+        <input type="email" name="contact[email]" placeholder="Email address" required>
+        <input type="tel" name="contact[phone]" placeholder="Phone / WhatsApp (optional)">
+        <label class="pexx-pop__consent">
+          <input type="checkbox" id="pexx-pop-wa-consent" onchange="document.getElementById('pexx-pop-tags').value = this.checked ? 'newsletter, popup, whatsapp-optin' : 'newsletter, popup';">
+          <span>Yes, message me on WhatsApp with order and product updates.</span>
+        </label>
+        <button type="submit">Get my 15% code</button>
+        <p class="pexx-pop__fine">No spam — just new prints and the occasional treat.</p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+<script>
+  (function(){
+    var el = document.getElementById('pexx-pop');
+    if(!el) return;
+    var KEY = 'pexx_pop_seen';
+    var ok = el.querySelector('[data-pexx-ok]');
+    function open(){ el.classList.add('is-open'); el.setAttribute('aria-hidden','false'); }
+    function close(){ el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); try{localStorage.setItem(KEY,'1');}catch(e){} }
+    el.querySelector('.pexx-pop__x').addEventListener('click', close);
+    el.addEventListener('click', function(e){ if(e.target===el) close(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
+    if(ok){ open(); try{localStorage.setItem(KEY,'1');}catch(e){} }
+    else { try{ if(!localStorage.getItem(KEY)) setTimeout(open, 4500); }catch(e){} }
+  })();
+</script>

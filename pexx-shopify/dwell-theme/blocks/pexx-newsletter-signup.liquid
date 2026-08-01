@@ -1,0 +1,54 @@
+<div class="pexx-nl" {{ block.shopify_attributes }}>
+  {%- form 'customer', class: 'pexx-nl__form' -%}
+    {%- if form.posted_successfully? -%}
+      <p class="pexx-nl__success h6">You're on the list — thank you!</p>
+    {%- else -%}
+      <div class="pexx-nl__heading h6">Get 15% off your first order</div>
+      <p class="pexx-nl__sub">Sign up for the code, plus new prints first.</p>
+      <div class="pexx-nl__row">
+        <input type="hidden" name="contact[tags]" value="newsletter, footer">
+        <input type="hidden" name="contact[accepts_marketing]" value="1">
+        <input type="email" name="contact[email]" placeholder="Email address" required class="pexx-nl__input">
+        <button type="submit" class="pexx-nl__btn">Subscribe</button>
+      </div>
+    {%- endif -%}
+  {%- endform -%}
+</div>
+
+{% stylesheet %}
+  .pexx-nl { padding: 4px 0; }
+  .pexx-nl__heading { margin: 0 0 8px; }
+  .pexx-nl__sub { margin: 0 0 20px; font-size: 13px; opacity: 0.8; line-height: 1.5; }
+  .pexx-nl__row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .pexx-nl__input {
+    flex: 1;
+    min-width: 200px;
+    padding: 14px 16px;
+    border: 1px solid var(--color-input-border, currentColor);
+    background: var(--color-input-background, transparent);
+    color: var(--color-input-text, inherit);
+    font: inherit;
+  }
+  .pexx-nl__btn {
+    padding: 14px 22px;
+    border: 1px solid currentColor;
+    background: transparent;
+    color: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  @media screen and (max-width: 749px) {
+    .pexx-nl__row { flex-direction: column; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PEXX Newsletter",
+  "tag": null,
+  "settings": []
+}
+{% endschema %}

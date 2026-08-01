@@ -1,0 +1,214 @@
+<title>PEXX Gifting Redesign — Design Spec</title>
+<style>
+  @font-face {
+    font-family: 'ui-serif-stack';
+    src: local('Palatino Linotype'), local('Palatino'), local('Iowan Old Style');
+  }
+  :root {
+    --bg: #F6F0E4; --bg-raised: #FBF7EE; --ink: #2B241F; --muted: #8B8175; --rule: #DDD3C0;
+    --terracotta: #9E3B2F; --terracotta-tint: #F1DDD6; --indigo: #2F3E52; --indigo-tint: #DEE4EA;
+    --good: #5C6B47; --good-tint: #E2E7D8; --warn: #B8863B; --warn-tint: #F2E4C8;
+    --weak: #9C897A; --weak-tint: #EAE2D6;
+    --shadow: 0 1px 2px rgba(43,36,31,0.06), 0 8px 24px rgba(43,36,31,0.05);
+    --serif-display: 'Palatino Linotype', Palatino, 'Iowan Old Style', 'Book Antiqua', Georgia, serif;
+    --serif-body: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+    --sans-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+  :root[data-theme="dark"] {
+    --bg: #211B17; --bg-raised: #2A231D; --ink: #EDE6D8; --muted: #A69A88; --rule: #3D342B;
+    --terracotta: #D98A78; --terracotta-tint: #3E2823; --indigo: #9DB0C6; --indigo-tint: #232C38;
+    --good: #A9BB8F; --good-tint: #2A2F22; --warn: #E0B979; --warn-tint: #362B18;
+    --weak: #B3A493; --weak-tint: #2E2823;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #211B17; --bg-raised: #2A231D; --ink: #EDE6D8; --muted: #A69A88; --rule: #3D342B;
+      --terracotta: #D98A78; --terracotta-tint: #3E2823; --indigo: #9DB0C6; --indigo-tint: #232C38;
+      --good: #A9BB8F; --good-tint: #2A2F22; --warn: #E0B979; --warn-tint: #362B18;
+      --weak: #B3A493; --weak-tint: #2E2823;
+    }
+  }
+  body { background: var(--bg); color: var(--ink); font-family: var(--serif-body); line-height: 1.6; max-width: 880px; margin: 0 auto; padding: 40px 24px 100px; }
+  h1 { font-family: var(--serif-display); font-weight: 400; font-size: 2.1rem; margin: 0 0 6px; }
+  h2 { font-family: var(--serif-display); font-weight: 400; font-size: 1.5rem; margin: 48px 0 14px; padding-top: 20px; border-top: 1px solid var(--rule); }
+  h3 { font-family: var(--sans-ui); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--terracotta); margin: 28px 0 10px; }
+  .meta { font-family: var(--sans-ui); color: var(--muted); font-size: 0.85rem; margin: 0 0 32px; }
+  .lede { font-size: 1.05rem; color: var(--muted); max-width: 680px; }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; font-size: 0.92rem; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { font-family: var(--sans-ui); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+  .card { background: var(--bg-raised); border: 1px solid var(--rule); border-radius: 8px; padding: 18px 22px; box-shadow: var(--shadow); margin: 14px 0; }
+  .tag { display: inline-block; font-family: var(--sans-ui); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 3px 9px; border-radius: 20px; margin: 0 6px 6px 0; }
+  .tag.decided { background: var(--good-tint); color: var(--good); }
+  .tag.open { background: var(--warn-tint); color: var(--warn); }
+  .tag.gap { background: var(--terracotta-tint); color: var(--terracotta); }
+  code { background: var(--weak-tint); padding: 1px 6px; border-radius: 4px; font-family: ui-monospace, monospace; font-size: 0.85em; }
+  ul, ol { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .quote { font-style: italic; color: var(--ink); }
+  .flag { border-left: 3px solid var(--warn); background: var(--warn-tint); padding: 10px 16px; margin: 10px 0; font-size: 0.92rem; }
+  hr { border: none; border-top: 1px solid var(--rule); margin: 36px 0; }
+</style>
+
+<h1>PEXX Gifting Redesign — Design Spec</h1>
+<p class="meta">Written 2026-07-31. Supersedes/extends <code>gifting-page-occasion-strategy-2026-07-17.html</code> (IA rationale and per-function wedding breakdown from that doc still hold — this doc adds layout, cross-page repetition strategy, the enquiry form redesign, page naming, and photo assignment now that real product photography exists). Decided in direct conversation with the founder plus one independent Opus review pass on the whole plan (design/SEO/AEO/naming).</p>
+
+<p class="lede">Four occasion pages — Corporate, Weddings, Kids, Festive/General — each treated as a complete, standalone page for an emotional purchase, not a thin tile pointing elsewhere. This doc is the structure, the shared components, the final copy naming, and the photo-to-section plan for the 22 real photos now available (Kids has zero — still blocked on the merchant).</p>
+
+<h2>1. Information architecture</h2>
+<p>Nav mega-menu links directly to all 4 occasion pages — one click each, no forced stop at a hub. <code>/pages/gifting</code> stays, but stops being a gatekeeper and becomes a real page: brand philosophy, one photo + brief explainer per category with a "see more" link into the full page, and its own enquiry form (the only page where the Occasion field is a visible dropdown, since it serves every occasion at once).</p>
+
+<table>
+  <tr><th>Page</th><th>URL</th><th>Change from today</th></tr>
+  <tr><td>Hub</td><td><code>/pages/gifting</code></td><td>Richer content: philosophy + 4 category previews + own enquiry form. No longer required reading before reaching a real page.</td></tr>
+  <tr><td>Corporate</td><td><code>/pages/gifting-corporate</code></td><td>Unchanged URL.</td></tr>
+  <tr><td>Weddings</td><td><code>/pages/gifting-weddings</code></td><td>Unchanged URL.</td></tr>
+  <tr><td>Kids</td><td><code>/pages/birthday-return-gifts</code></td><td><span class="tag decided">Decided</span> Renamed from <code>gifting-kids</code> — "return gifts" matches real search behavior better than "kids gifting." Needs a 301 from the old handle and an update to <code>tests/e2e/gifting.spec.ts</code>, the hub's links, and the nav.</td></tr>
+  <tr><td>Festive/General</td><td><code>/pages/gifting-festive</code></td><td>Unchanged URL, broadened scope (see §5.4).</td></tr>
+</table>
+
+<h2>2. Shared page template</h2>
+<p>All 4 occasion pages (and conceptually the hub) share the same structural skeleton, top to bottom:</p>
+<ol>
+  <li><strong>Eyebrow + H1</strong> — brand-voice, not a flat category label (final copy in §4).</li>
+  <li><strong>Intro</strong> — 2–3 sentences, occasion-specific.</li>
+  <li><strong>Trust/process band</strong> — identical structure across all pages (§2.1).</li>
+  <li><strong>Category sections</strong> — zig-zag layout, behavior-ordered not alphabetical (§2.2).</li>
+  <li><strong>Enquiry form</strong> — one per page, shared component (§3).</li>
+  <li><strong>Cross-occasion carousel</strong> — bottom of page, all 4 pages (§2.3).</li>
+</ol>
+
+<h3>2.1 Trust/process band</h3>
+<p>Same short block, same order, on every page. No public MOQ, delivery-date, or price numbers anywhere in it — those are captured through the enquiry form instead (quantity/timeline/budget fields), not published as page copy.</p>
+<div class="card">
+  <ol>
+    <li><strong>Lead point — design collaboration.</strong> "We design this with you — colours, prints, even a co-branded fabric label reading <em>PEXX × [Your Company]</em> — down to your minimum order. Smaller batch? Choose straight from our print library instead." This is the #1 differentiator vs. generic bulk-gifting vendors and should open the band, not trail it.</li>
+    <li><strong>One seamless process, start to finish</strong> — a single point of contact, not five vendor calls.</li>
+    <li><strong>Committed delivery</strong> — dates that hold, stated in principle, not as a specific number on-page.</li>
+    <li><strong>Consistent quality</strong> — piece 1 and piece 500 are the same piece.</li>
+  </ol>
+</div>
+<p><em>PEXX × [Your Company]</em> stays scoped to this one feature — it does not become a page name or brand identity elsewhere (Opus's point, unchallenged: it only parses for Corporate, and a bracketed placeholder in an H1 reads as unfinished).</p>
+
+<h3>2.2 Category sections — zig-zag layout</h3>
+<ul>
+  <li>Alternating image-left/text-right, then image-right/text-left, section by section. Image ~55–60% width — it carries the emotional weight before any copy is read.</li>
+  <li>Copy capped at 2–3 sentences per section, written as a small story (the anxiety this replaces → what PEXX gives instead), not a bulleted spec sheet. "Hand block-printed, azo-free, customizable" as a bullet list reads like a spec page, not a gift.</li>
+  <li><strong>Section order is behavioral, not alphabetical</strong> — see §5 for the actual order per page. The Wedding page specifically runs in the real chronological sequence of wedding functions rather than leading with whichever concept is our favorite.</li>
+  <li><strong>Kids at the Wedding</strong> keeps its chronological body position (not pulled to the top of the grid), but its concept and best photo are hoisted into the Wedding page's <em>hero</em> — one line above the trust band — so the differentiator isn't buried just because chronology doesn't put it first.</li>
+</ul>
+
+<h3>2.3 Cross-occasion carousel</h3>
+<p>A photo-card strip at the bottom of <strong>all 4 pages</strong>, surfacing content that actually lives on other pages (e.g. a Corporate-page visitor sees a "Festive Hampers" card without hunting through nav).</p>
+<div class="flag"><strong>Click behavior — real navigation</strong>, not a same-page form-field swap. A card links to <code>/pages/gifting-festive?occasion=...#enquiry</code> — the existing prefill mechanism, but pointed at the real page. Reasoning (confirmed after review): a same-page swap means someone enquires for "Festive Hampers" without ever seeing a festive photo or the festive-specific pitch — weaker lead, broken promise on the label they clicked. Real navigation shows the matching page's own trust band and story first, then asks for the form — better-primed lead, still one click, still prefilled.</div>
+<p>Card set per page reuses whichever photos live on the <em>other</em> pages — not new photography, just a second placement of an existing image with its own occasion label. Duplication of these small card images/captions across all 5 pages is expected site furniture, not an SEO thin-content risk on its own (see §6).</p>
+
+<h2>3. Enquiry form (final field spec)</h2>
+<p>One shared "bulk-enquiry" component, reused per page, all fields visible (no collapsed "show more" toggle — checkboxes/range-selects read as light taps, not a form wall).</p>
+<table>
+  <tr><th>Field</th><th>Type</th><th>Required</th><th>Notes</th></tr>
+  <tr><td>Name</td><td>text</td><td>Yes</td><td>—</td></tr>
+  <tr><td>WhatsApp number</td><td>tel</td><td>Yes</td><td>Merged with the old separate "Phone if different" field — one field, one less thing to type.</td></tr>
+  <tr><td>Email</td><td>email</td><td>Yes</td><td>Required on all 4 pages (confirmed) — written quote trail matters even for WhatsApp-first buyers.</td></tr>
+  <tr><td>Occasion</td><td>hidden / select</td><td>Yes (system-set)</td><td>Hidden, page-default value everywhere except the hub, where it's a visible dropdown. Silently overridden by the carousel's query-string prefill.</td></tr>
+  <tr><td>Quantity</td><td>select</td><td>Yes</td><td>Upto 20 / 20–50 / 50–100 / 100+</td></tr>
+  <tr><td>Needed by</td><td>select</td><td>Yes</td><td>Within 4 weeks / 4–8 weeks / 8–12 weeks / 6+ months / Just planning ahead. Same buckets on every page including Weddings — one shared form, no per-page fork. The 6+ months option exists so a wedding 8 months out isn't forced into a dishonest "just planning ahead."</td></tr>
+  <tr><td>Budget per piece</td><td>checkboxes (multi-select)</td><td>No</td><td>Upto ₹199 / ₹200–499 / ₹500–999 / ₹1,000+ — deliberate ₹X99-ending brackets (founder's choice, psychological-anchor convention), not round numbers. Multi-select because one enquiry can span tiers (e.g. wedding return gifts for general guests vs. a premium tier for close family).</td></tr>
+  <tr><td>Customisation interest</td><td>Yes/No toggle</td><td>No</td><td>No menu of customisation types. If "Yes," show inline: "Great — we'll go through design, colour, and logo options together on the call." Details are a conversation, not a form field.</td></tr>
+  <tr><td>Corporate page only: logo/branding needed?</td><td>Yes/No toggle</td><td>No</td><td>Branding changes production lead time, worth flagging before the call — the one Corporate-specific field.</td></tr>
+  <tr><td>Anything else</td><td>text (one line)</td><td>No</td><td>Always last.</td></tr>
+  <tr><td>Page URL / referrer</td><td>hidden</td><td>—</td><td>No UI, attribution only.</td></tr>
+</table>
+<p><strong>Dropped entirely:</strong> the "which products are you interested in" checklist. Reasoning (founder's instinct, independently confirmed): a visitor can't meaningfully self-select from a catalog she hasn't browsed, it's the field most likely to cause mobile scroll-abandonment, and this is a consultative sales process — the human on the follow-up call proposes products from the stated occasion, not the other way around.</p>
+
+<h2>4. Page naming (final)</h2>
+<table>
+  <tr><th>Page</th><th>Eyebrow</th><th>H1</th></tr>
+  <tr><td>Corporate</td><td>Gifts that reflect your brand</td><td>The gift that makes you look like you thought of everything.</td></tr>
+  <tr><td>Weddings</td><td>Where Forever Begins</td><td>Gifting, as considered as the wedding itself.</td></tr>
+  <tr><td>Kids</td><td>Little Celebrations</td><td>The gift the other parents will ask you about.</td></tr>
+  <tr><td>Festive/General</td><td>Celebrating Life</td><td>Every celebration deserves a gift worth giving.</td></tr>
+</table>
+<p>Corporate and Kids H1s are unchanged from what's live today — both already read in-voice. Weddings and Festive H1s are new: the old Wedding line ("One less thing to get wrong") read as risk-avoidance rather than elevation; the old Festive line ("Sorted by October. Sleep through November.") pinned the whole page to a Diwali/October calendar moment when it needs to cover housewarmings, anniversaries, and adult-birthday return gifts year-round.</p>
+<p>SEO keyword coverage happens below the H1, not inside it: a small literal subhead line (e.g. "Corporate gifting, hand block-printed in Jaipur" / "Birthday return gifts, azo-free cotton") plus the page's <code>&lt;title&gt;</code> tag carries the head term. This is the mechanism that lets the H1 stay emotional without losing search relevance.</p>
+
+<h2>5. Per-page section order &amp; photo assignment</h2>
+<p class="flag">Photo assignments below are my proposal from the 22 photos reviewed (7 Corporate, 7 Wedding, 8 General) — react to these in review rather than treating them as final. <span class="tag gap">Gap</span> marks a tile with no matching photo yet.</p>
+
+<h3>5.1 Corporate</h3>
+<ul>
+  <li>Page hero: <code>CG_Print_TableSet.png</code> — the one shot with an actual "PEXX" card holder in frame, strongest brand-proof image in the set.</li>
+  <li><strong>Diwali Corporate Gifting</strong> (anchor tile) — <code>CG Wine Bottle Covers.png</code></li>
+  <li><strong>Employee Onboarding &amp; Welcome Kits</strong> — <code>CG Laptop Sleeve.png</code>, <code>CG Bottle Cover.png</code></li>
+  <li><strong>Client Gifting</strong> — <code>CG Unisex Table Set.png</code>, <code>CG Diaries.png</code></li>
+  <li><strong>New-Parent Employee Gifts</strong> — <span class="tag gap">Gap</span> no photo in this set (needs an actual retail baby quilt/swaddle shot, not a corporate-styled one — reuse from the Quilts/Swaddles product folders instead).</li>
+  <li><strong>Events &amp; Conferences</strong> — <code>CG Conf Tote Bag.png</code> (literally shows a "Your Brand Logo" placeholder — good proof-of-customization image for this tile specifically)</li>
+  <li><strong>NEW tile — Everyday Employee Occasions</strong> (birthdays, farewells, work anniversaries, smaller variety than onboarding/client) — reuses General-folder pouches; see §5.4 cross-link.</li>
+</ul>
+
+<h3>5.2 Weddings — chronological order</h3>
+<ul>
+  <li>Hero: <span class="tag open">Open</span> <code>Wedding_CoordSet_Close_Circle.png</code> (family in matching block-print outfits) is the obvious mood shot, but it depicts apparel — a product category PEXX doesn't currently sell. Using it risks implying a clothing line that doesn't exist. Recommend either a caption that frames it explicitly as styling/mood rather than a shoppable product, or swapping in a different hero. <strong>Your call in review.</strong></li>
+  <li>Hero teaser line for Kids at the Wedding (per §2.2), photo: <code>Wedding_Kids_Goodies.png</code></li>
+  <li><strong>Welcome Hampers</strong> — <code>Wedding_Welcome_Hamper.png</code></li>
+  <li><strong>Haldi</strong> — <code>Wedding_Haldi_Tote.png</code></li>
+  <li><strong>Mehendi</strong> — <code>Wedding_Mehendi_Potli.png</code></li>
+  <li><strong>Sangeet</strong> — <span class="tag gap">Gap</span> no photo (copy describes jewel-tone potli favours; none in this set)</li>
+  <li><strong>Baraat Entry</strong> — <code>Wedding_Baraat_Scarf_PocketSquare.png</code></li>
+  <li><strong>Reception Table Linen</strong> — <span class="tag gap">Gap in Wedding folder, filled from General</span>: <code>Gifting_Table_Mat_Napkin.png</code> (pink floral placemat/napkin set) is a strong match, just sourced from the General folder rather than Wedding.</li>
+  <li><strong>Kids at the Wedding</strong> (full section, chronological position) — <code>Wedding_Kids_Goodies.png</code> (same image as hero teaser)</li>
+  <li><strong>Wedding Return Gifts</strong> — <code>Wedding_Return_Scarf_PocketSquare.png</code> for the general tier; <code>Gifting_Quilts.png</code> (General folder — the gift-wrapped rolled quilt with a gold ribbon) is an exact match for the copy's existing "premium tier: a full hand block-printed quilt reserved for close family" line.</li>
+  <li><strong>Bridal Circle</strong> — <code>Gfiting_Women_ToiletKit.png</code> and <code>Gifting_women_jewellery_Pouch.png</code> (both General folder) match the existing "toiletry kits and totes for bridesmaids" copy well.</li>
+</ul>
+
+<h3>5.3 Kids</h3>
+<p><span class="tag gap">Fully blocked</span> — zero photos exist for this page (Birthday Return Gifts, Naming Ceremony/Godh Bharai, School Gifting). This is a real external dependency on the merchant, not a design decision — flagging again per the standing memory note, not re-deciding anything here.</p>
+
+<h3>5.4 Festive/General — scope expansion</h3>
+<p><span class="tag open">Open — needs your approval</span>: today's template only has 3 tiles (Diwali Family Hampers, Baby's First Diwali, Festive Return Favours), all Diwali-anchored. Given the page's new "Celebrating Life" framing explicitly covers housewarmings, anniversaries, and adult-birthday return gifts, I'm proposing this page's tile set actually grows to 4, using the General folder's 8 photos (which never fit a specific occasion on their own — they're generic product shots, which is exactly what this broadened page needs):</p>
+<ul>
+  <li><strong>Diwali Family Hampers</strong> (unchanged) — <code>Giftig_Towel_Napkin_1.png</code> (the boxed, ribboned hamper shot)</li>
+  <li><strong>Baby's First Diwali</strong> (unchanged) — <code>Gifting_Quilts.png</code> or a swaddle/quilt shot from the product folders</li>
+  <li><strong>NEW: Housewarming</strong> — <code>Giftig_Towel_Napkin_2.png</code>, <code>Gifting_Table_Mat_Napkin.png</code></li>
+  <li><strong>Return &amp; Anniversary Favours</strong> (renamed/broadened from "Festive Return Favours") — <code>Gifting_women_jewellery_Pouch.png</code>, <code>Gfiting_Women_ToiletKit.png</code>, <code>Gifting_Men_ToiletKit.png</code>, <code>Gifting_Quilted_Tote.png</code></li>
+</ul>
+<p>Note: <code>CG Wine Bottle Covers.png</code> exists as an exact duplicate file in both the Corporate and General folders — same photo, already assigned to Corporate's Diwali tile above, no separate use needed here.</p>
+
+<h2>6. SEO</h2>
+<ul>
+  <li>Flat IA confirmed sound — 4 pages, one click from nav, no forced hierarchy.</li>
+  <li>Carousel duplication (same small photo+label repeated across 5 pages) is normal site furniture, not a thin-content risk on its own.</li>
+  <li>The real thin-content risk is word-count ratio: 2–3 sentences × ~7 sections is roughly 250–350 words of genuinely unique prose per page, against an identical trust band, form, and carousel. Fix: each occasion page carries its own small FAQ accordion (4–6 Q&As, unique per page — MOQ-shape questions, lead time, logo/co-branding, care instructions) — skimmable, opt-in, doesn't bloat the primary emotional read, but hits the word-count and structured-fact bar. Actual FAQ copy is a later copywriting pass, not decided in this doc.</li>
+  <li>The hub page needs to carry content that exists nowhere else to avoid reading as a thin duplicate of the 4 real pages — the block-print process, Jaipur provenance, azo-free sourcing, and the broadest FAQ set live there.</li>
+  <li>Linking pattern: hub → all 4 with keyword anchor text; all 4 → hub via breadcrumb; all 4 → each other via the real-navigation carousel.</li>
+</ul>
+
+<h2>7. AEO (answer-engine citability)</h2>
+<ul>
+  <li><strong>FAQPage schema</strong> on all 5 pages, matching the visible FAQ accordion text exactly.</li>
+  <li><strong>Service schema</strong> per occasion page (<code>serviceType</code>, <code>areaServed: IN</code>, <code>provider</code> → Organization), plus one sitewide <strong>Organization/LocalBusiness</strong> block with Jaipur address, and <strong>BreadcrumbList</strong> on all 4 occasion pages.</li>
+  <li><strong>Skip HowTo</strong> schema for the process band — Google retired HowTo rich results; express the process as a visible ordered list plus one FAQ entry instead.</li>
+  <li><strong>No Product schema</strong> on these pages — no price/offer to attach, that belongs on real PDPs only.</li>
+  <li><strong>Skip llms.txt</strong> — no major answer engine honors it today. Better use of effort: confirm <code>robots.txt</code> doesn't block GPTBot/PerplexityBot/ClaudeBot, and keep every material fact in real HTML text rather than baked into photos (a real risk given how photo-dominant this layout is).</li>
+</ul>
+
+<h2>8. USP messaging library</h2>
+<p>Reference list to draw from inside zig-zag mini-stories — not a bullet dump on any single page.</p>
+<ul>
+  <li>Away from mithai tins and pleather nobody fully trusts or keeps</li>
+  <li>Real hand block-print craft, made in Jaipur, not mass-factory output</li>
+  <li>Full custom design — colours, prints, a co-branded label — down to a low MOQ (starting ~10 pieces) vs. typical bulk vendors' 500+</li>
+  <li>Gifts people actually use and keep — recall value, not a re-gift or a bin item</li>
+  <li>Azo-free, child-safe cotton (leads for Kids and Wedding-kids audiences specifically)</li>
+  <li>One vendor, one seamless process, real committed delivery dates</li>
+  <li>Consistent quality at any batch size — piece 1 and piece 500 are the same piece</li>
+  <li>Reusable cotton vs. single-use synthetic favour bags or plastic wrap (mild sustainability angle, not a headline claim)</li>
+</ul>
+
+<h2>9. Explicitly out of scope for this spec</h2>
+<ul>
+  <li>Kids page photography — blocked on the merchant, tracked separately.</li>
+  <li>Exact FAQ question/answer copy per page — a later copywriting pass.</li>
+  <li>Exact Liquid/CSS implementation of the zig-zag section and carousel components — belongs to the implementation plan, not this design doc.</li>
+  <li>New-Parent Employee Gifts photo (Corporate) — needs a baby-quilt shot sourced from existing retail product photography, not new photography.</li>
+</ul>

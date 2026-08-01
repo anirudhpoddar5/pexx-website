@@ -1,0 +1,200 @@
+{
+  "sections": {
+    "cat": {
+      "type": "gifting-catalog",
+      "settings": {
+        "eyebrow": "Celebrating Life",
+        "heading": "Gifts That Become Part of Everyday Life",
+        "intro": "<p>The most meaningful gifts don't end with the occasion—they become part of everyday rituals, quietly bringing back memories of the person who chose them. Whether you're celebrating Diwali, welcoming someone into a new home, marking a milestone birthday or anniversary, thanking clients, celebrating a new beginning or simply expressing gratitude, handcrafted gifts leave an impression that lasts far beyond the moment they're received.</p><p>Each collection is thoughtfully handcrafted using traditional hand block printing, with every design serving as inspiration rather than limitation. Every product can be customised in your choice of prints, colours, fabrics, sizes and packaging—or developed into something entirely unique for your occasion.</p>",
+        "show_lookbook": true,
+        "desktop_columns": 3,
+        "show_sticky_bar": true,
+        "sticky_bar_text": "Get a festive quote",
+        "enquiry_anchor": "#enquiry",
+        "occasion_value": "Festive gifting (Diwali / family & friends)",
+        "bg": "#F3EDE3",
+        "hero_image": "shopify://shop_images/general-quilted-tote.png",
+        "hero_alt": "Woman carrying a hand block-printed quilted green floral tote bag outside a coffee shop.",
+        "trust_design_detail": "Every gift you see is simply the beginning. From exclusive hand block prints and bespoke colour palettes to personalised monograms, custom packaging and entirely new product concepts — whether you're gifting ten people or ten thousand, we'll create something that's unmistakably yours."
+      },
+      "blocks": {
+        "dining": {
+          "type": "tile",
+          "settings": {
+            "heading": "Dining & Host Collections — Where Hospitality Becomes a Memory.",
+            "badge": "",
+            "image": "shopify://shop_images/general-table-mat-napkin.png",
+            "image_2": "shopify://shop_images/general-towel-napkin-1.png",
+            "image_alt": "Hand block-printed table mats, napkins and guest hand towels in pink floral prints.",
+            "body": "<p>From elegant table mats and napkins to beautifully coordinated guest hand towels, these timeless gifts become part of every meal shared and every guest welcomed. Perfect for housewarmings, Diwali, wedding favours and milestone celebrations, <strong>they bring warmth to the home long after the festivities have ended.</strong></p>",
+            "products_prefill": "Dining and host collections",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        },
+        "jewellery": {
+          "type": "tile",
+          "settings": {
+            "heading": "Jewellery & Beauty Organisers — Thoughtfully Organised. Beautifully Remembered.",
+            "badge": "",
+            "image": "shopify://shop_images/general-women-jewellery-pouch.png",
+            "image_alt": "Hand block-printed yellow floral jewellery organiser, open with rings, a necklace and perfume inside.",
+            "body": "<p>Designed for jewellery, cosmetics and everyday essentials, these elegant organisers <strong>become trusted companions at home and while travelling.</strong> A cherished gift for bridesmaids, milestone birthdays, anniversaries, festive gifting and anyone who appreciates thoughtful craftsmanship.</p>",
+            "products_prefill": "Jewellery and beauty organisers",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        },
+        "travel": {
+          "type": "tile",
+          "settings": {
+            "heading": "Travel & Utility Collections — Made for Journeys Near and Far.",
+            "badge": "",
+            "image": "shopify://shop_images/general-women-toiletkit.png",
+            "image_2": "shopify://shop_images/general-men-toiletkit.png",
+            "image_alt": "Hand block-printed toiletry kits in floral and gingham prints for men and women.",
+            "body": "<p>Whether carried on a weekend getaway, tucked into a suitcase or used every day, versatile utility pouches and toiletry kits <strong>become gifts that are reached for again and again.</strong> Ideal for corporate gifting, destination weddings, festive hampers and appreciation gifts.</p>",
+            "products_prefill": "Travel and utility collections",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        },
+        "wine": {
+          "type": "tile",
+          "settings": {
+            "heading": "Wine Bottle Covers — Celebrate Every Occasion, Beautifully.",
+            "badge": "",
+            "image": "shopify://shop_images/cg-wine-bottle-covers.png",
+            "image_alt": "Hand block-printed floral wine bottle bag styled with a bottle of wine.",
+            "body": "<p>A bottle may be shared in an evening, but <strong>a handcrafted wine cover remains for every celebration that follows.</strong> Perfect for festive gifting, housewarmings, anniversaries, host gifts and corporate celebrations, it transforms a simple bottle into a memorable gesture.</p>",
+            "products_prefill": "Wine bottle covers",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        },
+        "scarves": {
+          "type": "tile",
+          "settings": {
+            "heading": "Scarves & Pocket Squares — A Gift They'll Wear With Pride.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-return-scarf-pocketsquare.png",
+            "image_alt": "Pastel hand block-printed scarf and matching pocket square on a gold tray with jasmine flowers.",
+            "body": "<p>Elegant accessories that <strong>become part of celebrations, dinners, weddings and special evenings for years to come.</strong> A refined choice for festive gifting, milestone birthdays, anniversaries, appreciation gifts and thoughtfully curated wedding keepsakes.</p>",
+            "products_prefill": "Scarves and pocket squares",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        },
+        "quilts": {
+          "type": "tile",
+          "settings": {
+            "heading": "Quilts & Home Comfort — Comfort That Stays Long After the Celebration.",
+            "badge": "",
+            "image": "shopify://shop_images/general-quilts.png",
+            "image_alt": "Hand block-printed quilt rolled and tied with a gold ribbon, styled with gold candles and flowers.",
+            "body": "<p>Handcrafted quilts and home textiles become part of quiet mornings, afternoon naps and everyday comfort—<strong>making them among the most treasured gifts to receive.</strong> Beautifully suited for weddings, anniversaries, housewarmings, baby celebrations and milestone occasions.</p>",
+            "products_prefill": "Quilts and home comfort",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        },
+        "carry": {
+          "type": "tile",
+          "settings": {
+            "heading": "Carry Collections — Everyday Companions With a Story to Tell.",
+            "badge": "",
+            "image": "shopify://shop_images/general-quilted-tote.png",
+            "image_alt": "Woman carrying a hand block-printed quilted green floral tote bag outside a coffee shop.",
+            "body": "<p>Whether it's a quilted tote for daily errands, work or travel, <strong>these are gifts that become part of everyday routines.</strong> Practical, elegant and endlessly useful, they're perfect for festive gifting, appreciation gifts, milestone celebrations and thoughtfully curated hampers.</p>",
+            "products_prefill": "Carry collections",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        }
+      },
+      "block_order": [
+        "dining",
+        "jewellery",
+        "travel",
+        "wine",
+        "scarves",
+        "quilts",
+        "carry"
+      ]
+    },
+    "enquiry": {
+      "type": "bulk-enquiry",
+      "settings": {
+        "occasion_value": "Festive gifting (Diwali / family & friends)"
+      }
+    },
+    "explore": {
+      "type": "gifting-explore-more",
+      "settings": {
+        "heading": "Explore More Ways to Gift"
+      },
+      "blocks": {
+        "cat_weddings": {
+          "type": "category",
+          "settings": {
+            "name": "Weddings",
+            "link": "/pages/gifting-weddings",
+            "occasion_value": "Wedding favours",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/wedding-welcome-hamper.png",
+            "caption_1": "Welcome Hamper",
+            "image_2": "shopify://shop_images/wedding-haldi-tote.png",
+            "caption_2": "Haldi Tote",
+            "image_3": "shopify://shop_images/wedding-mehendi-potli.png",
+            "caption_3": "Mehendi Potli",
+            "image_4": "shopify://shop_images/wedding-baraat-scarf-pocketsquare.png",
+            "caption_4": "Baraat Scarf & Pocket Square",
+            "image_5": "shopify://shop_images/wedding-coordset-close-circle.png",
+            "caption_5": "Coordinated Family Outfits"
+          }
+        },
+        "cat_corporate": {
+          "type": "category",
+          "settings": {
+            "name": "Corporate",
+            "link": "/pages/gifting-corporate",
+            "occasion_value": "Corporate gifting",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/cg-print-tableset.png",
+            "caption_1": "Desk Organiser Set",
+            "image_2": "shopify://shop_images/cg-conf-tote-bag.png",
+            "caption_2": "Conference Tote Bag",
+            "image_3": "shopify://shop_images/cg-wine-bottle-covers.png",
+            "caption_3": "Wine Bottle Cover",
+            "image_4": "shopify://shop_images/cg-laptop-sleeve.png",
+            "caption_4": "Laptop Sleeve",
+            "image_5": "shopify://shop_images/cg-diaries.png",
+            "caption_5": "Notebooks"
+          }
+        },
+        "cat_kids": {
+          "type": "category",
+          "settings": {
+            "name": "Kids",
+            "link": "/pages/gifting-kids",
+            "occasion_value": "Kids birthday — return gifts",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/kids-swaddle.png",
+            "caption_1": "Swaddle Set",
+            "image_2": "shopify://shop_images/kids-pencil-box.png",
+            "caption_2": "Pencil Pouch",
+            "image_3": "shopify://shop_images/kids-utility-pouch.png",
+            "caption_3": "Utility Pouch",
+            "image_4": "shopify://shop_images/kids-backpack.png",
+            "caption_4": "Backpack",
+            "image_5": "shopify://shop_images/kids-quilt.png",
+            "caption_5": "Kids Quilt"
+          }
+        }
+      },
+      "block_order": [
+        "cat_weddings",
+        "cat_corporate",
+        "cat_kids"
+      ]
+    }
+  },
+  "order": [
+    "cat",
+    "enquiry",
+    "explore"
+  ]
+}

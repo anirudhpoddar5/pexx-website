@@ -1,0 +1,78 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<style>
+  .gxm { background: #ECE3D2; padding: 48px 20px 56px; border-top: 1px solid #D8C7AD; }
+  .gxm__inner { max-width: 1100px; margin: 0 auto; }
+  .gxm__heading { text-align:center; font-family: var(--font-primary--family); font-weight:400; font-size:1.8rem; color:#2B241F; margin:0 0 36px; }
+  .gxm__category { margin-bottom: 40px; }
+  .gxm__category:last-child { margin-bottom: 0; }
+  .gxm__cat-head { display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:14px; flex-wrap:wrap; }
+  .gxm__cat-name { font-family: var(--font-primary--family); font-weight:400; font-size:1.3rem; color:#2B241F; margin:0; text-decoration:none; }
+  .gxm__cat-cta { display:inline-block; font-family: var(--font-body--family); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#F3EDE3; background:#2B241F; padding:10px 18px; text-decoration:none; white-space:nowrap; }
+  .gxm__row { display:flex; overflow-x:auto; gap:14px; padding-bottom:6px; scroll-snap-type:x proximity; -webkit-overflow-scrolling:touch; }
+  .gxm__item { flex:0 0 168px; scroll-snap-align:start; text-decoration:none; }
+  .gxm__item img { width:100%; aspect-ratio:3/4; object-fit:cover; background:#FBF7F0; display:block; }
+  .gxm__item-label { font-family: var(--font-body--family); font-size:12px; color:#4A423A; margin-top:8px; line-height:1.3; }
+  @media (min-width:750px){ .gxm__item { flex-basis:200px; } }
+</style>
+
+<div class="gxm">
+  <div class="gxm__inner">
+    {%- if s.heading != blank -%}<h2 class="gxm__heading">{{ s.heading }}</h2>{%- endif -%}
+    {%- for block in section.blocks -%}
+      <div class="gxm__category" {{ block.shopify_attributes }}>
+        <div class="gxm__cat-head">
+          <a class="gxm__cat-name" href="{{ block.settings.link }}">{{ block.settings.name }}</a>
+          <a class="gxm__cat-cta" href="{{ block.settings.link }}{% if block.settings.link contains '?' %}&{% else %}?{% endif %}occasion={{ block.settings.occasion_value | url_encode }}#enquiry">{{ block.settings.cta_text | default: 'Enquire Now' }}</a>
+        </div>
+        <div class="gxm__row">
+          {%- for i in (1..5) -%}
+            {%- assign img_key = 'image_' | append: i -%}
+            {%- assign cap_key = 'caption_' | append: i -%}
+            {%- assign img = block.settings[img_key] -%}
+            {%- assign cap = block.settings[cap_key] -%}
+            {%- unless img == blank -%}
+              <a class="gxm__item" href="{{ block.settings.link }}">
+                {{ img | image_url: width: 400 | image_tag: loading: 'lazy', alt: cap }}
+                {%- if cap != blank -%}<div class="gxm__item-label">{{ cap }}</div>{%- endif -%}
+              </a>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Gifting explore more",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Explore More Ways to Gift" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Category name" },
+        { "type": "url", "id": "link", "label": "Link to category page" },
+        { "type": "text", "id": "occasion_value", "label": "Occasion value for the Enquire CTA" },
+        { "type": "text", "id": "cta_text", "label": "CTA button text", "default": "Enquire Now" },
+        { "type": "image_picker", "id": "image_1", "label": "Photo 1" },
+        { "type": "text", "id": "caption_1", "label": "Caption 1" },
+        { "type": "image_picker", "id": "image_2", "label": "Photo 2" },
+        { "type": "text", "id": "caption_2", "label": "Caption 2" },
+        { "type": "image_picker", "id": "image_3", "label": "Photo 3" },
+        { "type": "text", "id": "caption_3", "label": "Caption 3" },
+        { "type": "image_picker", "id": "image_4", "label": "Photo 4" },
+        { "type": "text", "id": "caption_4", "label": "Caption 4" },
+        { "type": "image_picker", "id": "image_5", "label": "Photo 5" },
+        { "type": "text", "id": "caption_5", "label": "Caption 5" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Gifting explore more", "blocks": [{ "type": "category" }] }]
+}
+{% endschema %}

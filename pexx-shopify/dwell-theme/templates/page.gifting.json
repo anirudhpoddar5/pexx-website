@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "hub": {
+      "type": "gifting-catalog",
+      "settings": {
+        "eyebrow": "Objects to Cherish",
+        "heading": "Gifts That Become Part of Everyday Life",
+        "intro": "<p>Some gifts are admired for a moment. The most meaningful ones become part of everyday rituals, quietly carrying memories of the occasion and the person who gave them. Whether celebrating Diwali, welcoming someone into a new home, marking a milestone birthday or anniversary, thanking valued clients, or simply sharing a thoughtful gesture, handcrafted gifts continue telling the story long after the celebration has ended.</p><p>Every collection you see here is simply the beginning. Each piece can be reimagined through bespoke hand block prints, colours, fabrics, personalised monograms, custom packaging and thoughtfully developed product concepts—crafted exclusively for your occasion.</p>",
+        "show_lookbook": true,
+        "desktop_columns": 4,
+        "show_sticky_bar": false,
+        "occasion_value": "Other",
+        "bg": "#F3EDE3",
+        "hero_image": "shopify://shop_images/cg-print-tableset.png",
+        "hero_alt": "Hand block-printed desk organiser set with a PEXX-branded card holder, styled on a wooden desk.",
+        "trust_design_detail": "Colours, prints, your own custom label or monogram, down to your minimum order — whatever the occasion. Smaller batch? Choose straight from our print library instead."
+      },
+      "blocks": {
+        "corporate": {
+          "type": "tile",
+          "settings": {
+            "heading": "Corporate<br>Gifts that reflect your brand",
+            "badge": "",
+            "image": "shopify://shop_images/cg-conf-tote-bag.png",
+            "image_alt": "Three hand block-printed cotton tote bags, one with a 'Your Brand Logo' placeholder.",
+            "body": "<p>The gift that makes you look like you thought of everything — for the client, the new hire, the office. Hand block-printed and colour-matched to your brand, from onboarding kits to a Diwali box that isn't another tin of dry fruit.</p>",
+            "link": "/pages/gifting-corporate",
+            "occasion_value": "Corporate gifting"
+          }
+        },
+        "weddings": {
+          "type": "tile",
+          "settings": {
+            "heading": "Weddings<br>Where forever begins",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-welcome-hamper.png",
+            "image_alt": "Hand block-printed welcome hamper with a wine bottle in a potli cover, styled on a hotel bed.",
+            "body": "<p>Gifting, as considered as the wedding itself — from the first welcome hamper waiting in a guest's room, through every function, to the return gift they still reach for on your 25th anniversary.</p>",
+            "link": "/pages/gifting-weddings",
+            "occasion_value": "Wedding favours"
+          }
+        },
+        "kids": {
+          "type": "tile",
+          "settings": {
+            "heading": "Kids<br>Gifts they keep",
+            "badge": "",
+            "image": "shopify://shop_images/kids-backpack.png",
+            "image_alt": "Hand block-printed quilted backpack in a floral bunny print.",
+            "body": "<p>The gift the other parents will ask you about — swaddles, pouches, backpacks and quilts that don't end up played with once and forgotten, for birthdays, naming ceremonies and every little celebration between.</p>",
+            "link": "/pages/gifting-kids",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        },
+        "festive": {
+          "type": "tile",
+          "settings": {
+            "heading": "Celebrating Life<br>Everyday &amp; festive gifting",
+            "badge": "",
+            "image": "shopify://shop_images/general-quilted-tote.png",
+            "image_alt": "Woman carrying a hand block-printed quilted green floral tote bag.",
+            "body": "<p>Every celebration deserves a gift worth giving — Diwali hampers, housewarmings, anniversaries and thank-yous, in table linen, totes, wine covers and quilts that become part of everyday life.</p>",
+            "link": "/pages/gifting-festive",
+            "occasion_value": "Festive gifting (Diwali / family & friends)"
+          }
+        }
+      },
+      "block_order": [
+        "weddings",
+        "corporate",
+        "kids",
+        "festive"
+      ]
+    },
+    "enquiry": {
+      "type": "bulk-enquiry",
+      "settings": {
+        "show_occasion_select": true
+      }
+    }
+  },
+  "order": [
+    "hub",
+    "enquiry"
+  ]
+}

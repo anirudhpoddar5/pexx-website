@@ -1,0 +1,219 @@
+{%- comment -%}
+  FAQPage JSON-LD, one block per page handle. Keep each list of Q&A pairs in
+  sync with the visible FAQ content on that page (accordion on gift-to-india/
+  return-gifts/about, or the FAQ page body) — Google requires the schema to
+  match on-page content. Rendered from layout/theme.liquid, gated by handle.
+{%- endcomment -%}
+{%- case page.handle -%}
+
+  {%- when 'faq' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are PEXX dyes safe for babies?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We use azo-free, skin-friendly dyes on natural cotton — gentle against the most delicate skin, and tested to be safe for everyday use by little ones." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are your products made of?",
+          "acceptedAnswer": { "@type": "Answer", "text": "100% natural, breathable cotton. No synthetics. Soft from the first touch, and softer with every wash." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it really hand block printed?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — every motif is carved into a teak block and pressed onto cloth by hand. Small variations between pieces are normal and are the proof of genuine handwork, not a defect." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the print fade or bleed?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wash cold with a mild detergent and dry in shade. Our prints are made to settle and soften, not fade." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer cash on delivery?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, COD is available across India." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does delivery take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Orders are dispatched within 3 working days and delivered across India in 5–8 days." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I send a gift to family in India from abroad?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — see Gift to India. Pay in your currency; we deliver to any Indian address, gift-wrapped with your note." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer gift wrapping and a message?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — add gift-wrapping and a personal note at checkout." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you do bulk, return or corporate gifting?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Tell us what you need on the Return & Bulk Gifts page and we'll send a quote within 24 hours." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is your return policy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Easy 10-day returns. See our Returns & Refunds policy." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I care for my pieces?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Machine wash cold or hand wash gently, mild detergent, no bleach, dry in shade." }
+        }
+      ]
+    }
+    </script>
+
+  {%- when 'gift-to-india' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Will my family in India pay customs or duties on this gift?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. PEXX ships from our own workshop in Jaipur to any address in India, so your gift travels as a normal domestic parcel — no customs, no import duty, and nothing to pay on delivery. You check out from abroad in your own currency; everything after that happens inside India." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does delivery take once I check out?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Once you check out, we dispatch from Jaipur within 3 working days and deliver anywhere in India in 5–8 days total — including Delhi, Mumbai, Bengaluru and other metros. You'll get a tracking link by email as soon as the parcel ships." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I pay in my own currency from abroad?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Checkout accepts USD, GBP, AED and CAD by card or PayPal, so you never have to work out an INR conversion yourself. We handle the currency exchange and the entire India-side delivery — you just pick a gift and pay in the money you already have." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I add a gift note, and will the price show on the slip?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes to both. Add a personal message at checkout and we'll tuck it into the gift wrap; the packing slip never shows a price, so it arrives looking like a gift rather than an online order." }
+        }
+      ]
+    }
+    </script>
+
+  {%- when 'return-gifts' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's the minimum order for return gifts?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Ten pieces is our minimum. Below that, our regular Little and Carry collections work just as well — Return Gifts exists for parties, weddings and corporate orders where everyone receives the same soft, block-printed piece, wrapped and delivered to one address." }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does a bulk order take to arrive?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We confirm a firm delivery date the moment we send your quote — usually within 24 hours of your enquiry. Exact production time depends on quantity, product mix and any customisation you ask for, so we'd rather commit to a real date than a generic promise." }
+        },
+        {
+          "@type": "Question",
+          "name": "How is bulk pricing worked out?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Pricing scales with quantity, the product mix you choose and any customisation, so we don't publish a flat price list. Share your headcount and budget on the enquiry form and we'll reply with a clear per-piece quote within 24 hours." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can return gifts be personalised with a name or date?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not yet — name or date personalisation like embroidery isn't available today, though it's on our roadmap. Every return gift can still be gift-wrapped with your own note, so the set feels chosen for the occasion rather than off-the-shelf." }
+        }
+      ]
+    }
+    </script>
+
+  {%- when 'about' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is hand block printing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Hand block printing means a motif is first carved into a teak block, then dipped in dye and pressed onto cotton by hand, one impression at a time. The tiny variations between two pieces aren't flaws — they're proof a person made it, not a machine." }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does hand block print cost more than screen print?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Screen printing is a machine process that stamps identical colour in seconds. Block printing is done by hand, one press at a time, by a trained artisan — slower, more skilled, and limited in how much one person can produce in a day. The price reflects that labour." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the print fade or bleed after washing?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wash cold with a mild detergent and dry in shade — our prints are made to settle and soften with wear, not fade. Because the colour is hand-applied, expect small piece-to-piece variation; that's the mark of genuine block printing, not a defect." }
+        }
+      ]
+    }
+    </script>
+
+  {%- when 'baby-gifting-guide' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What's a good gift for an Indian baby shower (godh bharai)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Something the baby can use immediately and safely — a soft cotton swaddle, wrap or layette piece in azo-free dyes works well for every family, regardless of region or ritual. Skip anything synthetic or heavily embellished; newborn skin does better with plain, breathable, hand block-printed cotton." }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you gift at a naming ceremony (namkaran)?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Naming-ceremony gifts are usually kept as a keepsake rather than used right away, so a printed quilt, a soft cap set or a small pouch for mementos works better than anything disposable. Choose a piece that still looks good in photographs years later." }
+        },
+        {
+          "@type": "Question",
+          "name": "What's a good first-birthday gift for a toddler?",
+          "acceptedAnswer": { "@type": "Answer", "text": "At one year old, bold prints and colour outperform pastel newborn sets — a carry pouch, a play mat or an outing set suits a toddler who's starting to have preferences. Gift-wrap it and add a note; it's usually opened in front of the whole party." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I get these gifts personalised with the baby's name?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Not yet — name personalisation is on our roadmap but isn't available today. Every occasion gift can still be gift-wrapped with your own note, so it still feels personal on arrival." }
+        }
+      ]
+    }
+    </script>
+
+  {%- when 'fabric-safety' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Are PEXX dyes safe for babies?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We colour every piece with azo-free, skin-friendly dyes — the class of dye most commonly flagged in baby-clothing safety concerns elsewhere. Nothing goes near your child's skin that we wouldn't put on our own." }
+        },
+        {
+          "@type": "Question",
+          "name": "What fabric do you use?",
+          "acceptedAnswer": { "@type": "Answer", "text": "100% natural, breathable cotton, with no synthetic linings and no plastic-based ink layered over the print. It's soft from the first wash and softer with every wash after that." }
+        },
+        {
+          "@type": "Question",
+          "name": "How should I wash and care for block-printed cotton?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Wash cold, use a mild detergent, and dry in the shade rather than direct sun — this keeps hand-applied colour settling in rather than fading out. Avoid bleach and harsh spin cycles; block-printed cotton is meant to soften with age, not wear thin." }
+        },
+        {
+          "@type": "Question",
+          "name": "Will the colour fade or run in the wash?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Our prints are made to settle and soften with wear, not fade. Because the colour is hand-applied, small piece-to-piece variation is normal — that's the mark of genuine block printing, not a defect." }
+        }
+      ]
+    }
+    </script>
+
+{%- endcase -%}

@@ -1,0 +1,185 @@
+{
+  "sections": {
+    "cat": {
+      "type": "gifting-catalog",
+      "settings": {
+        "eyebrow": "Gifts They Keep",
+        "heading": "Thoughtful Gifts for Little Celebrations",
+        "intro": "<p>The best children's gifts aren't played with once—they become part of everyday adventures. Thoughtfully handcrafted and designed to grow with little ones, each keepsake finds a place in daily life, making birthdays, baby showers, naming ceremonies, return gifts and milestone celebrations truly memorable.</p>",
+        "show_lookbook": true,
+        "desktop_columns": 3,
+        "show_sticky_bar": true,
+        "sticky_bar_text": "Get a bulk quote",
+        "enquiry_anchor": "#enquiry",
+        "occasion_value": "Kids birthday — return gifts",
+        "bg": "#F3EDE3",
+        "hero_image": "shopify://shop_images/kids-quilt.png",
+        "hero_alt": "Hand block-printed baby quilt rolled and tied with twine, in a basket with animal print fabric.",
+        "trust_design_detail": "Every gift can be personalised with exclusive hand block prints, custom colours, names, monograms and thoughtfully curated combinations — creating return gifts parents love to give and children love to keep."
+      },
+      "blocks": {
+        "swaddle": {
+          "type": "tile",
+          "settings": {
+            "heading": "Swaddle Sets — The Gentlest Welcome.",
+            "badge": "",
+            "image": "shopify://shop_images/kids-swaddle.png",
+            "image_alt": "Two hand block-printed swaddle sets rolled and tied with twine, in pink floral and blue animal prints, gift-wrapped in a basket.",
+            "body": "<p>A thoughtful gift for newborns and growing families, our hand block printed swaddles <strong>become everyday essentials</strong>—from swaddling and nursing to stroller outings, tummy time and comforting cuddles.</p>",
+            "products_prefill": "Swaddle sets",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        },
+        "pencil": {
+          "type": "tile",
+          "settings": {
+            "heading": "Pencil Pouches — Made for Little Creators.",
+            "badge": "",
+            "image": "shopify://shop_images/kids-pencil-box.png",
+            "image_alt": "A hand block-printed pencil pouch with a frog print being handed from a mother to her daughter.",
+            "body": "<p>Perfect for birthday return gifts, these beautifully crafted pouches <strong>become trusted companions for school, travel, art supplies and every new creative adventure.</strong></p>",
+            "products_prefill": "Pencil pouches",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        },
+        "utility": {
+          "type": "tile",
+          "settings": {
+            "heading": "Multipurpose Utility Pouches — One Pouch. Endless Adventures.",
+            "badge": "",
+            "image": "shopify://shop_images/kids-utility-pouch.png",
+            "image_alt": "A row of hand block-printed quilted utility pouches with animal prints and tassels, being gift-wrapped with ribbon.",
+            "body": "<p>From tiny treasures and toys to travel essentials, toiletries or favourite keepsakes, these versatile pouches <strong>grow with children and find new purpose at every stage.</strong></p>",
+            "products_prefill": "Multipurpose utility pouches",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        },
+        "ipad": {
+          "type": "tile",
+          "settings": {
+            "heading": "iPad & Stationery Sleeves — For Curious Little Minds.",
+            "badge": "",
+            "image": "shopify://shop_images/kids-ipad-notebook.png",
+            "image_alt": "A hand block-printed submarine-print tablet sleeve open on a desk with a notebook and coloured pens.",
+            "body": "<p>Designed to safely carry books, sketchpads, stationery and tablets, these sleeves <strong>make thoughtful gifts for school, travel, creative time and everyday learning.</strong></p>",
+            "products_prefill": "iPad and stationery sleeves",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        },
+        "backpack": {
+          "type": "tile",
+          "settings": {
+            "heading": "Backpacks — Ready for Every Little Adventure.",
+            "badge": "",
+            "image": "shopify://shop_images/kids-backpack.png",
+            "image_alt": "A hand block-printed quilted backpack in a floral bunny print, styled with flowers and a gift bag.",
+            "body": "<p>Whether it's preschool, playdates, holidays or weekend outings, a beautifully handcrafted backpack <strong>becomes a favourite companion that children reach for every day.</strong></p>",
+            "products_prefill": "Backpacks",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        },
+        "quilt": {
+          "type": "tile",
+          "settings": {
+            "heading": "Quilts — Comfort That Grows With Them.",
+            "badge": "",
+            "image": "shopify://shop_images/kids-quilt.png",
+            "image_alt": "Hand block-printed baby quilt rolled and tied with twine, in a basket with animal print fabric.",
+            "body": "<p>More than a quilt, it's a soft playmat for early years, a comforting companion for naps and story time, and <strong>a treasured keepsake that stays with a child long after the celebration has passed.</strong></p>",
+            "products_prefill": "Quilts",
+            "occasion_value": "Kids birthday — return gifts"
+          }
+        }
+      },
+      "block_order": [
+        "swaddle",
+        "pencil",
+        "utility",
+        "ipad",
+        "backpack",
+        "quilt"
+      ]
+    },
+    "enquiry": {
+      "type": "bulk-enquiry",
+      "settings": {
+        "occasion_value": "Kids birthday — return gifts"
+      }
+    },
+    "explore": {
+      "type": "gifting-explore-more",
+      "settings": {
+        "heading": "Explore More Ways to Gift"
+      },
+      "blocks": {
+        "cat_weddings": {
+          "type": "category",
+          "settings": {
+            "name": "Weddings",
+            "link": "/pages/gifting-weddings",
+            "occasion_value": "Wedding favours",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/wedding-welcome-hamper.png",
+            "caption_1": "Welcome Hamper",
+            "image_2": "shopify://shop_images/wedding-haldi-tote.png",
+            "caption_2": "Haldi Tote",
+            "image_3": "shopify://shop_images/wedding-mehendi-potli.png",
+            "caption_3": "Mehendi Potli",
+            "image_4": "shopify://shop_images/wedding-baraat-scarf-pocketsquare.png",
+            "caption_4": "Baraat Scarf & Pocket Square",
+            "image_5": "shopify://shop_images/wedding-coordset-close-circle.png",
+            "caption_5": "Coordinated Family Outfits"
+          }
+        },
+        "cat_corporate": {
+          "type": "category",
+          "settings": {
+            "name": "Corporate",
+            "link": "/pages/gifting-corporate",
+            "occasion_value": "Corporate gifting",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/cg-print-tableset.png",
+            "caption_1": "Desk Organiser Set",
+            "image_2": "shopify://shop_images/cg-conf-tote-bag.png",
+            "caption_2": "Conference Tote Bag",
+            "image_3": "shopify://shop_images/cg-wine-bottle-covers.png",
+            "caption_3": "Wine Bottle Cover",
+            "image_4": "shopify://shop_images/cg-laptop-sleeve.png",
+            "caption_4": "Laptop Sleeve",
+            "image_5": "shopify://shop_images/cg-diaries.png",
+            "caption_5": "Notebooks"
+          }
+        },
+        "cat_festive": {
+          "type": "category",
+          "settings": {
+            "name": "Celebrating Life",
+            "link": "/pages/gifting-festive",
+            "occasion_value": "Festive gifting (Diwali / family & friends)",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/general-table-mat-napkin.png",
+            "caption_1": "Table Mat & Napkin Set",
+            "image_2": "shopify://shop_images/general-quilted-tote.png",
+            "caption_2": "Quilted Tote",
+            "image_3": "shopify://shop_images/general-women-jewellery-pouch.png",
+            "caption_3": "Jewellery Organiser",
+            "image_4": "shopify://shop_images/general-quilts.png",
+            "caption_4": "Home Quilt",
+            "image_5": "shopify://shop_images/general-women-toiletkit.png",
+            "caption_5": "Toiletry Kit"
+          }
+        }
+      },
+      "block_order": [
+        "cat_weddings",
+        "cat_corporate",
+        "cat_festive"
+      ]
+    }
+  },
+  "order": [
+    "cat",
+    "enquiry",
+    "explore"
+  ]
+}

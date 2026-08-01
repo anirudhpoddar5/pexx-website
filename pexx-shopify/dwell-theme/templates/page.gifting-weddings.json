@@ -1,0 +1,191 @@
+{
+  "sections": {
+    "cat": {
+      "type": "gifting-catalog",
+      "settings": {
+        "eyebrow": "Where Forever Begins",
+        "heading": "Gifting, as considered as the wedding itself.",
+        "intro": "<p>A wedding this considered deserves gifting that matches it — hand block-printed in Jaipur, made to order, and woven into every function from the welcome hamper to the final farewell.</p><p>Tell us the functions, the numbers and the palette; we'll return a quote, not a back-and-forth. Sourced on an 8–10 week runway, so quantities are best finalised well before the date.</p>",
+        "show_lookbook": true,
+        "desktop_columns": 3,
+        "show_sticky_bar": true,
+        "sticky_bar_text": "Get a wedding quote",
+        "enquiry_anchor": "#enquiry",
+        "occasion_value": "Wedding favours",
+        "bg": "#F3EDE3",
+        "hero_image": "shopify://shop_images/wedding-baraat-scarf-pocketsquare.png",
+        "hero_alt": "Rust and maroon hand block-printed silk scarf and matching pocket square, styled on a stand with candles and roses.",
+        "trust_design_detail": "Colours, prints, even a wedding monogram woven into the label — down to your minimum order. Smaller batch? Choose straight from our print library instead."
+      },
+      "blocks": {
+        "welcome": {
+          "type": "tile",
+          "settings": {
+            "heading": "The First Gift. The Lasting Memory.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-welcome-hamper.png",
+            "image_alt": "Hand block-printed welcome hamper — bottle bag, drawstring pouch, slippers, eye mask, scrunchie and jewellery case, styled on a hotel bed.",
+            "body": "<p>Before the music, the laughter, the ceremonies begin, your guests receive their first glimpse of the wedding — a thoughtful welcome, waiting in their room.</p><p>More than a hamper, it's a heartfelt thank-you from the families: block-printed comforts for the celebration and keepsakes for years beyond it, from slippers after a long journey to an eye mask for a restful night, and small accessories they'll carry long after the final farewell. Unlike a welcome tray enjoyed once and forgotten, <strong>every piece is made to travel home — a lasting reminder of the love behind the celebration.</strong></p><p>Customisable with bespoke prints, wedding monograms and colours, to tell your story.</p>",
+            "products_prefill": "Welcome hampers",
+            "occasion_value": "Wedding favours"
+          }
+        },
+        "kids": {
+          "type": "tile",
+          "settings": {
+            "heading": "Little Guests. Big Memories.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-kids-goodies.png",
+            "image_alt": "Children drawing at a wedding reception with a block-printed backpack, pencil roll and quilted playmat.",
+            "body": "<p>The happiest celebrations are the ones where every guest feels included—even the littlest ones. Thoughtfully curated keepsakes for young guests create their own little world of play and discovery, giving parents the freedom to celebrate while children become part of the story in their own unforgettable way.</p><p>Soft playmats for quiet moments, beautifully crafted backpacks and pencil cases for little treasures, and thoughtfully designed pouches for books, stationery and tablets become companions well beyond the festivities—<strong>growing with them as lasting reminders of a celebration they were never too young to enjoy.</strong></p><p>Every collection is bespoke, with exclusive hand block prints, personalised colours, monograms and thoughtfully curated combinations designed especially for your wedding.</p>",
+            "products_prefill": "Kids at the Wedding goodie bags",
+            "occasion_value": "Wedding favours"
+          }
+        },
+        "coordinated": {
+          "type": "tile",
+          "settings": {
+            "heading": "Woven Together. Celebrated Together.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-coordset-close-circle.png",
+            "image_alt": "Family in coordinated hand block-print outfits dancing at a wedding function.",
+            "body": "<p>The people closest to you don't just witness your wedding—they bring it to life. The laughter of cousins, the pride of parents, the excitement of bridesmaids, the swagger of the groomsmen... together, they become the heart of every celebration. Thoughtfully coordinated prints create a beautiful sense of belonging, <strong>where every entrance, every embrace and every photograph feels connected by one shared story.</strong></p><p>From elegant womenswear and tailored kurtas to Nehru jackets, children's ensembles and bespoke safas that move beyond the expected reds and pinks, every piece is designed around your wedding palette—bringing individuality together in perfect harmony.</p><p>Available as bespoke fabrics or made-to-measure ensembles in fine cottons, luxurious silks and silk blends, with exclusive hand block prints, personalised colour palettes and contemporary safa fabrics, thoughtfully curated for your wedding story.</p>",
+            "products_prefill": "Coordinated family outfits",
+            "occasion_value": "Wedding favours"
+          }
+        },
+        "allfunctions": {
+          "type": "tile",
+          "settings": {
+            "heading": "Carried Through the Celebration. Kept Long After.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-haldi-tote.png",
+            "image_2": "shopify://shop_images/wedding-mehendi-potli.png",
+            "image_alt": "Hand block-printed Haldi tote and Mehendi potli bag, in yellow floral and pink floral prints.",
+            "body": "<p>Beautifully coordinated accessories have a way of elevating every celebration. Whether carried through the vibrant colours of the Haldi, the elegance of the Mehendi or the festivities that follow, our handcrafted totes, potlis and pouches become a seamless part of the wedding itself—bringing beauty, purpose and thoughtful detail to every occasion.</p><p>Long after the celebrations end, <strong>they remain with your guests as lasting keepsakes of a wedding where every detail was chosen with care.</strong></p><p>Bespoke in colour, hand block print, size, silhouette and personalised wedding monograms.</p>",
+            "products_prefill": "Haldi and Mehendi totes and potlis",
+            "occasion_value": "Wedding favours"
+          }
+        },
+        "baraatentry": {
+          "type": "tile",
+          "settings": {
+            "heading": "One Celebration. One Beautiful Story.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-baraat-scarf-pocketsquare.png",
+            "image_alt": "Rust and maroon hand block-printed silk scarf and matching pocket square, styled on a stand with candles.",
+            "body": "<p>As anticipation gives way to celebration, every guest becomes part of the story being told. A thoughtful gesture of welcome blurs the line between host and guest, making everyone feel woven into the celebration before the first note is played, the first dance begins and the evening comes alive.</p><p>For the ladies, a timeless accessory they'll treasure well beyond the wedding, carrying with it memories of laughter, music and moments shared together. For the gentlemen, an elegant pocket square—<strong>a thoughtful keepsake that's rarely gifted, yet worn and appreciated for years to come.</strong></p><p>Handcrafted to order in fine cottons, luxurious silks and silk blends, with bespoke hand block prints, wedding colours and personalised monograms.</p>",
+            "products_prefill": "Sangeet and Baraat entry scarves and pocket squares",
+            "occasion_value": "Wedding favours"
+          }
+        },
+        "returns": {
+          "type": "tile",
+          "settings": {
+            "heading": "The Perfect Ending to a Beautiful Celebration.",
+            "badge": "",
+            "image": "shopify://shop_images/wedding-return-scarf-pocketsquare.png",
+            "image_2": "shopify://shop_images/general-table-mat-napkin.png",
+            "image_3": "shopify://shop_images/general-towel-napkin-1.png",
+            "image_4": "shopify://shop_images/general-women-jewellery-pouch.png",
+            "image_5": "shopify://shop_images/general-quilts.png",
+            "image_6": "shopify://shop_images/cg-wine-bottle-covers.png",
+            "image_alt": "A collection of hand block-printed wedding return gifts — scarves, table linen, towels, a jewellery pouch, a rolled quilt and a wine bottle cover.",
+            "body": "<p>Months of planning, countless thoughtful details and celebrations woven with love deserve more than a gift that's admired once and forgotten. The most meaningful return gifts become part of everyday life—used, cherished and revisited for years to come, quietly bringing back memories of your wedding and the people who made it unforgettable.</p><p>Whether they're setting the table for family with handcrafted linens, welcoming guests with beautifully coordinated napkins and hand towels, reaching for a favourite pouch before a journey, draping a scarf for an evening out, uncorking a bottle to celebrate another milestone, or settling into the comfort of a handcrafted quilt, <strong>each piece becomes part of life's everyday rituals—bringing them back to your celebration, time and again.</strong></p><p>And when you're looking for something truly personal, we offer the freedom to create without limits. From exclusive hand block prints and bespoke colour palettes to personalised monograms and entirely custom-developed gifting concepts, every creation is thoughtfully designed to reflect your celebration and leave a lasting impression.</p>",
+            "products_prefill": "Wedding return gifts",
+            "occasion_value": "Wedding favours"
+          }
+        }
+      },
+      "block_order": [
+        "welcome",
+        "kids",
+        "coordinated",
+        "allfunctions",
+        "baraatentry",
+        "returns"
+      ]
+    },
+    "enquiry": {
+      "type": "bulk-enquiry",
+      "settings": {
+        "occasion_value": "Wedding favours"
+      }
+    },
+    "explore": {
+      "type": "gifting-explore-more",
+      "settings": {
+        "heading": "Explore More Ways to Gift"
+      },
+      "blocks": {
+        "cat_corporate": {
+          "type": "category",
+          "settings": {
+            "name": "Corporate",
+            "link": "/pages/gifting-corporate",
+            "occasion_value": "Corporate gifting",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/cg-print-tableset.png",
+            "caption_1": "Desk Organiser Set",
+            "image_2": "shopify://shop_images/cg-conf-tote-bag.png",
+            "caption_2": "Conference Tote Bag",
+            "image_3": "shopify://shop_images/cg-wine-bottle-covers.png",
+            "caption_3": "Wine Bottle Cover",
+            "image_4": "shopify://shop_images/cg-laptop-sleeve.png",
+            "caption_4": "Laptop Sleeve",
+            "image_5": "shopify://shop_images/cg-diaries.png",
+            "caption_5": "Notebooks"
+          }
+        },
+        "cat_kids": {
+          "type": "category",
+          "settings": {
+            "name": "Kids",
+            "link": "/pages/gifting-kids",
+            "occasion_value": "Kids birthday — return gifts",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/kids-swaddle.png",
+            "caption_1": "Swaddle Set",
+            "image_2": "shopify://shop_images/kids-pencil-box.png",
+            "caption_2": "Pencil Pouch",
+            "image_3": "shopify://shop_images/kids-utility-pouch.png",
+            "caption_3": "Utility Pouch",
+            "image_4": "shopify://shop_images/kids-backpack.png",
+            "caption_4": "Backpack",
+            "image_5": "shopify://shop_images/kids-quilt.png",
+            "caption_5": "Kids Quilt"
+          }
+        },
+        "cat_festive": {
+          "type": "category",
+          "settings": {
+            "name": "Celebrating Life",
+            "link": "/pages/gifting-festive",
+            "occasion_value": "Festive gifting (Diwali / family & friends)",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/general-table-mat-napkin.png",
+            "caption_1": "Table Mat & Napkin Set",
+            "image_2": "shopify://shop_images/general-quilted-tote.png",
+            "caption_2": "Quilted Tote",
+            "image_3": "shopify://shop_images/general-women-jewellery-pouch.png",
+            "caption_3": "Jewellery Organiser",
+            "image_4": "shopify://shop_images/general-quilts.png",
+            "caption_4": "Home Quilt",
+            "image_5": "shopify://shop_images/general-women-toiletkit.png",
+            "caption_5": "Toiletry Kit"
+          }
+        }
+      },
+      "block_order": [
+        "cat_corporate",
+        "cat_kids",
+        "cat_festive"
+      ]
+    }
+  },
+  "order": [
+    "cat",
+    "enquiry",
+    "explore"
+  ]
+}

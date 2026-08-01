@@ -1,0 +1,257 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<style>
+  .gc { background: {{ s.bg }}; padding: 56px 20px 40px; }
+  .gc__inner { max-width: 900px; margin: 0 auto; }
+  .gc__ey { display:flex; align-items:center; justify-content:center; gap:16px; color:#9C6B23; letter-spacing:.04em; font-style:italic; font-size:21px; font-family: var(--font-primary--family); margin:0 0 14px; }
+  .gc__ey::before, .gc__ey::after { content:''; flex:0 0 34px; height:1px; background:currentColor; opacity:.5; }
+  .gc h1, .gc h2.gc__heading { text-align:center; font-family: var(--font-primary--family); font-weight:400; font-size:2.2rem; color:#2B241F; margin:0 0 18px; line-height:1.25; }
+  .gc__intro { text-align:left; color:#4A423A; font-family: var(--font-body--family); font-size:16px; line-height:1.75; max-width:580px; margin:0 auto 20px; }
+  .gc__intro p { margin: 0 0 16px; }
+  .gc__intro p:last-child { margin-bottom: 0; }
+  .gc__intro strong { color:#2B241F; font-weight:700; }
+  .gc__deadline { text-align:center; max-width:580px; margin:0 auto 36px; background:#ECE3D2; color:#5A4A2E; font-family: var(--font-body--family); font-size:14px; line-height:1.5; padding:14px 20px; border-left:3px solid #B48D59; }
+
+  .gc__grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-bottom: 8px; }
+  .gc__tile { position:relative; display:block; text-decoration:none; border:1px solid #D8C7AD; background:#FBF7F0; overflow:hidden; }
+  .gc__tile-img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; background:#ECE3D2; }
+  .gc__tile-noimg { width:100%; aspect-ratio:3/4; display:flex; align-items:center; justify-content:center; background:#ECE3D2; color:#B48D59; font-family: var(--font-primary--family); font-size:1.1rem; text-align:center; padding:14px; }
+  .gc__tile-label { padding:10px 12px; font-family: var(--font-body--family); font-size:13px; color:#2B241F; font-weight:600; }
+  .gc__tile-badge { position:absolute; top:8px; left:8px; background:#9E3B2F; color:#F3EDE3; font-family: var(--font-body--family); font-size:10px; letter-spacing:.08em; text-transform:uppercase; padding:4px 8px; }
+
+  .gc__hero { margin: 28px auto 8px; max-width: 460px; }
+  .gc__hero-img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; background:#ECE3D2; }
+  .gc__hero-caption { text-align:center; font-family: var(--font-primary--family); font-style:italic; color:#2B241F; font-size:1.1rem; margin:14px auto 0; max-width:520px; }
+
+  .gc__trust { background:#ECE3D2; margin:32px 0; padding:28px 22px; border-top:1px solid #D8C7AD; border-bottom:1px solid #D8C7AD; }
+  .gc__trust-grid { display:grid; grid-template-columns:1fr; gap:18px; max-width:760px; margin:0 auto; }
+  .gc__trust-item { font-family: var(--font-body--family); font-size:14px; line-height:1.55; color:#4A423A; }
+  .gc__trust-item strong { display:block; color:#2B241F; font-family: var(--font-primary--family); font-weight:400; font-size:1.05rem; margin-bottom:3px; }
+  @media (min-width:750px){ .gc__trust-grid { grid-template-columns:1fr 1fr; } }
+
+  .gc__lookbook { margin-top:56px; border-top:1px solid #D8C7AD; }
+  .gc__section { padding:44px 0; border-bottom:1px solid #D8C7AD; scroll-margin-top: 24px; }
+  .gc__section-grid { display:grid; grid-template-columns:1fr; gap:20px; align-items:center; }
+  .gc__section-img { width:100%; max-width:420px; aspect-ratio:3/4; object-fit:cover; background:#ECE3D2; margin:0 auto; }
+  .gc__section h3 { font-family: var(--font-primary--family); font-weight:400; font-size:1.5rem; color:#2B241F; margin:0 0 4px; }
+  .gc__section .gc__tile-badge { position:static; display:inline-block; margin-bottom:8px; }
+  .gc__section p, .gc__section-copy p { font-family: var(--font-body--family); color:#4A423A; font-size:15px; line-height:1.7; margin:0 0 16px; }
+  .gc__section p strong, .gc__section-copy p strong { color:#2B241F; font-weight:700; }
+
+  /* Multi-photo sections: no side-by-side pairing (text would dwarf a tall image
+     stack) — full-width text first, then every photo shown full-size in a wrapping
+     row below. No carousel, no shrinking, no navigation to discover. */
+  .gc__section-multi .gc__section-copy { max-width:640px; margin:0 auto; text-align:left; }
+  .gc__section-photos { display:flex; flex-wrap:wrap; justify-content:center; gap:16px; margin-top:28px; }
+  .gc__section-photos img { flex:1 1 260px; max-width:320px; aspect-ratio:3/4; object-fit:cover; background:#ECE3D2; display:block; }
+  .gc__section a.gc__cta { display:inline-block; font-family: var(--font-body--family); font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:#F3EDE3; background:#2B241F; padding:12px 20px; text-decoration:none; }
+
+  .gc__sticky { display:none; }
+  @media (max-width:749px){
+    .gc__sticky {
+      display:block; position:sticky; bottom:0; left:0; right:0; z-index:40;
+      background:#2B241F; padding:12px 16px; text-align:center;
+      box-shadow: 0 -2px 10px rgba(43,36,31,0.18);
+    }
+    .gc__sticky a { display:block; color:#F3EDE3; text-decoration:none; font-family: var(--font-body--family); font-size:13px; letter-spacing:.1em; text-transform:uppercase; }
+    .gc { padding-bottom: 88px; }
+  }
+  @media (min-width:750px){
+    .gc__grid { grid-template-columns:repeat({{ s.desktop_columns }},1fr); }
+    /* Zig-zag: photo-dominant (58%), alternating sides section by section. */
+    .gc__section-grid { grid-template-columns: 58% 1fr; }
+    .gc__section-grid .gc__section-img { order: 1; }
+    .gc__section-grid .gc__section-copy { order: 2; }
+    .gc__section-grid.gc__section-grid--rev { grid-template-columns: 1fr 58%; }
+    .gc__section-grid--rev .gc__section-img { order: 2; }
+    .gc__section-grid--rev .gc__section-copy { order: 1; }
+  }
+</style>
+
+<div class="gc">
+  <div class="gc__inner">
+    {%- if s.eyebrow != blank -%}<p class="gc__ey">{{ s.eyebrow }}</p>{%- endif -%}
+    <h1 class="gc__heading">{{ s.heading }}</h1>
+    {%- if s.intro != blank -%}<div class="gc__intro">{{ s.intro }}</div>{%- endif -%}
+    {%- if s.deadline_note != blank -%}<p class="gc__deadline">{{ s.deadline_note }}</p>{%- endif -%}
+
+    {%- if s.hero_image != blank -%}
+      <div class="gc__hero">
+        {{ s.hero_image | image_url: width: 1400 | image_tag: loading: 'lazy', alt: s.hero_alt, class: 'gc__hero-img' }}
+        {%- if s.hero_caption != blank -%}<p class="gc__hero-caption">{{ s.hero_caption }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="gc__trust">
+      <div class="gc__trust-grid">
+        <div class="gc__trust-item"><strong>Design it with us</strong>{{ s.trust_design_detail | default: "Colours, prints, your own custom label — down to your minimum order. Smaller batch? Choose straight from our print library instead." }}</div>
+        <div class="gc__trust-item"><strong>One seamless process</strong>A single point of contact from first quote to delivery &mdash; not five vendor calls to manage yourself.</div>
+        <div class="gc__trust-item"><strong>Delivery you can plan around</strong>Dates that hold, confirmed at the quote stage.</div>
+        <div class="gc__trust-item"><strong>The same quality, every time</strong>Piece 1 and piece 500 are the same piece.</div>
+      </div>
+    </div>
+
+    {%- unless s.show_lookbook -%}
+      {%- comment -%} Tile grid is the hub's only content (no lookbook below it) — occasion pages skip straight to the lookbook sections instead of showing this grid twice. {%- endcomment -%}
+      <div class="gc__grid">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign tile_alt = block.settings.image_alt
+            if tile_alt == blank
+              assign tile_alt = block.settings.heading
+            endif
+          -%}
+          <a class="gc__tile" href="{{ block.settings.link }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.badge != blank -%}<span class="gc__tile-badge">{{ block.settings.badge }}</span>{%- endif -%}
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 500 | image_tag: class: 'gc__tile-img', loading: 'lazy', alt: tile_alt }}
+            {%- else -%}
+              <div class="gc__tile-noimg">{{ block.settings.heading }}</div>
+            {%- endif -%}
+            <div class="gc__tile-label">{{ block.settings.heading }}</div>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endunless -%}
+
+    {%- if s.show_lookbook -%}
+      <div class="gc__lookbook">
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign section_alt = block.settings.image_alt
+            if section_alt == blank
+              assign section_alt = block.settings.heading
+            endif
+            assign grid_class = 'gc__section-grid'
+            assign is_odd = forloop.index0 | modulo: 2
+            if is_odd == 1
+              assign grid_class = grid_class | append: ' gc__section-grid--rev'
+            endif
+
+            assign gallery_count = 0
+            unless block.settings.image == blank
+              assign gallery_count = gallery_count | plus: 1
+            endunless
+            unless block.settings.image_2 == blank
+              assign gallery_count = gallery_count | plus: 1
+            endunless
+            unless block.settings.image_3 == blank
+              assign gallery_count = gallery_count | plus: 1
+            endunless
+            unless block.settings.image_4 == blank
+              assign gallery_count = gallery_count | plus: 1
+            endunless
+            unless block.settings.image_5 == blank
+              assign gallery_count = gallery_count | plus: 1
+            endunless
+            unless block.settings.image_6 == blank
+              assign gallery_count = gallery_count | plus: 1
+            endunless
+          -%}
+          {%- liquid
+            assign prefill = block.settings.products_prefill
+            if prefill == blank
+              assign prefill = block.settings.heading
+            endif
+            assign occ = block.settings.occasion_value
+            if occ == blank
+              assign occ = s.occasion_value
+            endif
+            assign prefill_enc = prefill | url_encode
+            assign occ_enc = occ | url_encode
+            assign cta_href = '?product=' | append: prefill_enc | append: '&occasion=' | append: occ_enc | append: '#enquiry'
+            assign cta_text = 'Get a quote for this'
+            unless block.settings.link == blank
+              assign cta_href = block.settings.link
+              assign cta_text = 'See the full page'
+            endunless
+          -%}
+          <div class="gc__section" id="tile-{{ block.id }}">
+            {%- if gallery_count > 1 -%}
+              <div class="gc__section-multi">
+                <div class="gc__section-copy">
+                  {%- if block.settings.badge != blank -%}<span class="gc__tile-badge">{{ block.settings.badge }}</span>{%- endif -%}
+                  <h3>{{ block.settings.heading }}</h3>
+                  {{ block.settings.body }}
+                  <a class="gc__cta" href="{{ cta_href }}">{{ cta_text }}</a>
+                </div>
+                <div class="gc__section-photos">
+                  {%- unless block.settings.image == blank -%}{{ block.settings.image | image_url: width: 640 | image_tag: loading: 'lazy', alt: section_alt }}{%- endunless -%}
+                  {%- unless block.settings.image_2 == blank -%}{{ block.settings.image_2 | image_url: width: 640 | image_tag: loading: 'lazy', alt: section_alt }}{%- endunless -%}
+                  {%- unless block.settings.image_3 == blank -%}{{ block.settings.image_3 | image_url: width: 640 | image_tag: loading: 'lazy', alt: section_alt }}{%- endunless -%}
+                  {%- unless block.settings.image_4 == blank -%}{{ block.settings.image_4 | image_url: width: 640 | image_tag: loading: 'lazy', alt: section_alt }}{%- endunless -%}
+                  {%- unless block.settings.image_5 == blank -%}{{ block.settings.image_5 | image_url: width: 640 | image_tag: loading: 'lazy', alt: section_alt }}{%- endunless -%}
+                  {%- unless block.settings.image_6 == blank -%}{{ block.settings.image_6 | image_url: width: 640 | image_tag: loading: 'lazy', alt: section_alt }}{%- endunless -%}
+                </div>
+              </div>
+            {%- else -%}
+              <div class="{{ grid_class }}">
+                {%- if block.settings.image != blank -%}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: class: 'gc__section-img', loading: 'lazy', alt: section_alt }}
+                {%- else -%}
+                  <div class="gc__section-img"></div>
+                {%- endif -%}
+                <div class="gc__section-copy">
+                  {%- if block.settings.badge != blank -%}<span class="gc__tile-badge">{{ block.settings.badge }}</span>{%- endif -%}
+                  <h3>{{ block.settings.heading }}</h3>
+                  {{ block.settings.body }}
+                  <a class="gc__cta" href="{{ cta_href }}">{{ cta_text }}</a>
+                </div>
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- if s.show_sticky_bar -%}
+  <div class="gc__sticky"><a href="{{ s.enquiry_anchor | default: '#enquiry' }}">{{ s.sticky_bar_text | default: 'Get a bulk quote' }}</a></div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Gifting catalog",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Gifting" },
+    { "type": "richtext", "id": "intro", "label": "Intro copy" },
+    { "type": "text", "id": "deadline_note", "label": "Deadline banner (optional)" },
+    { "type": "checkbox", "id": "show_lookbook", "label": "Show inline lookbook (off = tiles link out, for the hub)", "default": true },
+    { "type": "range", "id": "desktop_columns", "label": "Desktop grid columns", "min": 2, "max": 4, "step": 1, "default": 3 },
+    { "type": "checkbox", "id": "show_sticky_bar", "label": "Show mobile sticky enquire bar", "default": true },
+    { "type": "text", "id": "sticky_bar_text", "label": "Sticky bar text", "default": "Get a bulk quote" },
+    { "type": "text", "id": "enquiry_anchor", "label": "Sticky bar link (anchor or URL)", "default": "#enquiry" },
+    { "type": "text", "id": "occasion_value", "label": "Occasion prefill (must match a bulk-enquiry dropdown option)" },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#F3EDE3" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image (optional, sits above the trust band)" },
+    { "type": "text", "id": "hero_alt", "label": "Hero image alt text" },
+    { "type": "text", "id": "hero_caption", "label": "Hero caption (optional, italic line under the image)" },
+    { "type": "textarea", "id": "trust_design_detail", "label": "Trust band \"Design it with us\" detail (page-specific)" }
+  ],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Tile",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading" },
+        { "type": "text", "id": "badge", "label": "Badge (optional, e.g. ★ Lead concept)" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "image_alt", "label": "Image alt text (falls back to heading if blank)" },
+        { "type": "image_picker", "id": "image_2", "label": "Image 2 (optional — 2+ photos shown full-size below the text)" },
+        { "type": "image_picker", "id": "image_3", "label": "Image 3 (optional)" },
+        { "type": "image_picker", "id": "image_4", "label": "Image 4 (optional)" },
+        { "type": "image_picker", "id": "image_5", "label": "Image 5 (optional)" },
+        { "type": "image_picker", "id": "image_6", "label": "Image 6 (optional)" },
+        { "type": "textarea", "id": "body", "label": "Body copy — include your own <p> tags" },
+        { "type": "text", "id": "products_prefill", "label": "Products-of-interest prefill (enquiry form)" },
+        { "type": "text", "id": "occasion_value", "label": "Occasion prefill override (else section default)" },
+        { "type": "url", "id": "link", "label": "Link (used only when lookbook is off)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Gifting catalog", "blocks": [{ "type": "tile" }] }]
+}
+{% endschema %}

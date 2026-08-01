@@ -1,0 +1,6 @@
+.shopify-token
+.shopify-secrets
+.DS_Store
+node_modules
+playwright-report
+test-results

@@ -1,0 +1,188 @@
+{
+  "sections": {
+    "cat": {
+      "type": "gifting-catalog",
+      "settings": {
+        "eyebrow": "Gifts that reflect your brand",
+        "heading": "The gift that makes you look like you thought of everything.",
+        "intro": "<p>Corporate gifting isn't really about the gift — it's about what it says about the person who chose it. This is for whoever's name is on the order: the one who needs the client, the new hire or the partner to open the box and think <strong>someone here has taste</strong>, because that reflects back on you.</p><p>Hand block-printed totes, pouches and hampers made in Jaipur, matched to your brand's colours, quote-based with <strong>MOQs from 50 pieces</strong> — nothing that reads as an afterthought, so the only phone call you get afterward is a good one.</p>",
+        "show_lookbook": true,
+        "desktop_columns": 3,
+        "show_sticky_bar": true,
+        "sticky_bar_text": "Get a corporate quote",
+        "enquiry_anchor": "#enquiry",
+        "occasion_value": "Corporate gifting",
+        "bg": "#F3EDE3",
+        "hero_image": "shopify://shop_images/cg-print-tableset.png",
+        "hero_alt": "Hand block-printed desk organiser set with a PEXX-branded card holder, styled on a wooden desk.",
+        "hero_caption": "A desk that says something about the person who furnished it.",
+        "trust_design_detail": "Colours, prints, even a co-branded fabric label reading “PEXX × Your Company” — down to your minimum order. Smaller batch? Choose straight from our print library instead."
+      },
+      "blocks": {
+        "diwali": {
+          "type": "tile",
+          "settings": {
+            "heading": "Diwali Corporate Gifting",
+            "badge": "",
+            "image": "shopify://shop_images/cg-wine-bottle-covers.png",
+            "image_alt": "Pink block-print floral fabric wine bottle bag, corporate Diwali gift, styled outdoors with a wine bottle.",
+            "body": "<p>Wine, kombucha, a fancy bottle of something — whatever's inside is fine, but it says nothing about the person who sent it. Wrap it in hand block-print instead of cellophane, and the drink's forgotten by dinner — the cover isn't. <strong>It's what stays on a shelf, catching their eye all year, quietly reminding them who has good taste.</strong></p>",
+            "products_prefill": "Diwali corporate gifting",
+            "occasion_value": "Corporate gifting"
+          }
+        },
+        "onboarding": {
+          "type": "tile",
+          "settings": {
+            "heading": "Employee Onboarding & Welcome Kits",
+            "badge": "",
+            "image": "shopify://shop_images/cg-laptop-sleeve.png",
+            "image_alt": "Two hand block-printed laptop sleeves, teal geometric and pink floral prints, on a wooden desk with a laptop.",
+            "body": "<p>The welcome kit that doesn't end up in a drawer. A laptop sleeve and a bottle cover, block-printed and azo-free, in prints for every kind of new hire — not one generic kit forced on everyone regardless of taste. <strong>It's the first proof a new employee gets that this is a company that actually thought about them</strong> — and that's the kind of welcome people stay motivated by.</p>",
+            "products_prefill": "Employee onboarding welcome kits",
+            "occasion_value": "Corporate gifting"
+          }
+        },
+        "client": {
+          "type": "tile",
+          "settings": {
+            "heading": "Client Gifting",
+            "badge": "",
+            "image": "shopify://shop_images/cg-unisex-table-set.png",
+            "image_alt": "Blue gingham block-print desk organiser set — tray, pen cup, notebook, pouch and card holder — styled on a desk.",
+            "body": "<p>Move over the same brown leather set every vendor sends — minimalism's had its decade, and this is a desk with character, in checks or florals, so no client gets the same generic default. Whatever else finishes and gets forgotten; <strong>a hand-picked, hand-crafted set is still on the desk a year later — and it's still your name they think of when they see it.</strong></p>",
+            "products_prefill": "Client gifting sets",
+            "occasion_value": "Corporate gifting"
+          }
+        },
+        "newparent": {
+          "type": "tile",
+          "settings": {
+            "heading": "New-Parent Employee Gifts",
+            "badge": "",
+            "image": "shopify://shop_images/kids-swaddle.png",
+            "image_alt": "Hand block-printed baby swaddle set and a rolled baby quilt, both azo-free cotton.",
+            "body": "<p>HR gifting the same swaddle-and-quilt set we sell at retail — hand block-printed, azo-free cotton for the newest member of an employee's family. <strong>It's the kind of gift a new parent actually talks about at their desk for weeks</strong> — and the reason they remember exactly who thought of them at the one moment that mattered most.</p>",
+            "products_prefill": "New-parent employee gift sets",
+            "occasion_value": "Corporate gifting",
+            "image_2": "shopify://shop_images/kids-quilt.png"
+          }
+        },
+        "events": {
+          "type": "tile",
+          "settings": {
+            "heading": "Events & Conferences",
+            "badge": "",
+            "image": "shopify://shop_images/cg-conf-tote-bag.png",
+            "image_alt": "Three block-print cotton tote bags — pomegranate print, navy stripe, and a leaf print with a 'Your Brand Logo' placeholder — hanging against a wall.",
+            "body": "<p>The tote that doesn't end up abandoned under a chair by the end of the day. Hand block-printed in your event's colours, with your logo where the tag usually goes — carried out of the venue and used for months after, instead of forgotten with the rest of the giveaways. <strong>That's brand recall you don't have to pay for twice.</strong></p>",
+            "products_prefill": "Event and conference totes",
+            "occasion_value": "Corporate gifting"
+          }
+        },
+        "everyday": {
+          "type": "tile",
+          "settings": {
+            "heading": "Everyday Employee Occasions",
+            "badge": "",
+            "image": "shopify://shop_images/cg-diaries.png",
+            "image_alt": "Three hand block-printed fabric notebooks in graduated sizes and different prints — floral, gingham check, and small floral — tied with cord.",
+            "body": "<p>Move over the gift voucher and the box of chocolates. For the birthday, the farewell, the five-year mark, a block-printed notebook actually gets used — and with prints running from a quiet check to a full floral, there's a fit whatever kind of person you're gifting. <strong>It's the kind of small gesture people remember who sent, long after the occasion's over.</strong></p>",
+            "products_prefill": "Everyday employee occasion gifts",
+            "occasion_value": "Corporate gifting"
+          }
+        }
+      },
+      "block_order": [
+        "diwali",
+        "onboarding",
+        "client",
+        "newparent",
+        "events",
+        "everyday"
+      ]
+    },
+    "enquiry": {
+      "type": "bulk-enquiry",
+      "settings": {
+        "occasion_value": "Corporate gifting",
+        "show_branding_question": true
+      }
+    },
+    "explore": {
+      "type": "gifting-explore-more",
+      "settings": {
+        "heading": "Explore More Ways to Gift"
+      },
+      "blocks": {
+        "cat_weddings": {
+          "type": "category",
+          "settings": {
+            "name": "Weddings",
+            "link": "/pages/gifting-weddings",
+            "occasion_value": "Wedding favours",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/wedding-welcome-hamper.png",
+            "caption_1": "Welcome Hamper",
+            "image_2": "shopify://shop_images/wedding-haldi-tote.png",
+            "caption_2": "Haldi Tote",
+            "image_3": "shopify://shop_images/wedding-mehendi-potli.png",
+            "caption_3": "Mehendi Potli",
+            "image_4": "shopify://shop_images/wedding-baraat-scarf-pocketsquare.png",
+            "caption_4": "Baraat Scarf & Pocket Square",
+            "image_5": "shopify://shop_images/wedding-coordset-close-circle.png",
+            "caption_5": "Coordinated Family Outfits"
+          }
+        },
+        "cat_kids": {
+          "type": "category",
+          "settings": {
+            "name": "Kids",
+            "link": "/pages/gifting-kids",
+            "occasion_value": "Kids birthday — return gifts",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/kids-swaddle.png",
+            "caption_1": "Swaddle Set",
+            "image_2": "shopify://shop_images/kids-pencil-box.png",
+            "caption_2": "Pencil Pouch",
+            "image_3": "shopify://shop_images/kids-utility-pouch.png",
+            "caption_3": "Utility Pouch",
+            "image_4": "shopify://shop_images/kids-backpack.png",
+            "caption_4": "Backpack",
+            "image_5": "shopify://shop_images/kids-quilt.png",
+            "caption_5": "Kids Quilt"
+          }
+        },
+        "cat_festive": {
+          "type": "category",
+          "settings": {
+            "name": "Celebrating Life",
+            "link": "/pages/gifting-festive",
+            "occasion_value": "Festive gifting (Diwali / family & friends)",
+            "cta_text": "Enquire Now",
+            "image_1": "shopify://shop_images/general-table-mat-napkin.png",
+            "caption_1": "Table Mat & Napkin Set",
+            "image_2": "shopify://shop_images/general-quilted-tote.png",
+            "caption_2": "Quilted Tote",
+            "image_3": "shopify://shop_images/general-women-jewellery-pouch.png",
+            "caption_3": "Jewellery Organiser",
+            "image_4": "shopify://shop_images/general-quilts.png",
+            "caption_4": "Home Quilt",
+            "image_5": "shopify://shop_images/general-women-toiletkit.png",
+            "caption_5": "Toiletry Kit"
+          }
+        }
+      },
+      "block_order": [
+        "cat_weddings",
+        "cat_kids",
+        "cat_festive"
+      ]
+    }
+  },
+  "order": [
+    "cat",
+    "enquiry",
+    "explore"
+  ]
+}

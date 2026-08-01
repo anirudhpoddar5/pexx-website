@@ -1,0 +1,749 @@
+<title>PEXX Gifting Strategy</title>
+<style>
+  @font-face {
+    font-family: 'ui-serif-stack';
+    src: local('Palatino Linotype'), local('Palatino'), local('Iowan Old Style');
+  }
+
+  :root {
+    --bg: #F6F0E4;
+    --bg-raised: #FBF7EE;
+    --ink: #2B241F;
+    --muted: #8B8175;
+    --rule: #DDD3C0;
+    --terracotta: #9E3B2F;
+    --terracotta-tint: #F1DDD6;
+    --indigo: #2F3E52;
+    --indigo-tint: #DEE4EA;
+    --good: #5C6B47;
+    --good-tint: #E2E7D8;
+    --warn: #B8863B;
+    --warn-tint: #F2E4C8;
+    --weak: #9C897A;
+    --weak-tint: #EAE2D6;
+    --shadow: 0 1px 2px rgba(43,36,31,0.06), 0 8px 24px rgba(43,36,31,0.05);
+
+    --serif-display: 'Palatino Linotype', Palatino, 'Iowan Old Style', 'Book Antiqua', Georgia, serif;
+    --serif-body: Georgia, 'Iowan Old Style', 'Palatino Linotype', Palatino, serif;
+    --sans-ui: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #211B17;
+    --bg-raised: #2A231D;
+    --ink: #EDE6D8;
+    --muted: #A69A88;
+    --rule: #3D342B;
+    --terracotta: #D98A78;
+    --terracotta-tint: #3E2823;
+    --indigo: #9DB0C6;
+    --indigo-tint: #232C38;
+    --good: #A9BB8F;
+    --good-tint: #2A2F22;
+    --warn: #E0B979;
+    --warn-tint: #362B18;
+    --weak: #B3A493;
+    --weak-tint: #2E2823;
+    --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #211B17;
+      --bg-raised: #2A231D;
+      --ink: #EDE6D8;
+      --muted: #A69A88;
+      --rule: #3D342B;
+      --terracotta: #D98A78;
+      --terracotta-tint: #3E2823;
+      --indigo: #9DB0C6;
+      --indigo-tint: #232C38;
+      --good: #A9BB8F;
+      --good-tint: #2A2F22;
+      --warn: #E0B979;
+      --warn-tint: #362B18;
+      --weak: #B3A493;
+      --weak-tint: #2E2823;
+      --shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.25);
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--serif-body);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 56px 28px 96px;
+  }
+
+  /* ---------- Masthead ---------- */
+  .masthead {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 36px;
+  }
+  .masthead__eyebrow {
+    font-family: var(--sans-ui);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 600;
+  }
+  .masthead h1 {
+    font-family: var(--serif-display);
+    font-weight: 400;
+    font-size: 2.5rem;
+    line-height: 1.12;
+    margin: 0;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
+  }
+  .masthead__meta {
+    font-family: var(--sans-ui);
+    font-size: 13px;
+    color: var(--muted);
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .masthead__meta b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Urgency callout ---------- */
+  .callout {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-left: 4px solid var(--terracotta);
+    border-radius: 3px;
+    padding: 22px 26px;
+    margin: 0 0 40px;
+    box-shadow: var(--shadow);
+  }
+  .callout__label {
+    font-family: var(--sans-ui);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .callout p { margin: 0 0 10px; font-size: 1.02rem; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout .deadline-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--rule);
+  }
+  .deadline-chip {
+    font-family: var(--sans-ui);
+  }
+  .deadline-chip__k {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    display: block;
+  }
+  .deadline-chip__v {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-variant-numeric: tabular-nums;
+    color: var(--indigo);
+    font-weight: 600;
+  }
+
+  /* ---------- Section structure ---------- */
+  .part-label {
+    font-family: var(--sans-ui);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 56px 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .part-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+  .part-title {
+    font-family: var(--serif-display);
+    font-size: 1.9rem;
+    font-weight: 400;
+    margin: 0 0 8px;
+    text-wrap: balance;
+  }
+  .part-sub {
+    font-family: var(--sans-ui);
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  h3 {
+    font-family: var(--serif-display);
+    font-size: 1.32rem;
+    font-weight: 400;
+    margin: 40px 0 6px;
+    text-wrap: balance;
+  }
+  h3 .n {
+    font-family: var(--mono);
+    color: var(--muted);
+    font-size: 0.75em;
+    margin-right: 10px;
+    font-weight: 400;
+  }
+  h4 {
+    font-family: var(--sans-ui);
+    font-size: 12.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    font-weight: 700;
+    margin: 26px 0 10px;
+  }
+  p { margin: 0 0 14px; max-width: 68ch; }
+  strong { font-weight: 700; }
+
+  /* ---------- Tag system: retail vs catalog ---------- */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--sans-ui);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 3px 9px 3px 7px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .tag--retail { background: var(--terracotta-tint); color: var(--terracotta); }
+  .tag--catalog { background: var(--indigo-tint); color: var(--indigo); }
+  .tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+  .tag-key {
+    font-family: var(--sans-ui);
+    font-size: 12.5px;
+    color: var(--muted);
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin: 4px 0 22px;
+  }
+
+  /* ---------- Fit tables ---------- */
+  .table-wrap { overflow-x: auto; margin: 18px 0 30px; border-radius: 4px; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 520px;
+    background: var(--bg-raised);
+    box-shadow: var(--shadow);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  caption {
+    font-family: var(--sans-ui);
+    font-size: 12px;
+    color: var(--muted);
+    text-align: left;
+    padding-bottom: 8px;
+  }
+  th, td {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.95rem;
+    vertical-align: top;
+  }
+  th {
+    font-family: var(--sans-ui);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+    background: var(--bg);
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { font-weight: 700; white-space: nowrap; }
+
+  .fit {
+    display: inline-block;
+    font-family: var(--sans-ui);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .fit--strong { background: var(--good-tint); color: var(--good); }
+  .fit--medium { background: var(--warn-tint); color: var(--warn); }
+  .fit--weak, .fit--skip { background: var(--weak-tint); color: var(--weak); }
+
+  /* ---------- Numbered function list (wedding) ---------- */
+  ol.functions { list-style: none; margin: 0 0 30px; padding: 0; counter-reset: fn; }
+  ol.functions li {
+    counter-increment: fn;
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 4px 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  ol.functions li:first-child { padding-top: 0; }
+  ol.functions li::before {
+    content: counter(fn, decimal-leading-zero);
+    font-family: var(--mono);
+    color: var(--indigo);
+    font-size: 0.85rem;
+    font-variant-numeric: tabular-nums;
+    padding-top: 2px;
+  }
+  ol.functions .fn-title { font-weight: 700; margin-bottom: 3px; }
+  ol.functions .fn-products { color: var(--ink); font-size: 0.95rem; margin-bottom: 3px; }
+  ol.functions .fn-check { color: var(--muted); font-size: 0.87rem; font-style: italic; }
+
+  /* ---------- Structure list (final proposal) ---------- */
+  .structure-group {
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow);
+  }
+  .structure-group__head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .structure-group__head .tag { flex-shrink: 0; }
+  .structure-group__head h4 { margin: 0; color: var(--ink); font-size: 13px; }
+  .structure-group ul { margin: 0; padding-left: 20px; }
+  .structure-group li { margin-bottom: 7px; font-size: 0.96rem; }
+  .structure-group li:last-child { margin-bottom: 0; }
+  .structure-group li b { font-weight: 700; }
+
+  /* ---------- Priority sequencing ---------- */
+  .priority {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 4px 20px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .priority:first-child { padding-top: 0; }
+  .priority:last-child { border-bottom: none; }
+  .priority__when {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--terracotta);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding-top: 3px;
+  }
+  .priority__what b { display: block; margin-bottom: 3px; }
+  .priority__what { font-size: 0.95rem; }
+
+  /* ---------- Naming chips ---------- */
+  .naming { display: flex; flex-wrap: wrap; gap: 10px; margin: 16px 0 30px; }
+  .naming span {
+    font-family: var(--serif-display);
+    font-style: italic;
+    font-size: 1rem;
+    background: var(--bg-raised);
+    border: 1px solid var(--rule);
+    padding: 8px 16px;
+    border-radius: 20px;
+    color: var(--ink);
+  }
+
+  /* ---------- Pushback box ---------- */
+  .pushback {
+    border: 1px dashed var(--indigo);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 20px 0 34px;
+    background: var(--indigo-tint);
+  }
+  .pushback__label {
+    font-family: var(--sans-ui);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--indigo);
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .pushback p { margin-bottom: 0; color: var(--ink); }
+  .pushback p + p { margin-top: 10px; }
+
+  /* ---------- Review note ---------- */
+  .review-note {
+    font-family: var(--sans-ui);
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    border-top: 1px solid var(--rule);
+    margin-top: 48px;
+    padding-top: 20px;
+  }
+
+  /* ---------- Sources ---------- */
+  .sources {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--rule);
+  }
+  .sources h4 { margin-top: 0; }
+  .sources ol {
+    columns: 2;
+    column-gap: 32px;
+    padding-left: 18px;
+    font-family: var(--sans-ui);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .sources li { margin-bottom: 8px; break-inside: avoid; }
+  .sources a { color: var(--indigo); text-decoration: none; border-bottom: 1px solid var(--rule); }
+  .sources a:hover { border-bottom-color: var(--indigo); }
+  @media (max-width: 640px) { .sources ol { columns: 1; } }
+
+  a { color: var(--indigo); }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    .page { padding: 36px 18px 72px; }
+    .masthead h1 { font-size: 1.9rem; }
+    .part-title { font-size: 1.5rem; }
+    ol.functions li { grid-template-columns: 26px 1fr; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="masthead">
+    <span class="masthead__eyebrow">Strategy input — for team discussion</span>
+    <h1>Gifting Page: Occasion &amp; Category Strategy</h1>
+    <div class="masthead__meta">
+      <span>Prepared <b>17 July 2026</b></span>
+      <span>Research: <b>Fable</b> · Critical review: <b>Opus</b></span>
+      <span><b>Nothing here is built.</b> This is the discussion draft.</span>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="callout__label">The one thing to read even if nothing else</span>
+    <p>"Diwali has enough time" undersells it. For handcrafted bulk production, the corporate Diwali window and the November–December wedding-favour window close at almost the same moment — <strong>and they're closing now, not in the autumn.</strong> Building the two catalogues one after another guarantees the second one misses its window. They need to move in parallel.</p>
+    <div class="deadline-row">
+      <div class="deadline-chip">
+        <span class="deadline-chip__k">Diwali 2026</span>
+        <span class="deadline-chip__v">Sun, 8 Nov</span>
+      </div>
+      <div class="deadline-chip">
+        <span class="deadline-chip__k">Corporate orders finalize</span>
+        <span class="deadline-chip__v">Mid-Aug – Mid-Sep</span>
+      </div>
+      <div class="deadline-chip">
+        <span class="deadline-chip__k">Nov–Dec wedding favours sourced</span>
+        <span class="deadline-chip__v">Aug – Sep (now)</span>
+      </div>
+      <div class="deadline-chip">
+        <span class="deadline-chip__k">Festive retail edit live by</span>
+        <span class="deadline-chip__v">Late Sep</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tag-key">
+    <span class="tag tag--retail">Retail</span> shoppable product grid
+    <span class="tag tag--catalog">Catalog · B2B</span> lookbook → bulk-enquiry quote, no cart
+  </div>
+
+  <!-- ============ PART B FIRST — the recommendation ============ -->
+  <p class="part-label">Part B</p>
+  <h2 class="part-title">What we think we should do</h2>
+  <p class="part-sub">Skim this section first. The full research behind it follows below.</p>
+
+  <h3><span class="n">B1</span>Final proposed structure</h3>
+
+  <div class="structure-group">
+    <div class="structure-group__head">
+      <span class="tag tag--retail">Retail</span>
+      <h4>Evergreen — no deadline, mostly re-slicing products you already have</h4>
+    </div>
+    <ul>
+      <li><b>New Baby &amp; First Milestones</b> — one hub covering godh bharai/baby shower, namkaran, annaprashan, mundan as sub-tags (not separate pages), plus a "welcome home" gift-set framing.</li>
+      <li><b>Kids Birthdays</b> — gifts for the child.</li>
+      <li><b>Party Return Gifts</b> — the ₹100–400 <code>Bulk</code>-tag band. Covers kids parties, godh bharai return favours, milestone birthday/anniversary favours, school/Teacher's Day — one page, many occasions.</li>
+    </ul>
+  </div>
+
+  <div class="structure-group">
+    <div class="structure-group__head">
+      <span class="tag tag--retail">Retail</span>
+      <h4>Seasonal — has a real deadline</h4>
+    </div>
+    <ul>
+      <li><b>The Festive Edit</b> — Diwali-led, live by late September. Includes "Baby's First Diwali" sets, a Karwa Chauth/Sargi tag, Rakhi (accessories only — never quilts), light Eid/Christmas tagging. No dedicated page per festival.</li>
+      <li><b>Holiday/travel coordinated sets</b> — small edit, existing SKUs, whenever convenient.</li>
+    </ul>
+  </div>
+
+  <div class="structure-group">
+    <div class="structure-group__head">
+      <span class="tag tag--catalog">Catalog · B2B</span>
+      <h4>Lookbook → bulk-enquiry, not a shop</h4>
+    </div>
+    <ul>
+      <li><b>Weddings, by function:</b> Welcome Hampers · Haldi · Mehendi · Sangeet · Baraat Entry · Return Gifts · Trousseau Quilts · Reception Table Linen · <b>Kids at the Wedding</b> · Bridal Circle.</li>
+      <li><b>Corporate:</b> Diwali Gifting · Welcome/Onboarding Kits (the evergreen line) · Client Gifting · New-Parent Kits · Events — with a colorway/branding customization story.</li>
+    </ul>
+  </div>
+
+  <div class="structure-group">
+    <div class="structure-group__head">
+      <h4 style="color: var(--muted);">Interesting — not now</h4>
+    </div>
+    <ul>
+      <li>Housewarming / griha pravesh — <i>the future category's natural launch occasion, once table linen goes retail</i></li>
+      <li>Bath-linen-adjacent occasions</li>
+      <li>B2B hospital/maternity and preschool welcome kits — pilot with one partner, at most</li>
+      <li>Mehendi/event décor textiles — different buyer (decorators), different competence</li>
+      <li>Retirement, Holi — no genuine product fit for this brand</li>
+    </ul>
+  </div>
+
+  <h3><span class="n">B2</span>Where we'd push back on the plan</h3>
+  <div class="pushback">
+    <span class="pushback__label">Sequencing</span>
+    <p><b>Build Corporate Diwali and Wedding in parallel, both live by mid-August</b> — not one after the other. They share a deadline (see callout above), and they share most of their product photography too (potlis, pouches, stoles, table linen), so building them side by side is cheaper than it looks, not more expensive.</p>
+    <p>After that: the Festive retail edit (deadline: late September) outranks the deadline-free evergreen pages. Holiday sets and the "not now" list come last.</p>
+  </div>
+
+  <h3><span class="n">B3</span>Naming directions</h3>
+  <p>Directions only, for the team to react to — consistent with the existing one-word warmth of "Little" / "Carry" / "Gifting":</p>
+  <div class="naming">
+    <span>The First Hellos</span>
+    <span>Little Celebrations</span>
+    <span>The Favour Table</span>
+    <span>The Festive Edit</span>
+    <span>The Shaadi Catalogue</span>
+    <span>PEXX at Work</span>
+  </div>
+
+  <!-- ============ PART A — the research ============ -->
+  <p class="part-label">Part A</p>
+  <h2 class="part-title">The research</h2>
+  <p class="part-sub">Every occasion below carries an honest fit verdict. Nothing was padded in to look comprehensive.</p>
+
+  <h3><span class="n">A1</span>Baby &amp; pregnancy milestones</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Occasion</th><th>Fit</th><th>Why</th></tr>
+      <tr><td>Godh bharai / baby shower <span style="font-weight:400;color:var(--muted);font-size:0.85em;">(seemantham, valaikappu, dohale jevan, shaad)</span></td><td><span class="fit fit--strong">Strong</span></td><td>Swaddles and quilts are the canonical gift; already tagged <code>occ-new-baby</code>.</td></tr>
+      <tr><td>Godh bharai return gifts</td><td><span class="fit fit--strong">Strong — currently missed</span></td><td>A pure pouch-favour bulk play, squarely in-lane. Nobody's framing it as a category yet.</td></tr>
+      <tr><td>Namkaran / naming ceremony</td><td><span class="fit fit--strong">Strong</span></td><td>Soft fabric gifts are the traditional choice; <code>occ-naming</code> already planned.</td></tr>
+      <tr><td>Annaprashan / first rice</td><td><span class="fit fit--medium">Medium</span></td><td>Gifting skews to feeding items (plates, brass) — a quilt/swaddle still works. Tag, don't build a page.</td></tr>
+      <tr><td>Mundan / first haircut</td><td><span class="fit fit--weak">Medium-weak</span></td><td>Smaller occasion — cover via the milestones hub only.</td></tr>
+      <tr><td>"Baby's First Diwali"</td><td><span class="fit fit--strong">Strong micro-occasion</span></td><td>Real, growing gifting search; festive-print swaddle + quilt is already an existing SKU. Near-zero cost to add.</td></tr>
+      <tr><td>Hospital / maternity welcome kits <span style="font-weight:400;color:var(--muted);font-size:0.85em;">(B2B)</span></td><td><span class="fit fit--weak">Interesting, not now</span></td><td>Long, cold B2B sales cycle against established players. Pilot with one boutique hospital later, at most.</td></tr>
+    </table>
+  </div>
+
+  <h3><span class="n">A2</span>Kids' occasions</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Occasion</th><th>Fit</th><th>Why</th></tr>
+      <tr><td>Kids birthday <span style="font-weight:400;color:var(--muted);font-size:0.85em;">(gift for the child)</span></td><td><span class="fit fit--strong">Strong</span></td><td>Already tagged <code>occ-birthday</code>.</td></tr>
+      <tr><td>Birthday party return gifts</td><td><span class="fit fit--strong">Strong</span></td><td>Typical budget ₹150–350, up to ₹600 in premium urban parties. Parents actively want <i>useful</i> gifts over throwaway plastic — a block-print pouch at ₹150–400 carries a story no squishy toy has, and sits right inside PEXX's own <code>Bulk</code> tag band.</td></tr>
+      <tr><td>Preschool annual-day, graduation, Teacher's Day</td><td><span class="fit fit--medium">Medium</span></td><td>Same product, same price band — serve via return-gifts + bulk enquiry, no separate page.</td></tr>
+    </table>
+  </div>
+
+  <h3><span class="n">A3</span>Festivals — honest verdicts</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Festival</th><th>Fit</th><th>Why</th></tr>
+      <tr><td>Diwali</td><td><span class="fit fit--strong">Strong</span></td><td>Retail edit + the single largest corporate B2B gifting event in India.</td></tr>
+      <tr><td>Rakhi</td><td><span class="fit fit--medium">Weak for quilts, real for pouches</span></td><td>Confirmed research: rakhi shoppers skew toys/personalized items — quilts don't fit. But a pouch/pencil-pouch as a sibling gift or return gift is credible and price-band-correct. <b>Tag accessories, never quilts.</b></td></tr>
+      <tr><td>Eid</td><td><span class="fit fit--weak">Medium-weak</span></td><td>The real mechanic is <i>Eidi</i> — gifts to children — a genuine hook. Tag-level only, no dedicated page.</td></tr>
+      <tr><td>Holi</td><td><span class="fit fit--skip">Skip</span></td><td>Clothes get ruined at Holi. Not a textile-gifting festival — don't force it.</td></tr>
+      <tr><td>Christmas / New Year</td><td><span class="fit fit--medium">Medium <span style="font-weight:400;color:var(--muted);">(metros)</span></span></td><td>Modest retail angle; New Year matters more as the second corporate gifting window after Diwali.</td></tr>
+      <tr><td>Karwa Chauth / Sargi</td><td><span class="fit fit--medium">Medium — currently missed</span></td><td>Sargi (MIL-to-DIL hampers, North India) is a real mid-premium textile-friendly moment, landing <b>October 2026</b> — right inside the festive ramp.</td></tr>
+    </table>
+  </div>
+
+  <h3><span class="n">A4</span>Adult milestones</h3>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Occasion</th><th>Fit</th><th>Why</th></tr>
+      <tr><td>Milestone birthday / anniversary return gifts <span style="font-weight:400;color:var(--muted);font-size:0.85em;">(him/her/couple)</span></td><td><span class="fit fit--medium">Medium</span></td><td>Works if prints are chosen not to read as kids-coded. Serve through the existing return-gifts/bulk flow first, not a dedicated page.</td></tr>
+      <tr><td>Housewarming / griha pravesh</td><td><span class="fit fit--weak">Not now</span></td><td>One of India's biggest gifting occasions — but its natural products (table/bed/bath linen) are the explicitly future-only category. Its launch trigger, not today's opportunity.</td></tr>
+      <tr><td>Retirement</td><td><span class="fit fit--skip">Skip</span></td><td>No natural product angle for this brand.</td></tr>
+    </table>
+  </div>
+
+  <h3><span class="n">A5</span>Holiday / travel</h3>
+  <p><b>"Coordinated holiday sets"</b> — small but real: matching backpack + toiletry kit + swaddle-as-travel-blanket per child, all existing SKUs, zero new production. Low effort, low priority.</p>
+
+  <h3><span class="n">A6</span>Weddings — the function-by-function catalog</h3>
+  <p>The buyer here is a family or planner sourcing 50–100+ identical pieces per function, 8–10 weeks before the date. The flow ends at the bulk-enquiry form, not Add to Cart.</p>
+
+  <ol class="functions">
+    <li>
+      <div class="fn-title">Welcome Hampers <span style="color:var(--muted);font-weight:400;">— especially destination weddings</span></div>
+      <div class="fn-products">Fabric hamper bags/totes, drawstring potlis, coordinated pouches</div>
+      <div class="fn-check">Strong — block-print potlis are documented as currently trending for exactly this.</div>
+    </li>
+    <li>
+      <div class="fn-title">Haldi</div>
+      <div class="fn-products">Marigold/yellow-palette potlis, guest stoles, printed cotton napkins</div>
+      <div class="fn-check">Strong — pastel/yellow color-coordination is the established trend. Woven cotton, not terry towelling.</div>
+    </li>
+    <li>
+      <div class="fn-title">Mehendi <span style="color:var(--muted);font-weight:400;">— "mela theme"</span></div>
+      <div class="fn-products">Favour potlis, hand pouches in bright mela palettes</div>
+      <div class="fn-check">Strong for favours. Décor textiles (cushions, floor seating) moved to "not now" — that's a decorator's category, different buyer.</div>
+    </li>
+    <li>
+      <div class="fn-title">Sangeet</div>
+      <div class="fn-products">Jewel-tone potli favours, pouch favours</div>
+      <div class="fn-check">Fine, as potlis specifically — squarely inside the pouch-sewing line, not structured clutches.</div>
+    </li>
+    <li>
+      <div class="fn-title">Baraat Entry</div>
+      <div class="fn-products">Swagat stoles/dupattas for baraatis; printed safa fabric lengths <span style="color:var(--muted);">(fabric supply only)</span></div>
+      <div class="fn-check">Genuinely in-lane — a hemmed printed rectangle, and "barati swagat stoles" are a real documented practice.</div>
+    </li>
+    <li>
+      <div class="fn-title">Wedding Ceremony / Reception</div>
+      <div class="fn-products">Bulk table linen — runners, napkins, mats</div>
+      <div class="fn-check">This is the merchant's own stated bulk capability — a natural showcase for it.</div>
+    </li>
+    <li>
+      <div class="fn-title">Wedding Return Gifts</div>
+      <div class="fn-products">Pouch sets, potli + small-textile combos, totes; premium tier: a quilt for close family</div>
+      <div class="fn-check">Strong — sourcing timeline is 8–10 weeks pre-wedding.</div>
+    </li>
+    <li>
+      <div class="fn-title">Trousseau / Family Gifting</div>
+      <div class="fn-products">Quilts for the couple's new home</div>
+      <div class="fn-check">Strong and authentic — the Jaipuri razai is a classic wedding/bistar gift. Deserves its own catalog page.</div>
+    </li>
+    <li>
+      <div class="fn-title">Kids at the Wedding <span style="color:var(--terracotta);font-weight:700;">★ the hero idea</span></div>
+      <div class="fn-products">Goodie bags / activity pouches for guest children across a multi-day wedding</div>
+      <div class="fn-check">The single most on-brand, defensible, nobody-does-this concept in this document: a kids-textile brand solving "keep the children occupied across a 3-day wedding." Lead the wedding catalog's marketing with this.</div>
+    </li>
+    <li>
+      <div class="fn-title">Bridesmaids / Close Circle</div>
+      <div class="fn-products">Toiletry kits, totes</div>
+      <div class="fn-check">Existing retail SKUs, zero new production — easy win.</div>
+    </li>
+  </ol>
+
+  <h3><span class="n">A7</span>Corporate — expanding "lot of accessories"</h3>
+  <p>India's corporate gifting market is ₹14,000+ crore and growing. Sustainable gifting is the fastest-growing segment (~9.5% CAGR); ~60% of buyers prefer made-in-India; ~80% want eco-friendly; onboarding/engagement kits are ~26% of volume; average per-employee spend has risen from ₹2,500 to ₹4,000. A handmade, azo-free, artisan-made Jaipur brand isn't fighting this tide — it <i>is</i> the tide.</p>
+
+  <h4>Realistic product range</h4>
+  <p>Pouches and toiletry kits, tote/conference bags, potli hampers, desk textiles, table runners for office festive décor, hamper-wrap fabric. <b>Laptop sleeves: sample-first only</b> — padded construction with device-fit tolerance is a different, QC-heavy product family.</p>
+
+  <h4>Sub-angles, in priority order</h4>
+  <ol class="functions">
+    <li>
+      <div class="fn-title">Diwali Corporate Gifting</div>
+      <div class="fn-products">The anchor — and the one with a hard deadline.</div>
+    </li>
+    <li>
+      <div class="fn-title">Employee Onboarding / Welcome Kits</div>
+      <div class="fn-products">Tote + pouch + branded tag</div>
+      <div class="fn-check">Critical: the evergreen, year-round corporate line. Doesn't die on November 9th — it's what keeps the corporate page alive between festivals.</div>
+    </li>
+    <li>
+      <div class="fn-title">Client Gifting</div>
+      <div class="fn-products">Premium pouch/table-linen sets</div>
+    </li>
+    <li>
+      <div class="fn-title">New-Parent Employee Gifts</div>
+      <div class="fn-products">HR gifting a swaddle/quilt set for an employee's new baby</div>
+      <div class="fn-check">A unique overlap between PEXX's own core retail product and a real, growing HR practice — no generic gifting vendor can match this.</div>
+    </li>
+    <li>
+      <div class="fn-title">Events / Conferences</div>
+      <div class="fn-products">Bulk totes</div>
+    </li>
+  </ol>
+
+  <p style="margin-top:24px;"><b>How corporate genuinely differs from retail:</b> MOQ 50–100, custom colorways matched to brand palette, branded tags/packaging, quote-based pricing via the enquiry form, no fixed SKU.</p>
+
+  <div class="pushback">
+    <span class="pushback__label">Gate this one honestly</span>
+    <p>A custom-carved block with a company motif is a real, charming offer — but block printing is a low-resolution medium. Bold, simple motifs carve and print well; fine logo detail, thin type, and gradients will fail. Offer it with a minimum quantity, an extended timeline, and "motif adapted for block printing" framing — not pixel-accurate logo reproduction.</p>
+  </div>
+
+  <h3><span class="n">A8</span>Timing — validated, with more urgency than first thought</h3>
+  <p><b>Diwali 2026 falls on Sunday, 8 November</b> (Dhanteras 6 Nov → Bhai Dooj 10 Nov).</p>
+  <ul style="padding-left: 20px; margin-bottom: 16px;">
+    <li style="margin-bottom: 8px;">Corporate gifting vendors in India close large custom orders by <b>mid-September</b>; volume books up from the first week of September.</li>
+    <li style="margin-bottom: 8px;">Handcrafted bulk runs at scale need <b>60–75 days of production</b> → order finalization by mid-August.</li>
+    <li style="margin-bottom: 8px;"><b>Jaipur's monsoon (July–September) slows block-print drying</b> — which moves the effective deadline earlier, not later.</li>
+  </ul>
+  <p><b>Wedding season:</b> Chaturmas means essentially no North Indian muhurats Aug–Oct 2026 (South Indian and some communities don't follow this strictly). Muhurats reopen with Devuthani Ekadashi in November and the season peaks late Nov–Feb, with a second window Apr–Jun 2027. Favours are sourced 8–10 weeks pre-wedding → <b>November–December wedding families are sourcing in August–September. Right now.</b></p>
+  <p><b>Retail festive isn't deadline-free either:</b> the Sept–Oct festive ramp (Karwa Chauth in October, Dhanteras week) means the Diwali retail edit needs to be live by late September, stock and photography done.</p>
+
+  <div class="review-note">
+    This draft was stress-tested by an independent critical review pass (Opus), which resulted in: downgrading laptop sleeves to sample-first, cutting décor textiles to "not now," gating the custom-block offer, upgrading Rakhi's accessories angle and the kids-at-the-wedding concept, adding Karwa Chauth/Sargi, godh bharai return gifts, Baby's First Diwali, and year-round onboarding kits, and re-sequencing the priorities to parallel B2B builds against a late-September festive retail deadline.
+  </div>
+
+  <div class="sources">
+    <h4>Sources</h4>
+    <ol>
+      <li><a href="https://www.karibykriti.com/blogs/news/sustainable-corporate-diwali-gifts-india-2026" target="_blank" rel="noopener">Kari by Kriti — Diwali corporate buyer's guide 2026</a></li>
+      <li><a href="https://www.thedailynutco.com/blogs/news/diwali-corporate-gifting-2026-how-to-stand-out-when-everyone-is-sending-the-same-box" target="_blank" rel="noopener">Daily Nut Co — Diwali corporate gifting timelines</a></li>
+      <li><a href="https://www.printigly.in/diwali-corporate-gifts-2026/" target="_blank" rel="noopener">Printigly — bulk Diwali gifting lead times</a></li>
+      <li><a href="https://grahaguru.in/blog/diwali-2026-date-time-puja" target="_blank" rel="noopener">Grahaguru — Diwali 2026 date</a></li>
+      <li><a href="https://utsavapp.in/gyan/tithi-rituals/diwali-2026-5day-festival-dates-lakshmi-puja-muhurat-vidhi" target="_blank" rel="noopener">Utsav — Diwali 2026 five-day dates</a></li>
+      <li><a href="https://www.drikpanchang.com/shubh-dates/shubh-marriage-dates-with-muhurat.html" target="_blank" rel="noopener">Drik Panchang — 2026 marriage muhurats</a></li>
+      <li><a href="https://www.prokerala.com/astrology/muhurat/marriage-muhurat-2026.php" target="_blank" rel="noopener">Prokerala — 2026 marriage muhurats</a></li>
+      <li><a href="https://www.chococraft.in/blogs/wedding-gifts/wedding-return-gift-etiquette" target="_blank" rel="noopener">ChocoCraft — wedding return gift etiquette/timelines</a></li>
+      <li><a href="https://lamansh.in/collections/welcome-%F0%9F%8E%89-mala-dupattas" target="_blank" rel="noopener">Lamansh — barati swagat stoles &amp; haldi favours</a></li>
+      <li><a href="https://pataaree.com/blogs/articles/goodie-bag-ideas-with-elegant-potli-inspiration" target="_blank" rel="noopener">Pataaree — potli favour trends</a></li>
+      <li><a href="https://www.chococraft.in/blogs/corporate-gifts/corporate-gifting-industry-india-2025-2030" target="_blank" rel="noopener">ChocoCraft — corporate gifting industry 2025–2030</a></li>
+      <li><a href="https://ridgegap.com/blog/corporate-gifting-industry-statistics/" target="_blank" rel="noopener">Ridgegap — corporate gifting statistics</a></li>
+      <li><a href="https://wannaparty.com/blogs/party-guides/25-best-return-gifts-for-kids-birthday-parties-in-india-2026-guide" target="_blank" rel="noopener">Wanna Party — kids return gifts 2026</a></li>
+      <li><a href="https://charmbox.in/blogs/charmbox-daily/kids-birthday-party-budget-india" target="_blank" rel="noopener">CharmBox — return gift budgets India</a></li>
+      <li><a href="https://www.babyforest.in/blogs/thoughts-and-ideas/baby-rituals-that-parent-should-know" target="_blank" rel="noopener">Baby Forest — baby rituals guide</a></li>
+      <li><a href="https://thenyota.app/celebrations/namkaran-ceremony/" target="_blank" rel="noopener">Nyota — namkaran guest/gifting norms</a></li>
+    </ol>
+  </div>
+
+</div>

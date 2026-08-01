@@ -1,0 +1,191 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<style>
+  .pexx-enq { background: {{ s.bg }}; padding: 64px 20px; }
+  .pexx-enq__inner { max-width: 660px; margin: 0 auto; }
+  .pexx-enq__ey { text-align:center; color:#B48D59; letter-spacing:.2em; text-transform:uppercase; font-size:12px; font-family: var(--font-body--family); margin:0 0 10px; }
+  .pexx-enq h2 { text-align:center; font-family: var(--font-primary--family); font-weight:400; font-size:2.1rem; color:#2B241F; margin:0 0 10px; }
+  .pexx-enq__sub { text-align:center; color:#6F655B; font-family: var(--font-body--family); margin:0 0 32px; }
+  .pexx-enq label { display:block; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:#6F655B; font-family: var(--font-body--family); margin:0 0 6px; }
+  .pexx-enq .row { margin:0 0 18px; }
+  .pexx-enq .grid2 { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+  .pexx-enq input[type="text"], .pexx-enq input[type="tel"], .pexx-enq input[type="email"],
+  .pexx-enq textarea, .pexx-enq select {
+    width:100%; padding:12px 14px; border:1px solid #D8C7AD; background:#FBF7F0;
+    font-family: var(--font-body--family); font-size:15px; color:#2B241F; border-radius:0; }
+  .pexx-enq textarea { min-height:70px; resize:vertical; }
+  .pexx-enq button { width:100%; margin-top:8px; padding:15px; background:#2B241F; color:#F3EDE3;
+    border:none; font-family: var(--font-body--family); font-size:12px; letter-spacing:.16em; text-transform:uppercase; cursor:pointer; }
+  .pexx-enq__ok { text-align:center; padding:18px; background:#ECE3D2; color:#2B241F; font-family: var(--font-body--family); margin-bottom:24px; }
+  .pexx-enq__more { margin: 28px 0 8px; padding-top: 20px; border-top: 1px solid #D8C7AD; }
+  .pexx-enq__more-label { text-align:center; font-family: var(--font-body--family); font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:#B48D59; margin:0 0 18px; }
+  .pexx-enq__choices { display:flex; flex-wrap:wrap; gap:8px; }
+  .pexx-enq__choice { position:relative; }
+  .pexx-enq__choice input { position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer; }
+  .pexx-enq__choice span { display:inline-block; padding:9px 14px; border:1px solid #D8C7AD; background:#FBF7F0; font-family: var(--font-body--family); font-size:13px; color:#2B241F; cursor:pointer; }
+  .pexx-enq__choice input:checked + span { background:#2B241F; color:#F3EDE3; border-color:#2B241F; }
+  .pexx-enq__choice input:focus-visible + span { outline:2px solid #9E3B2F; outline-offset:2px; }
+  .pexx-enq__reveal { display:none; font-family: var(--font-body--family); font-size:13px; color:#6F655B; margin-top:8px; }
+  .pexx-enq__reveal.is-visible { display:block; }
+  @media (max-width:600px){ .pexx-enq .grid2 { grid-template-columns:1fr; } }
+</style>
+
+<div class="pexx-enq">
+  <div class="pexx-enq__inner">
+    {%- if s.eyebrow != blank -%}<p class="pexx-enq__ey">{{ s.eyebrow }}</p>{%- endif -%}
+    <h2>{{ s.heading }}</h2>
+    {%- if s.subtext != blank -%}<p class="pexx-enq__sub">{{ s.subtext }}</p>{%- endif -%}
+
+    {%- form 'contact', id: 'bulk-enquiry' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="pexx-enq__ok">Thank you — we've received your enquiry and will call you within 24 hours with a quote.</p>
+      {%- endif -%}
+
+      <div class="grid2">
+        <div class="row"><label>Your name</label><input type="text" name="contact[name]" required></div>
+        <div class="row"><label>WhatsApp number</label><input type="tel" name="contact[WhatsApp]" required placeholder="We'll send your quote here"></div>
+      </div>
+      <div class="row"><label>Email</label><input type="email" name="contact[email]" required></div>
+
+      {%- if s.show_occasion_select -%}
+        <div class="row">
+          <label>Occasion</label>
+          <select name="contact[Occasion]" id="pexx-enq-occasion">
+            <option>Kids birthday — return gifts</option>
+            <option>Naming ceremony / Godh Bharai — return favours</option>
+            <option>School / annual day gifting</option>
+            <option>Wedding favours</option>
+            <option>Corporate gifting</option>
+            <option>Festive gifting (Diwali / family &amp; friends)</option>
+            <option>Other</option>
+          </select>
+        </div>
+      {%- else -%}
+        <input type="hidden" name="contact[Occasion]" id="pexx-enq-occasion" value="{{ s.occasion_value }}">
+      {%- endif -%}
+
+      <div class="grid2">
+        <div class="row">
+          <label>Quantity needed</label>
+          <select name="contact[Quantity]" required>
+            <option value="">Select a range</option>
+            <option>Upto 20</option>
+            <option>20–50</option>
+            <option>50–100</option>
+            <option>100+</option>
+          </select>
+        </div>
+        <div class="row">
+          <label>Needed by</label>
+          <select name="contact[Needed by]" required>
+            <option value="">Select a timeframe</option>
+            <option>Within 4 weeks</option>
+            <option>4–8 weeks</option>
+            <option>8–12 weeks</option>
+            <option>6+ months</option>
+            <option>Just planning ahead</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="pexx-enq__more">
+        <p class="pexx-enq__more-label">A bit more detail (optional)</p>
+
+        <div class="row">
+          <label>Budget per piece</label>
+          <div class="pexx-enq__choices">
+            <label class="pexx-enq__choice"><input type="checkbox" name="contact[Budget: Upto ₹199]" value="Yes"><span>Upto ₹199</span></label>
+            <label class="pexx-enq__choice"><input type="checkbox" name="contact[Budget: ₹200–499]" value="Yes"><span>₹200–499</span></label>
+            <label class="pexx-enq__choice"><input type="checkbox" name="contact[Budget: ₹500–999]" value="Yes"><span>₹500–999</span></label>
+            <label class="pexx-enq__choice"><input type="checkbox" name="contact[Budget: ₹1,000+]" value="Yes"><span>₹1,000+</span></label>
+          </div>
+        </div>
+
+        <div class="row">
+          <label>Interested in customisation?</label>
+          <div class="pexx-enq__choices">
+            <label class="pexx-enq__choice"><input type="radio" name="contact[Customisation interest]" value="Yes" id="pexx-enq-custom-yes"><span>Yes</span></label>
+            <label class="pexx-enq__choice"><input type="radio" name="contact[Customisation interest]" value="No"><span>No</span></label>
+          </div>
+          <p class="pexx-enq__reveal" id="pexx-enq-custom-reveal">Great — we'll go through design, colour and logo options together on the call.</p>
+        </div>
+
+        {%- if s.show_branding_question -%}
+          <div class="row">
+            <label>Need your logo or branding on it?</label>
+            <div class="pexx-enq__choices">
+              <label class="pexx-enq__choice"><input type="radio" name="contact[Logo or branding needed]" value="Yes"><span>Yes</span></label>
+              <label class="pexx-enq__choice"><input type="radio" name="contact[Logo or branding needed]" value="No"><span>No</span></label>
+            </div>
+          </div>
+        {%- endif -%}
+
+        <div class="row"><label>Anything else?</label><textarea name="contact[body]" id="pexx-enq-anything" placeholder="Budget per piece, delivery city, or anything else we should know."></textarea></div>
+      </div>
+
+      <input type="hidden" name="contact[Page]" id="pexx-enq-page">
+      <input type="hidden" name="contact[Referrer]" id="pexx-enq-referrer">
+
+      <button type="submit">Request a quote</button>
+      <p style="text-align:center; font-size:12px; color:#6F655B; margin-top:14px; font-family:var(--font-body--family);">No payment now — we'll discuss pricing and timelines with you directly.</p>
+    {%- endform -%}
+  </div>
+</div>
+<script>
+  (function(){
+    var qs = new URLSearchParams(window.location.search);
+    var p = qs.get('product');
+    var o = qs.get('occasion');
+
+    if(p){
+      var anything = document.getElementById('pexx-enq-anything');
+      if(anything && !anything.value){ anything.value = 'Interested in: ' + p; }
+    }
+    if(o){
+      var occEl = document.getElementById('pexx-enq-occasion');
+      if(occEl){
+        if(occEl.tagName === 'SELECT'){
+          for (var i=0;i<occEl.options.length;i++){ if(occEl.options[i].value===o){ occEl.selectedIndex=i; break; } }
+        } else {
+          occEl.value = o;
+        }
+      }
+    }
+    if(p || o){
+      var form = document.getElementById('bulk-enquiry');
+      if(form) form.scrollIntoView({block:'start'});
+    }
+
+    var pageEl = document.getElementById('pexx-enq-page');
+    if(pageEl){ pageEl.value = window.location.href; }
+    var refEl = document.getElementById('pexx-enq-referrer');
+    if(refEl){ refEl.value = document.referrer || ''; }
+
+    var customYes = document.getElementById('pexx-enq-custom-yes');
+    var reveal = document.getElementById('pexx-enq-custom-reveal');
+    if(customYes && reveal){
+      document.querySelectorAll('input[name="contact[Customisation interest]"]').forEach(function(el){
+        el.addEventListener('change', function(){
+          reveal.classList.toggle('is-visible', customYes.checked);
+        });
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Bulk enquiry",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Bulk & corporate gifting" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Tell us what you need" },
+    { "type": "textarea", "id": "subtext", "label": "Subtext", "default": "Share a few details and we'll come back within 24 hours with a quote. Minimum 10 pieces, delivered to one address." },
+    { "type": "checkbox", "id": "show_occasion_select", "label": "Show visible Occasion dropdown (hub page only)", "default": false },
+    { "type": "text", "id": "occasion_value", "label": "Occasion value (hidden field, when dropdown is off)" },
+    { "type": "checkbox", "id": "show_branding_question", "label": "Show logo/branding question (Corporate only)", "default": false },
+    { "type": "color", "id": "bg", "label": "Background", "default": "#F3EDE3" }
+  ],
+  "presets": [{ "name": "Bulk enquiry" }]
+}
+{% endschema %}

@@ -1,0 +1,129 @@
+{% liquid
+  assign type_filter = null
+  for filter in collection.filters
+    if filter.param_name == 'filter.p.product_type'
+      assign type_filter = filter
+    endif
+  endfor
+%}
+
+{% if type_filter %}
+  <div class="section section--page-width collection-type-tabs">
+    <nav
+      class="collection-type-tabs__row"
+      data-testid="collection-type-tabs"
+      aria-label="Browse by category"
+    >
+      <a
+        href="{{ collection.url }}"
+        class="collection-type-tabs__tab{% if type_filter.active_values.size == 0 %} is-active{% endif %}"
+        {% if type_filter.active_values.size == 0 %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{ section.settings.all_label | default: 'All' }}
+        <sup class="collection-type-tabs__count">{{ collection.all_products_count }}</sup>
+      </a>
+      {% for value in type_filter.values %}
+        <a
+          href="{% if value.active %}{{ value.url_to_remove }}{% else %}{{ value.url_to_add }}{% endif %}"
+          class="collection-type-tabs__tab{% if value.active %} is-active{% endif %}"
+          {% if value.active %}
+            aria-current="page"
+          {% endif %}
+        >
+          {{ value.label }}
+          <sup class="collection-type-tabs__count">{{ value.count }}</sup>
+        </a>
+      {% endfor %}
+    </nav>
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .collection-type-tabs__row {
+    display: flex;
+    align-items: stretch;
+    gap: clamp(20px, 3vw, 36px);
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.15);
+    margin-block-end: var(--gap-md, 16px);
+  }
+
+  .collection-type-tabs__tab {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 5px;
+    padding-block: 14px 13px;
+    margin-block-end: -1px;
+    border-bottom: 2px solid transparent;
+    font-family: var(--font-body--family);
+    font-size: 0.9375rem;
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    white-space: nowrap;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-muted-text, 0.6));
+    transition:
+      color var(--animation-speed, 0.125s) var(--animation-easing, ease),
+      border-color var(--animation-speed, 0.125s) var(--animation-easing, ease);
+  }
+
+  .collection-type-tabs__tab:hover {
+    color: var(--color-foreground);
+    border-bottom-color: rgb(var(--color-foreground-rgb) / 0.3);
+  }
+
+  .collection-type-tabs__tab:focus-visible {
+    outline: 2px solid var(--color-foreground);
+    outline-offset: -2px;
+  }
+
+  .collection-type-tabs__tab.is-active {
+    color: var(--color-foreground);
+    font-weight: 600;
+    border-bottom-color: var(--color-foreground);
+  }
+
+  .collection-type-tabs__count {
+    font-size: 0.6875rem;
+    font-weight: 400;
+    line-height: 0;
+    letter-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    color: rgb(var(--color-foreground-rgb) / var(--opacity-muted-text, 0.6));
+  }
+
+  @media screen and (max-width: 749px) {
+    .collection-type-tabs__row {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      /* let the row bleed to the screen edge so the scroll hint reads naturally */
+      margin-inline: calc(-1 * var(--page-margin, 16px));
+      padding-inline: var(--page-margin, 16px);
+    }
+
+    .collection-type-tabs__row::-webkit-scrollbar {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Category tabs",
+  "settings": [
+    {
+      "type": "text",
+      "id": "all_label",
+      "label": "\"All\" tab label",
+      "default": "All"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category tabs"
+    }
+  ]
+}
+{% endschema %}
