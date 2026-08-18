@@ -49,13 +49,49 @@
     var el = document.getElementById('pexx-pop');
     if(!el) return;
     var KEY = 'pexx_pop_seen';
+    var CONVERTED_KEY = 'pexx_pop_converted';
+    var RESHOW_DAYS = 7;
     var ok = el.querySelector('[data-pexx-ok]');
-    function open(){ el.classList.add('is-open'); el.setAttribute('aria-hidden','false'); }
-    function close(){ el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); try{localStorage.setItem(KEY,'1');}catch(e){} }
+    function open(){
+      el.classList.add('is-open'); el.setAttribute('aria-hidden','false');
+      // Mark as seen the moment it is SHOWN, not only when dismissed — otherwise a
+      // visitor who ignores it gets it again on every subsequent page view.
+      try{ localStorage.setItem(KEY, Date.now().toString()); }catch(e){}
+    }
+    function close(){ el.classList.remove('is-open'); el.setAttribute('aria-hidden','true'); try{localStorage.setItem(KEY, Date.now().toString());}catch(e){} }
     el.querySelector('.pexx-pop__x').addEventListener('click', close);
     el.addEventListener('click', function(e){ if(e.target===el) close(); });
     document.addEventListener('keydown', function(e){ if(e.key==='Escape') close(); });
-    if(ok){ open(); try{localStorage.setItem(KEY,'1');}catch(e){} }
-    else { try{ if(!localStorage.getItem(KEY)) setTimeout(open, 4500); }catch(e){} }
+    if(ok){
+      open();
+      try{ localStorage.setItem(CONVERTED_KEY,'1'); localStorage.setItem(KEY, Date.now().toString()); }catch(e){}
+    } else {
+      try{
+        if(!localStorage.getItem(CONVERTED_KEY)){
+          var last = parseInt(localStorage.getItem(KEY) || '0', 10);
+          var daysSince = (Date.now() - last) / (1000*60*60*24);
+          if(!last || daysSince >= RESHOW_DAYS){
+            // ponytail: paid traffic lands to shop, not to a wall. Never interrupt the
+            // landing pageview, and never a product page — that is where add-to-cart happens.
+            var views = 0;
+            try{ views = +(sessionStorage.getItem('pexx_pop_views')||0) + 1;
+                 sessionStorage.setItem('pexx_pop_views', String(views)); }catch(e){}
+            if(views < 2 || /\/products\//.test(location.pathname)) return;
+            var shown = false;
+            var timer = setTimeout(function(){ shown = true; open(); }, 4500);
+            // Exit-intent: desktop only (mouseleave has no equivalent on touch), fires once.
+            if(window.matchMedia('(pointer: fine)').matches){
+              document.addEventListener('mouseout', function onExit(e){
+                if(shown || e.clientY > 40) return;
+                shown = true;
+                clearTimeout(timer);
+                document.removeEventListener('mouseout', onExit);
+                open();
+              });
+            }
+          }
+        }
+      }catch(e){}
+    }
   })();
 </script>

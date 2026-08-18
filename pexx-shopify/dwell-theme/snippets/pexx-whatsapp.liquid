@@ -42,6 +42,33 @@
     }
     @media screen and (max-width: 749px) {
       .pexx-wa { bottom: 16px; right: 16px; width: 52px; height: 52px; }
+      /* The sticky add-to-cart bar pins to bottom:0 full-width on mobile, and this
+         button sits above it (z-index 9998), covering the Add to cart button.
+         Lift it clear whenever that bar is showing. */
+      body:has(.sticky-add-to-cart__bar[data-stuck='true']) .pexx-wa { bottom: 92px; }
     }
+    .pexx-wa { transition: bottom .3s var(--ease-out-quad, ease-out), transform .2s ease, opacity .2s ease; }
+
+    /* ponytail: measured 18 Aug — this button covered 25% of the inline Add to cart
+       (44px of vertical overlap) at the top of every mobile product page, i.e. exactly
+       what paid traffic lands on. Get out of the way while a buy control is on screen. */
+    .pexx-wa--hidden { opacity: 0; visibility: hidden; pointer-events: none; transform: scale(.8); }
   </style>
+
+  <script>
+    (function(){
+      var wa = document.querySelector('.pexx-wa');
+      if (!wa || !('IntersectionObserver' in window)) return;
+      var buys = document.querySelectorAll('.add-to-cart-button, .shopify-payment-button__button');
+      if (!buys.length) return;
+      var onScreen = new Set();
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { onScreen.add(e.target); } else { onScreen.delete(e.target); }
+        });
+        wa.classList.toggle('pexx-wa--hidden', onScreen.size > 0);
+      }, { threshold: 0.01 });
+      buys.forEach(function (b) { io.observe(b); });
+    })();
+  </script>
 {%- endif -%}
