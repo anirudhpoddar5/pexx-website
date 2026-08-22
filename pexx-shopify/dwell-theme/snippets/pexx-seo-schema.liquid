@@ -1,0 +1,114 @@
+{%- comment -%}
+  PEXX structured data that Shopify's own markup does not cover.
+
+  Already emitted elsewhere, do NOT duplicate here:
+    - Organization ......... sections/header.liquid
+    - Product/ProductGroup . sections/product-information.liquid (| structured_data)
+    - Article/WebPage ...... sections/main-blog-post.liquid
+    - FAQPage .............. snippets/pexx-faq-schema.liquid
+
+  This snippet adds:
+    - BreadcrumbList  (every page except the homepage — Google ignores it there)
+    - WebSite         (homepage only)
+    - aggregateRating (product pages, only when a real review exists)
+
+  ponytail: the breadcrumb trail is written out branch by branch rather than
+  built into an array. Liquid has no hashes and `concat` only takes arrays, so
+  every "clever" version of this is a delimiter-joined string that breaks the
+  day a product title contains the delimiter. Max three levels, so plain wins.
+{%- endcomment -%}
+
+{%- liquid
+  assign origin = request.origin
+  assign pt = request.page_type
+-%}
+
+{%- if pt == 'index' -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "url": {{ origin | json }}
+    }
+  </script>
+{%- endif -%}
+
+{%- liquid
+  # The one optional middle crumb: a product's own collection.
+  #
+  # Products sit in occasion collections (Birthday, Diwali, New Baby) as well as
+  # category ones (Quilts), and the occasion collections come first, so a naive
+  # "first collection" gives "Home > Birthday > Tiger Jungle Kids Quilt".
+  # Prefer the collection that matches the product type ("Quilt" -> "Quilts"),
+  # and only fall back to first-available when there is no such match.
+  # ponytail: an explicit list of the category collections, not a rule inferred
+  # from product.type — type "Toiletry Pouch Set" never matches collection
+  # "Toiletry Pouches", and every string-munging fix for that is worse than the
+  # list. Ceiling: a NEW category collection must be added here or its products
+  # fall back to whichever collection comes first (usually an occasion).
+  assign category_handles = 'quilts,swaddles,toiletry-pouches,backpacks' | split: ','
+  assign pcol = null
+  if pt == 'product'
+    for c in product.collections
+      if category_handles contains c.handle
+        assign pcol = c
+        break
+      endif
+    endfor
+    if pcol == null
+      for c in product.collections
+        unless c.handle == 'all' or c.handle == 'frontpage'
+          assign pcol = c
+          break
+        endunless
+      endfor
+    endif
+  endif
+-%}
+
+{%- capture crumb_items -%}
+  {%- case pt -%}
+    {%- when 'product' -%}
+      {%- if pcol -%}
+        ,{"@type":"ListItem","position":2,"name":{{ pcol.title | json }},"item":{{ origin | append: pcol.url | json }}}
+        ,{"@type":"ListItem","position":3,"name":{{ product.title | json }},"item":{{ origin | append: product.url | json }}}
+      {%- else -%}
+        ,{"@type":"ListItem","position":2,"name":{{ product.title | json }},"item":{{ origin | append: product.url | json }}}
+      {%- endif -%}
+    {%- when 'collection' -%}
+      ,{"@type":"ListItem","position":2,"name":{{ collection.title | json }},"item":{{ origin | append: collection.url | json }}}
+    {%- when 'blog' -%}
+      ,{"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ origin | append: blog.url | json }}}
+    {%- when 'article' -%}
+      ,{"@type":"ListItem","position":2,"name":{{ blog.title | json }},"item":{{ origin | append: blog.url | json }}}
+      ,{"@type":"ListItem","position":3,"name":{{ article.title | json }},"item":{{ origin | append: article.url | json }}}
+    {%- when 'page' -%}
+      ,{"@type":"ListItem","position":2,"name":{{ page.title | json }},"item":{{ origin | append: page.url | json }}}
+  {%- endcase -%}
+{%- endcapture -%}
+
+{%- assign crumb_items = crumb_items | strip -%}
+{%- if crumb_items != blank -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {"@type":"ListItem","position":1,"name":"Home","item":{{ origin | json }}}
+        {{ crumb_items }}
+      ]
+    }
+  </script>
+{%- endif -%}
+
+{%- comment -%}
+  No aggregateRating here on purpose.
+
+  Judge.me already injects its own Product + aggregateRating + review JSON-LD
+  into the body on products that have reviews. Rendering the
+  judgeme.review_widget_json_ld metafield here as well emitted the rating twice
+  on the same page (verified on blush-unicorn-print-kids-quilt, 22 Aug 2026).
+  If stars ever stop appearing, check the Judge.me app embed before adding
+  markup here.
+{%- endcomment -%}

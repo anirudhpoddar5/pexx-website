@@ -18,6 +18,20 @@
 
 {% liquid
   assign widths = widths | default: '240, 352, 832, 1200, 1600'
+
+  # ponytail: default the loading attribute here rather than at each call site.
+  # The four product-media-gallery-content.liquid call sites passed no `loading`,
+  # so image_tag omitted the attribute entirely and every gallery image loaded
+  # eagerly (6 full-size images per PDP). Callers that pass `loading` explicitly
+  # (card-gallery, the zoom dialog, thumbnails) keep their own value.
+  if loading == blank
+    if is_main_product_media
+      assign loading = 'eager'
+    else
+      assign loading = 'lazy'
+    endif
+  endif
+
   assign ref_image_to_transition = ''
   if settings.transition_to_main_product
     assign ref_image_to_transition = 'imagesToTransition[]'

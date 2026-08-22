@@ -18,11 +18,44 @@
   content=""
 >
 
+{%- comment -%}
+  PEXX SEO fallbacks.
+
+  Shopify only emits a <title>/description from the SEO fields set in admin. The
+  homepage had none, so it shipped `<title>PEXX</title>` and no description at
+  all; /collections/all and /blogs/news had no description either.
+
+  These are FALLBACKS ONLY. Anything typed into Online Store > Preferences
+  (homepage) or a product/collection/page's own "Edit website SEO" box still
+  wins, because page_title / page_description are then non-blank.
+{%- endcomment -%}
+
 {%- liquid
-  assign og_title = page_title | default: shop.name
+  assign seo_title = page_title
+  assign seo_description = page_description
+
+  # Homepage: page_title falls back to the shop name when no SEO title is set.
+  # Nested, not `and ... or ...` — Liquid evaluates conditions right to left.
+  if request.page_type == 'index'
+    if seo_title == blank or seo_title == shop.name
+      assign seo_title = 'Block-Printed Cotton Quilts & Swaddles for Kids'
+    endif
+  endif
+
+  # Never ship a page with no meta description: borrow the page's own copy.
+  if seo_description == blank
+    # No blog.title here: it yields a useless one-word description ("News").
+    # truncate on characters, not words: Google shows ~155 chars of a description.
+    assign seo_description = collection.description | default: article.excerpt_or_content | default: page.content | strip_html | strip | truncate: 155
+  endif
+  if seo_description == blank
+    assign seo_description = 'Hand block-printed cotton quilts, swaddles, dohars, pouches and totes for babies and kids. Azo-free dyes, 100% cotton, block-printed by hand in Jaipur.'
+  endif
+
+  assign og_title = seo_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = seo_description | default: shop.description | default: shop.name
 
   if request.page_type == 'product'
     assign og_type = 'product'
@@ -104,10 +137,10 @@
 >
 
 <title>
-  {{ page_title }}
+  {{ seo_title }}
   {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
   {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  {%- unless seo_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
 </title>
 
 <link
@@ -115,9 +148,9 @@
   href="{{ canonical_url }}"
 >
 
-{% if page_description %}
+{% if seo_description != blank %}
   <meta
     name="description"
-    content="{{ page_description | escape }}"
+    content="{{ seo_description | escape }}"
   >
 {% endif %}
