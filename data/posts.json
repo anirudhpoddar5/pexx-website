@@ -1,5 +1,50 @@
 [
   {
+    "id": "how-long-does-a-block-print-order-take",
+    "slug": "how-long-does-a-block-print-order-take",
+    "title": "How Long Does a Block Print Order Take — and Are You Too Small to Place One?",
+    "seoTitle": "How Long Does a Hand Block Print Order Take? Lead Times & Minimums",
+    "date": "2026-08-25",
+    "readTime": "6 min read",
+    "excerpt": "Forty-five to sixty days, and no, you are not too small. The two questions everyone opens with, answered the way we would answer them on a call.",
+    "metaDescription": "How long a hand block printed order takes (45–60 days), what moves that range, why we publish no minimum order quantity, and what makes orders run late.",
+    "image": "/assets/blog/how-long-does-a-block-print-order-take/hero.jpg",
+    "imageAlt": "Carved wooden printing blocks resting on trays of blue and red dye at a Jaipur workshop",
+    "file": "/posts/how-long-does-a-block-print-order-take.html",
+    "category": "Sourcing",
+    "keywords": "hand block print order lead time minimum order quantity MOQ block printed fabric supplier India small brand bulk order Jaipur block print manufacturer boutique private label custom print sampling",
+    "faq": [
+      {
+        "question": "How long does a hand block print order take?",
+        "answer": "Most orders take 45 to 60 days from confirmation to dispatch. The range depends on the quantity, the fabric being printed, and the weather, since printed cloth is washed and dried in the open. Cutting new blocks takes 10 to 14 days and happens inside that window."
+      },
+      {
+        "question": "How long does it take to make new blocks?",
+        "answer": "Ten to fourteen days. The motif is cut into seasoned wood by hand and the block has to settle before it prints cleanly. Using prints that already exist removes this step from your timeline."
+      },
+      {
+        "question": "What is the minimum order quantity for block printed fabric?",
+        "answer": "We don't publish one. A first order is where a buyer and a maker learn how the other works, so we'd rather talk about what you're making and when you need it than set a number you have to clear first."
+      },
+      {
+        "question": "Why does the lead time vary between 45 and 60 days?",
+        "answer": "Three things move it: how many pieces you're ordering, what they're printed on (voile, heavier cotton and quilted pieces all behave differently), and the weather, because cloth is dried in the open air after washing."
+      },
+      {
+        "question": "Can you work with a custom design?",
+        "answer": "Yes. A custom print needs its own blocks cut, which takes 10 to 14 days at the start of the order. Send the artwork or a reference before sampling rather than after, and tell us the scale you want it at."
+      },
+      {
+        "question": "Can it carry my own label?",
+        "answer": "Yes — woven labels, care labels and hangtags are stitched in at finishing. Send the artwork or the labels themselves at sampling stage rather than after."
+      },
+      {
+        "question": "Can you work with small independent brands?",
+        "answer": "Yes. Many of the people we work with run their own stores and buy the quantities they can actually sell. We'd rather grow with a buyer over several seasons than push a large first order."
+      }
+    ]
+  },
+  {
     "id": "why-aw-2026-table-linen-is-moving-from-matching-sets-to-layered-tables",
     "slug": "why-aw-2026-table-linen-is-moving-from-matching-sets-to-layered-tables",
     "title": "Why AW 2026/27 Table Linen Is Moving From Matching Sets to Layered Tables",
@@ -8,7 +53,7 @@
     "readTime": "7 min read",
     "excerpt": "The new table does not look perfectly coordinated. It looks collected: one floral language, three colourways, and enough contrast to make every place setting feel intentional.",
     "metaDescription": "Why AW 2026/27 table linen is moving from matching sets to layered tables, with floral block print tablecloths, placemats, napkins, and warm seasonal colour.",
-    "image": "/assets/blog/tableaux-aw26-table-linen/aw26-table-linen-three-colourways-original.png",
+    "image": "/assets/blog/tableaux-aw26-table-linen/aw26-table-linen-three-colourways-original.jpg",
     "imageAlt": "AW 2026/27 Tableaux table linen collection with floral tablecloth, placemats, napkins, and three colourways on an outdoor dining table",
     "file": "/posts/why-aw-2026-table-linen-is-moving-from-matching-sets-to-layered-tables.html",
     "category": "Craft",
@@ -33,6 +78,21 @@
     ]
   },
   {
+    "id": "the-palette-that-earns-its-place-on-a-bed",
+    "slug": "the-palette-that-earns-its-place-on-a-bed",
+    "title": "The Palette That Earns Its Place on a Bed: Home Warmth for AW 2026/27",
+    "seoTitle": "AW 2026/27 Home Palette — 6 Colours for Floral Block Print Bedcovers & Cushions | PEXX Journal",
+    "date": "2026-06-27",
+    "readTime": "6 min read",
+    "excerpt": "How six considered colours — sourced from Pantone NYFW and WGSN x Coloro — solve the oldest problem in floral block print: the motif that disappears into itself.",
+    "metaDescription": "The six Pantone and WGSN x Coloro shades that make floral block prints readable, layered, and commercially viable for AW 2026/27 — from ground to contrast. A PEXX craft note.",
+    "image": "/assets/blog/aw-26-home.jpeg",
+    "imageAlt": "Six fabric colour swatches laid out on a wooden surface — the AW 2026/27 home palette from PEXX",
+    "file": "/posts/the-palette-that-earns-its-place-on-a-bed.html",
+    "category": "Craft",
+    "keywords": "AW 2026 27 home palette Pantone NYFW WGSN Coloro floral block print bedcovers cushions colour palette Sanganeri repeat hand block print textile colour trend"
+  },
+  {
     "id": "from-block-to-home-the-life-of-one-cloth",
     "slug": "from-block-to-home-the-life-of-one-cloth",
     "title": "From Block to Home — The Life of One Cloth",
@@ -41,7 +101,7 @@
     "readTime": "5 min read",
     "excerpt": "Five moments in the journey of a hand block printed textile, from carved teak block to the quiet life of the finished cloth at home.",
     "metaDescription": "Follow the journey of a hand block printed textile through carving, dyeing, printing, pattern making, and its final place in the home.",
-    "image": "/assets/blog/from-block-to-home-hero.png",
+    "image": "/assets/blog/from-block-to-home-hero.jpg",
     "imageAlt": "Hand block printed textile draped across a neutral sofa in warm natural light",
     "file": "/posts/from-block-to-home-the-life-of-one-cloth.html",
     "category": "Craft",
@@ -56,7 +116,7 @@
     "readTime": "8 min read",
     "excerpt": "A practical guide to spotting authentic hand block printed fabric through imperfections, dye penetration, natural dye behavior, and machine-print red flags.",
     "metaDescription": "Learn how to identify authentic hand block printed fabric—imperfection cues, dye penetration, natural dye behavior, and machine-print red flags.",
-    "image": "/assets/blog/genuine-block-print-hero.png",
+    "image": "/assets/blog/genuine-block-print-hero.jpg",
     "imageAlt": "Hand block printed cotton fabric with layered floral motifs in warm natural light",
     "file": "/posts/how-to-identify-genuine-hand-block-printed-fabric.html",
     "category": "Craft",
@@ -120,7 +180,8 @@
     "imageAlt": "Visitors learning hand block printing with an artisan at the PEXX workshop",
     "file": "/posts/block-printing-process.html",
     "category": "Craft",
-    "keywords": "block printing craftsmanship handmade textiles carving process"
+    "keywords": "block printing craftsmanship handmade textiles carving process",
+    "slug": "block-printing-process"
   },
   {
     "id": "craftsmanship-at-scale",
@@ -131,21 +192,7 @@
     "imageAlt": "Hand-carved printing blocks arranged in a studio display",
     "file": "/posts/craftsmanship-at-scale.html",
     "category": "Craft",
-    "keywords": "quality control production exports handcrafted scale process"
-  },
-  {
-    "id": "the-palette-that-earns-its-place-on-a-bed",
-    "slug": "the-palette-that-earns-its-place-on-a-bed",
-    "title": "The Palette That Earns Its Place on a Bed: Home Warmth for AW 2026/27",
-    "seoTitle": "AW 2026/27 Home Palette — 6 Colours for Floral Block Print Bedcovers & Cushions | PEXX Journal",
-    "date": "2026-06-27",
-    "readTime": "6 min read",
-    "excerpt": "How six considered colours — sourced from Pantone NYFW and WGSN x Coloro — solve the oldest problem in floral block print: the motif that disappears into itself.",
-    "metaDescription": "The six Pantone and WGSN x Coloro shades that make floral block prints readable, layered, and commercially viable for AW 2026/27 — from ground to contrast. A PEXX craft note.",
-    "image": "/assets/blog/AW 26 Home.jpeg",
-    "imageAlt": "Six fabric colour swatches laid out on a wooden surface — the AW 2026/27 home palette from PEXX",
-    "file": "/posts/the-palette-that-earns-its-place-on-a-bed.html",
-    "category": "Craft",
-    "keywords": "AW 2026 27 home palette Pantone NYFW WGSN Coloro floral block print bedcovers cushions colour palette Sanganeri repeat hand block print textile colour trend"
+    "keywords": "quality control production exports handcrafted scale process",
+    "slug": "craftsmanship-at-scale"
   }
 ]

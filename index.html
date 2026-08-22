@@ -9,8 +9,10 @@
   <!-- Open Graph -->
   <meta property="og:title" content="PEXX | Hand Block Printed Textiles" />
   <meta property="og:description" content="Premium hand block printed textiles crafted in India for modern living." />
-  <meta property="og:image" content="hero-pexx.jpeg" />
+  <meta property="og:image" content="https://www.poddarexp.com/hero-pexx.jpeg" />
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.poddarexp.com/" />
+  <link rel="canonical" href="https://www.poddarexp.com/" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -532,6 +534,19 @@
       .category-grid { grid-template-columns: 1fr; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://www.poddarexp.com/#organization",
+    "name": "PEXX",
+    "url": "https://www.poddarexp.com/",
+    "logo": "https://www.poddarexp.com/hero-pexx.jpeg",
+    "description": "Hand block printed textiles produced in Jaipur, India, for wholesale, export and private-label buyers.",
+    "address": { "@type": "PostalAddress", "addressLocality": "Jaipur", "addressRegion": "Rajasthan", "addressCountry": "IN" },
+    "sameAs": ["https://shop.poddarexp.com"]
+  }
+  </script>
 </head>
 <body>
 
@@ -796,7 +811,7 @@
         .slice(0, 3);
 
       journalGrid.innerHTML = latestPosts.map(post => `
-        <a class="journal-card" href="blog/post.html?id=${encodeURIComponent(post.id)}">
+        <a class="journal-card" href="${post.slug ? `blog/${post.slug}/` : `blog/post.html?id=${encodeURIComponent(post.id)}`}">
           <img src="${resolveRootPath(post.image)}" alt="${post.imageAlt || post.title}" loading="lazy">
           <div class="journal-card-copy">
             <div class="journal-meta">${formatDate(post.date)}</div>

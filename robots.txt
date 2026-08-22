@@ -1,0 +1,38 @@
+# www.poddarexp.com
+
+User-agent: *
+Allow: /
+# /posts/ holds headless HTML fragments loaded by the journal's JS.
+# They render as thin, title-less pages if indexed directly.
+Disallow: /posts/
+# Repo docs (AGENTS.md, CLAUDE.md, README.md) get served by GitHub Pages
+# from the repo root. They are internal ops notes, not site content.
+Disallow: /*.md$
+
+# AI search crawlers — explicitly welcome. These are the engines that read and
+# cite the journal; blocking them would mean never being quoted.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://www.poddarexp.com/sitemap.xml
