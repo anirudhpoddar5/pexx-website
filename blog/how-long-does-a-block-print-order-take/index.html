@@ -31,7 +31,7 @@
     ],
     "datePublished": "2026-08-25",
     "dateModified": "2026-08-25",
-    "wordCount": 1171,
+    "wordCount": 1104,
     "author": {
       "@type": "Organization",
       "name": "PEXX"
@@ -229,11 +229,14 @@
     .back-link:hover { color: var(--accent-secondary); }
 
     .article-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
-      gap: 2rem;
-      align-items: end;
-      margin-bottom: 2.5rem;
+      display: block;
+      margin-bottom: 3.2rem;
+    }
+    .article-meta {
+      max-width: 46rem;
+      margin: 0 auto 2.4rem;
+      text-align: center;
+      padding: 0;
     }
 
     .article-meta {
@@ -242,7 +245,7 @@
 
     .eyebrow {
       display: inline-block;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       color: var(--accent-secondary);
       font-size: 0.78rem;
       letter-spacing: 0.18em;
@@ -252,16 +255,22 @@
     h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 500; line-height: 1.2; }
 
     h1 {
-      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-size: clamp(2.5rem, 5.2vw, 4.4rem);
       color: var(--accent-primary);
-      margin-bottom: 1.1rem;
-      max-width: 13ch;
+      margin: 0 auto 1.4rem;
+      max-width: 20ch;
+      letter-spacing: -0.005em;
+      text-wrap: balance;
     }
 
     .article-meta p {
-      max-width: 56ch;
+      max-width: 44ch;
+      margin: 0 auto;
       color: var(--text-muted);
-      font-size: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.15rem, 2vw, 1.42rem);
+      font-style: italic;
+      line-height: 1.5;
     }
 
     .post-date {
@@ -276,10 +285,11 @@
     .hero-image-wrap {
       position: relative;
       overflow: hidden;
-      border-radius: 28px;
-      box-shadow: var(--shadow-soft);
+      border-radius: 3px;
       background: #d8cdbf;
-      min-height: 320px;
+      width: min(72rem, 100%);
+      margin: 0 auto;
+      aspect-ratio: 16 / 7;
     }
 
     .hero-image-wrap img {
@@ -288,7 +298,6 @@
       object-fit: cover;
     }
 
-    .article-card,
     .related-posts,
     .error-card {
       background: rgba(255, 253, 249, 0.74);
@@ -296,31 +305,120 @@
       box-shadow: var(--shadow-soft);
     }
 
-    .article-card {
-      padding: clamp(1.5rem, 3vw, 3rem);
-    }
+    /* The article reads as a printed spread, not a card on a page: no box,
+       one generous column, figures that break wider than the text. */
+    .article-card { padding: 0; background: none; border: 0; box-shadow: none; }
 
     .article-body {
-      max-width: 760px;
+      --measure: 39rem;
+      max-width: var(--measure);
       margin: 0 auto;
-      font-size: 1rem;
+      font-size: 1.075rem;
+      line-height: 1.82;
       color: var(--text-main);
+      font-variant-numeric: oldstyle-nums proportional-nums;
     }
 
-    .article-body > * + * { margin-top: 1.2rem; }
-    .article-body h2 { margin-top: 2.6rem; font-size: clamp(1.55rem, 3vw, 2rem); color: var(--accent-primary); }
-    .article-body h3 { margin-top: 2rem; font-size: 1.25rem; color: var(--accent-primary); }
-    .article-body p, .article-body li { color: #364152; }
-    .article-body ul, .article-body ol { padding-left: 1.2rem; }
+    .article-body > * + * { margin-top: 1.45rem; }
+    .article-body p, .article-body li { color: #3a332c; }
+
+    /* opening paragraph: standfirst weight, then a pressed drop cap */
+    .article-body > p:first-of-type { font-size: 1.16rem; line-height: 1.72; color: #2f2822; }
+    .article-body > p:first-of-type::first-letter {
+      float: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.15rem;
+      line-height: 0.82;
+      font-weight: 600;
+      color: var(--accent-primary);
+      padding: 0.06em 0.14em 0 0;
+      margin-top: 0.06em;
+    }
+
+    /* section openers carry a hairline, the way a magazine breaks a column */
+    .article-body h2 {
+      margin-top: 3.6rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-soft);
+      font-size: clamp(1.7rem, 3.2vw, 2.3rem);
+      line-height: 1.15;
+      color: var(--accent-primary);
+    }
+    .article-body h2 + p { margin-top: 1rem; }
+
+    /* sub-heads switch to the utility face — contrast against the serif above */
+    .article-body h3 {
+      margin-top: 2.4rem;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-secondary);
+    }
+    .article-body h3 + p { margin-top: 0.7rem; }
+
+    .article-body ul, .article-body ol { padding-left: 1.15rem; }
+    .article-body li + li { margin-top: 0.6rem; }
+    .article-body li::marker { color: var(--accent-secondary); }
+
+    /* pull quote — hangs into the margin where there is room for it */
+    .article-body blockquote {
+      margin: 2.6rem 0;
+      padding-left: 1.4rem;
+      border-left: 2px solid var(--accent-secondary);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      line-height: 1.4;
+      font-style: italic;
+      color: var(--accent-primary);
+    }
+    .article-body blockquote p { color: inherit; margin: 0; }
+
+    /* editorial table: hairlines, no boxes, lined-up figures */
+    .article-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 2.4rem 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .article-body thead th {
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-align: left;
+      padding: 0 1.2rem 0.7rem 0;
+      border-bottom: 1px solid var(--accent-secondary);
+    }
+    .article-body tbody td {
+      padding: 0.95rem 1.2rem 0.95rem 0;
+      border-bottom: 1px solid var(--border-soft);
+      vertical-align: top;
+      color: #3a332c;
+    }
+    .article-body tbody tr:last-child td { border-bottom: 0; }
+    .article-body td:last-child, .article-body th:last-child { padding-right: 0; }
     /* FAQ block — sits outside .article-body, so it needs its own type rules */
     .article-faq {
-      max-width: 760px;
-      margin: 3.2rem auto 0;
-      padding-top: 2rem;
-      border-top: 1px solid var(--border-soft);
+      max-width: 56rem;
+      margin: 4.5rem auto 0;
+      padding-top: 2.2rem;
+      border-top: 2px solid var(--accent-secondary);
+    }
+    @media (min-width: 900px) {
+      .article-faq { columns: 2; column-gap: 3.5rem; }
+      .article-faq h2 { column-span: all; }
+      .article-faq h3 { break-after: avoid; }
+      .article-faq h3 + p { break-before: avoid; margin-bottom: 1.9rem; }
     }
     .article-faq h2 {
-      font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3vw, 2.1rem);
       color: var(--accent-primary);
       margin-bottom: 1.6rem;
     }
@@ -342,11 +440,26 @@
     }
     .article-faq h3 + p { padding-bottom: 0.2rem; }
 
-    .article-body figure { margin: 2rem 0; }
+    .article-body figure {
+      margin: 3rem 0;
+      width: min(56rem, 118%);
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
     .article-body figure img {
       width: 100%;
-      max-height: 520px;
+      max-height: 620px;
       object-fit: cover;
+      border-radius: 2px;
+    }
+    .article-body figcaption {
+      margin-top: 0.85rem;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      max-width: 46rem;
     }
     .article-body figure.detail-figure img,
     .article-body figure.portrait-figure img {
@@ -492,6 +605,14 @@
       .logo-img { height: 40px; }
       .nav-cta { width: 100%; text-align: center; margin-top: 0.9rem; }
       .page { padding: 2.5rem 1.5rem 4rem; }
+      .hero-image-wrap { aspect-ratio: 4 / 3; }
+      .article-meta { text-align: left; }
+      .article-meta p { margin: 0; }
+      h1 { margin-left: 0; }
+      .article-body { font-size: 1.02rem; line-height: 1.75; }
+      .article-body figure { width: 100%; margin-left: 0; transform: none; }
+      .article-body > p:first-of-type::first-letter { font-size: 3.2rem; }
+      .article-body table { font-size: 0.9rem; }
     }
     .share-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1.6rem; }
     .share-label { color: var(--text-muted); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; margin-right: 0.3rem; }
@@ -580,8 +701,6 @@
 <p>If you've read this far you've got something specific in mind. A first range, maybe. Or the category you've been meaning to add for two seasons and keep putting off because sourcing it looked like a whole project.</p>
 <p>Tell us what it is, roughly how many, and when you need it in hand. We'll come back with what we can do by that date, and we'll say straight out if we can't. If it's easier to talk, say so and we'll call.</p>
 <p><a href="/contact.html">Send us your enquiry</a></p>
-<h2>Still to confirm with the owner</h2>
-<ol><li>Payment terms — advance %, when the balance is due, whether sampling is charged. The section above deliberately promises an answer rather than stating one.</li><li>Ready-stock dispatch window, in days.</li><li>Whether a print developed with a buyer is exclusive to them, and for how long.</li><li>Quotation turnaround time.</li><li>Private label — confirm labels and hangtags can be stitched in at finishing.</li></ol>
 
 </div>
       <section class="article-faq">
