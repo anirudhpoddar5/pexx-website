@@ -139,7 +139,7 @@ def render(template, post, body):
                         f'<div id="post-content" class="article-body">\n{deepen_links(body)}\n</div>')
 
     if post.get("faq"):
-        faq = ['<section class="article-faq">', "<h2>Questions we are asked</h2>"]
+        faq = ['<section class="article-faq">', "<h2>Questions we get asked</h2>"]
         for q in post["faq"]:
             faq.append(f'<h3>{html.escape(q["question"])}</h3><p>{html.escape(q["answer"])}</p>')
         faq.append("</section>")

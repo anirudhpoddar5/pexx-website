@@ -312,6 +312,36 @@
     .article-body h3 { margin-top: 2rem; font-size: 1.25rem; color: var(--accent-primary); }
     .article-body p, .article-body li { color: #364152; }
     .article-body ul, .article-body ol { padding-left: 1.2rem; }
+    /* FAQ block — sits outside .article-body, so it needs its own type rules */
+    .article-faq {
+      max-width: 760px;
+      margin: 3.2rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-soft);
+    }
+    .article-faq h2 {
+      font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+      color: var(--accent-primary);
+      margin-bottom: 1.6rem;
+    }
+    .article-faq h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--accent-primary);
+      margin: 1.9rem 0 0.55rem;
+    }
+    .article-faq h3:first-of-type { margin-top: 0; }
+    .article-faq p {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #364152;
+      margin: 0;
+      max-width: 68ch;
+    }
+    .article-faq h3 + p { padding-bottom: 0.2rem; }
+
     .article-body figure { margin: 2rem 0; }
     .article-body figure img {
       width: 100%;
@@ -555,7 +585,7 @@
 
 </div>
       <section class="article-faq">
-<h2>Questions we are asked</h2>
+<h2>Questions we get asked</h2>
 <h3>How long does a hand block print order take?</h3><p>Most orders take 45 to 60 days from confirmation to dispatch. The range depends on the quantity, the fabric being printed, and the weather, since printed cloth is washed and dried in the open. Cutting new blocks takes 10 to 14 days and happens inside that window.</p>
 <h3>How long does it take to make new blocks?</h3><p>Ten to fourteen days. The motif is cut into seasoned wood by hand and the block has to settle before it prints cleanly. Using prints that already exist removes this step from your timeline.</p>
 <h3>What is the minimum order quantity for block printed fabric?</h3><p>We don&#x27;t publish one. A first order is where a buyer and a maker learn how the other works, so we&#x27;d rather talk about what you&#x27;re making and when you need it than set a number you have to clear first.</p>

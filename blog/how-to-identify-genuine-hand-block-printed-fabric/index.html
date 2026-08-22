@@ -320,6 +320,36 @@
     .article-body h3 { margin-top: 2rem; font-size: 1.25rem; color: var(--accent-primary); }
     .article-body p, .article-body li { color: #364152; }
     .article-body ul, .article-body ol { padding-left: 1.2rem; }
+    /* FAQ block — sits outside .article-body, so it needs its own type rules */
+    .article-faq {
+      max-width: 760px;
+      margin: 3.2rem auto 0;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-soft);
+    }
+    .article-faq h2 {
+      font-size: clamp(1.4rem, 2.6vw, 1.75rem);
+      color: var(--accent-primary);
+      margin-bottom: 1.6rem;
+    }
+    .article-faq h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 1.02rem;
+      font-weight: 600;
+      line-height: 1.45;
+      color: var(--accent-primary);
+      margin: 1.9rem 0 0.55rem;
+    }
+    .article-faq h3:first-of-type { margin-top: 0; }
+    .article-faq p {
+      font-size: 0.98rem;
+      line-height: 1.75;
+      color: #364152;
+      margin: 0;
+      max-width: 68ch;
+    }
+    .article-faq h3 + p { padding-bottom: 0.2rem; }
+
     .article-body figure { margin: 2rem 0; }
     .article-body figure img {
       width: 100%;
@@ -725,7 +755,7 @@
 
 </div>
       <section class="article-faq">
-<h2>Questions we are asked</h2>
+<h2>Questions we get asked</h2>
 <h3>How can you tell if fabric is hand block printed?</h3><p>Look for small variations in alignment, slight overlaps at repeat edges, and gentle tonal shifts in color. Check the reverse side: genuine hand block printed fabric often shows dye penetration with a softer mirror of the design. Authentic prints also feel integrated into the fabric rather than sitting as a flat surface coating.</p>
 <h3>Do genuine block prints have imperfections?</h3><p>Yes. Minor irregularities such as tiny smudges, uneven pressure, or small motif shifts are common in authentic hand block printing because each impression is stamped by hand. These are process signatures rather than defects. Perfect repetition is often a sign of machine production.</p>
 <h3>Why does block printed fabric show color on the back?</h3><p>In many authentic prints, dye absorbs into the yarns and travels through the weave, creating visible penetration on the reverse side. The back typically appears lighter and more ghosted than the front. Machine or digital prints may leave the reverse relatively white because ink often sits on the surface.</p>
