@@ -134,9 +134,21 @@
             continue
           endif
 
-          if forloop.first and section.index == null or section.index < 5
-            assign loading = 'eager'
-            assign sizes = image_sizes
+          # ponytail: eager is gated on allow_eager, passed only by
+          # blocks/_featured-product-gallery.liquid.
+          #
+          # section.index alone was wrong for grids. It is the index of the
+          # SECTION, so on a collection page the whole product grid is one
+          # section and the test passed for every card — 25 full eager images on
+          # /collections/all, all competing with the LCP image for bandwidth.
+          # A card cannot know its own position: content_for 'block' does not
+          # pass an index down to this nested block, so grid tiles default to
+          # lazy and the browser fetches the ones near the viewport anyway.
+          if forloop.first and allow_eager
+            if section.index == null or section.index < 5
+              assign loading = 'eager'
+              assign sizes = image_sizes
+            endif
           endif
 
           assign class = 'product-media-container media-fit product-media-container--[media_type]' | replace: '[media_type]', media.media_type
