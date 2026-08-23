@@ -42,17 +42,30 @@
 
   {% if settings.show_cart_note or settings.show_add_discount_code %}
     <div class="cart-actions">
-      {%- liquid
-        assign giftwrap_in_cart = false
-        for item in cart.items
-          if item.variant_id == 43472878370905
-            assign giftwrap_in_cart = true
-          endif
-        endfor
-      -%}
+      {%- comment -%}
+        Gift-wrap toggle. The checked state is rendered here by Liquid rather
+        than fetched, so it is already correct when the cart drawer injects this
+        snippet. The change handler is a single delegated listener in
+        layout/theme.liquid — inline <script> does not run on innerHTML
+        insertion, and adding one back here would double-add the wrap.
+      {%- endcomment -%}
+      {%- assign gw_variant = 43472878370905 -%}
+      {%- assign gw_in_cart = false -%}
+      {%- for gw_item in cart.items -%}
+        {%- if gw_item.variant_id == gw_variant -%}
+          {%- assign gw_in_cart = true -%}
+          {%- break -%}
+        {%- endif -%}
+      {%- endfor -%}
       <div class="pexx-giftwrap" style="margin:0 0 12px; padding:0 0 12px; border-bottom:1px solid var(--color-border, #E4D9CA);">
         <label style="display:flex; align-items:center; gap:10px; font-size:14px; cursor:pointer; color:var(--color-foreground, #2B241F);">
-          <input type="checkbox" class="pexx-giftwrap-cb" style="width:16px; height:16px;" {% if giftwrap_in_cart %}checked{% endif %}>
+          <input
+            type="checkbox"
+            class="pexx-giftwrap-cb"
+            data-variant-id="{{ gw_variant }}"
+            {% if gw_in_cart %}checked{% endif %}
+            style="width:16px; height:16px;"
+          >
           <span>Add block-printed gift wrap <strong>— ₹99</strong></span>
         </label>
       </div>

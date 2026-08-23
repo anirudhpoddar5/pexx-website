@@ -312,14 +312,23 @@
 {% endcapture %}
 
 <script type="application/ld+json">
+  {%- comment -%}
+    "url" must be the site root. It used to be request.origin | append: page.url,
+    which made Organization.url report "…/pages/about" on every page — a different
+    entity URL per page. Verified wrong on the live site 23 Aug 2026.
+    "sameAs" points at the bulk/export site so the two domains are read as one
+    brand rather than two sites competing for "PEXX"; www.poddarexp.com points back.
+  {%- endcomment -%}
   {
-    "@context": "http://schema.org",
+    "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": {{ request.origin | append: '#organization' | json }},
     "name": {{ shop.name | json }},
     {% if settings.logo %}
       "logo": {{ settings.logo | image_url: width: 500 | prepend: "https:" | json }},
     {% endif %}
-    "url": {{ request.origin | append: page.url | json }}
+    "url": {{ request.origin | json }},
+    "sameAs": ["https://www.poddarexp.com"]
   }
 </script>
 

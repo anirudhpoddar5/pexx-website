@@ -29,6 +29,10 @@
     {%- if request.page_type == 'page' and pexx_faq_pages contains page.handle -%}
       {%- render 'pexx-faq-schema' -%}
     {%- endif -%}
+    {%- if request.page_type == 'article' -%}
+      {%- render 'pexx-article-faq-schema', handle: article.handle -%}
+    {%- endif -%}
+    {%- render 'pexx-seo-schema' -%}
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
@@ -47,7 +51,7 @@
         text-shadow: 0 1px 14px rgba(20, 14, 8, 0.55), 0 1px 3px rgba(20, 14, 8, 0.75);
       }
     </style>
-  </head>
+    </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
     {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
@@ -146,30 +150,6 @@
     {% render 'cart-drawer', render_wrapper: true %}
     {% render 'theme-drawer' %}
 
-    {% comment %}
-      Delegated listener for the gift-wrap checkbox (see snippets/cart-summary.liquid).
-      Registered here, on a real page load, because the cart drawer injects
-      cart-summary via innerHTML — inline <script> tags inside that snippet
-      never execute when inserted that way, so the listener has to live
-      somewhere that always runs a real load instead.
-    {% endcomment %}
-    <script>
-      (function () {
-        if (window.__pexxGiftwrapDelegated) return;
-        window.__pexxGiftwrapDelegated = true;
-        var GIFTWRAP_VARIANT_ID = 43472878370905;
-        document.addEventListener('change', function (e) {
-          var cb = e.target.closest('.pexx-giftwrap-cb');
-          if (!cb) return;
-          var url = cb.checked ? '/cart/add.js' : '/cart/change.js';
-          var body = JSON.stringify({ id: GIFTWRAP_VARIANT_ID, quantity: cb.checked ? 1 : 0 });
-          cb.disabled = true;
-          fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: body })
-            .then(function () { window.location.reload(); });
-        });
-      })();
-    </script>
-
     {% render 'search-modal' %}
 
     {% if settings.quick_add or settings.mobile_quick_add %}
@@ -179,5 +159,46 @@
       {% render 'pexx-popup' %}
     {% endunless %}
     {% render 'pexx-whatsapp' %}
+
+    {%- comment -%}
+      Gift-wrap checkbox. Registered here, once, on a real page load, because the
+      cart drawer injects snippets/cart-summary.liquid via innerHTML and inline
+      <script> tags never execute when inserted that way.
+
+      The checkbox's CHECKED state is rendered server-side by Liquid in that
+      snippet, so this listener only has to handle the change — there is no
+      /cart.js fetch and no flash of the wrong state. Do not re-add a per-checkbox
+      listener in the snippet: both would fire and the wrap would be added twice.
+    {%- endcomment -%}
+    <script>
+      (function () {
+        if (window.__pexxGiftwrap) return;
+        window.__pexxGiftwrap = true;
+        document.addEventListener('change', function (e) {
+          var cb = e.target.closest && e.target.closest('.pexx-giftwrap-cb');
+          if (!cb || cb.disabled) return;
+          // Must stay a STRING: /cart/change.js rejects a numeric id with
+          // 400 "expected Integer to be a (\\A\\d+\\z)|(\\A\\d+:[a-f0-9]{32}\\z)".
+          // /cart/add.js accepts either, which is why only un-ticking broke.
+          var id = cb.dataset.variantId;
+          if (!/^\d+$/.test(id)) return;
+          var wanted = cb.checked;
+          cb.disabled = true;
+          fetch(wanted ? '/cart/add.js' : '/cart/change.js', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: id, quantity: wanted ? 1 : 0 })
+          }).then(function (r) {
+            if (!r.ok) throw new Error(r.status);
+            window.location.reload();
+          }).catch(function () {
+            // Leave the cart alone and put the checkbox back, rather than
+            // reloading into a state that contradicts what was clicked.
+            cb.checked = !wanted;
+            cb.disabled = false;
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
