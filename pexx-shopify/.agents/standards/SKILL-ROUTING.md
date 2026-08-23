@@ -78,6 +78,37 @@ StitchLogic, Ethica and Vetro share **one Supabase project**. See
 | Stuck, need options | `marketing-ideas` |
 | Want several expert opinions before committing spend | `marketing-council` |
 
+## Video and reels — PEXX and product marketing
+
+`video` is the dispatcher, not one option among many. **Start there for any
+video work**; it routes to the right production skill and engine. HyperFrames
+(HTML) is the default engine, Remotion (React) the secondary one.
+
+This section exists because the reels toolchain had no row until 23 Aug 2026,
+and skills with no row do not get invoked.
+
+| Task | Skill |
+|---|---|
+| Any video or reel — start here, it routes | `video` |
+| Explainer where every visual is invented, from an article/notes/brief | `faceless-explainer` |
+| Product, feature or launch promo from a URL, script or brief | `product-launch-video` |
+| Beat-synced video built around a music track | `music-to-video` |
+| A website or PDP turned into a site-tour or social clip | `website-to-video` |
+| Overlay cards on existing talking-head or interview footage | `talking-head-recut` |
+| Captions burned into a talking-head video | `embedded-captions` |
+| Stills or product shots into a paced sequence | `slideshow` |
+| Motion design and animated graphics | `motion-graphics` |
+| Authoring a HyperFrames composition | `hyperframes-core`, then `hyperframes-*` as needed |
+| Running the HyperFrames CLI (init, render, publish, doctor) | `hyperframes-cli` |
+| Writing or fixing a Remotion composition | `remotion-best-practices` |
+| Porting existing Remotion source to HyperFrames | `remotion-to-hyperframes` |
+| Sourcing music, SFX, images or icons for any of the above | `media-use` |
+| Still images — social graphics, mockups, hero images | `image` |
+| A code change explained as a video, from a PR | `pr-to-video` |
+
+Reel *content and hooks* stay with `social`. This table is how the video gets
+*made*.
+
 ## Output and admin
 
 | Task | Skill |
