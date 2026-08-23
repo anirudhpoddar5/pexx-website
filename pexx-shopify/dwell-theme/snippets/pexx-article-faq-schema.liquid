@@ -1,0 +1,123 @@
+{%- comment -%}
+  FAQPage JSON-LD for blog articles, one block per article handle.
+
+  Shopify already emits Article and Organization schema on blog posts, but not
+  FAQPage — and the FAQ block is the part an AI answer engine lifts. This fills
+  that gap the same way `pexx-faq-schema.liquid` does for pages.
+
+  Rules:
+  - The questions and answers here must match the FAQ section visible in the
+    article body, word for word in substance. Google requires that, and a
+    mismatch is worse than no schema.
+  - Add a new `when` block whenever a journal post ships with an FAQ section.
+  - Rendered from layout/theme.liquid, gated on request.page_type == 'article'.
+{%- endcomment -%}
+{%- comment -%}
+  `handle` is passed in from layout/theme.liquid on purpose. {% render %} runs in
+  an isolated scope and does not reliably expose the current `article` object, so
+  `article.handle` was nil here and this snippet silently emitted nothing.
+{%- endcomment -%}
+{%- comment -%}
+  article.handle returns the BLOG-PREFIXED form, e.g.
+  "news/what-to-gift-a-new-baby-in-india" — not the bare article handle. Matching
+  the bare handle silently matched nothing and this snippet emitted no schema at
+  all. Verified live 22 Aug 2026. Split on "/" so either form works.
+{%- endcomment -%}
+{%- assign article_handle = handle | split: '/' | last -%}
+{%- case article_handle -%}
+
+  {%- when 'what-to-gift-a-new-baby-in-india' -%}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What should you gift a new baby in India?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Things that don't depend on size and get used daily — cotton swaddles, a light quilt, a wash or nappy pouch — plus something for the mother. Newborn clothing is outgrown within about a month and most guests already bring it." }
+        },
+        {
+          "@type": "Question",
+          "name": "What do you gift at a godh bharai?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Give what the first weeks use up: a set of swaddles, a light cotton quilt, and something for the mother. The baby isn't here yet, so practical multiples are more useful than a single keepsake." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is a good gift for a naming ceremony?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For a namkaran, something that photographs well and stays useful — a block-printed quilt or swaddle in a print with character. It appears in the day's photographs and goes back to daily use the next morning." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between namkaran and annaprashan?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Namkaran is the naming ceremony, usually held within the first few weeks. Annaprashan is the first-rice ceremony at around six months, when the baby is given solid food for the first time. They are separate occasions about five months apart." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it alright to give clothes as a baby gift?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, but buy 6–12 month sizes rather than newborn. Most babies are out of newborn sizing within a month, and it's the size every other guest buys." }
+        },
+        {
+          "@type": "Question",
+          "name": "What should you avoid gifting a newborn?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Strongly fragranced products, large soft toys, anything with small detachable parts, newborn-size party outfits, and cot bedding sets with pillows or bumpers. Safe-sleep guidance is a flat, clear cot for the first year." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I send a baby gift to India from abroad?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Order to an Indian address, add your message as a gift note, and it arrives wrapped. Shipping is free over ₹750 and delivery covers India, so nothing has to be shipped internationally. No price or invoice goes inside the parcel." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I order baby gifts in bulk for an event?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes — return-gift and event orders start at ten pieces, in a single print or mixed, with a quote within a day." }
+        }
+      ]
+    }
+    </script>
+
+  {%- comment -%}
+    HELD BACK — do not enable until the visible FAQ section is added to this
+    article in Shopify admin. Google requires FAQ schema to match what a reader
+    can see on the page; shipping it without the visible block risks a manual
+    action. The five Q&As are drafted and ready in
+    content-drafts/journal/faq-backfill.json.
+
+  {# when '20-return-gift-ideas-for-kids-birthdays-that-arent-plastic' #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How much should I spend on a return gift in India?",
+          "acceptedAnswer": { "@type": "Answer", "text": "For a large party of 25–40 children, ₹50–₹150 per child is normal. For a smaller party of 10–20, ₹150–₹300 is typical, and for a close family gathering people often spend ₹300–₹700 per child." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many return gifts should I buy?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Buy your confirmed guest list plus about 10%. Siblings and last-minute additions are common, and a child leaving without a gift is the one thing people remember." }
+        },
+        {
+          "@type": "Question",
+          "name": "What are good non-plastic return gifts for kids?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Fabric pouches, seed paper pencils and bookmarks, wooden puzzles, stationery sets, cloth-covered notebooks and age-appropriate books. The test is whether the object has a job — something to carry, write with, read or grow." }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I avoid in a return gift?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Battery-operated noisy toys, loose glitter and slime, sweets as the entire gift, small parts at a party with toddlers, and anything printed with the birthday child's name." }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I order return gifts in bulk for a whole class?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Return-gift orders start at ten pieces, in a single print or mixed, and we quote within a day. Larger school and party orders are quoted by quantity and timeline." }
+        }
+      ]
+    }
+    </script>
+
+  {%- endcomment -%}
+
+{%- endcase -%}
