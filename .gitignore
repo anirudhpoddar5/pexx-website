@@ -3,3 +3,27 @@
 # Shopify secrets — never commit
 .shopify-token
 .shopify-secrets
+.meta-token
+.posthog-token
+
+# One-off Shopify GraphQL payloads written by scripts/ — never source
+_*.json
+
+# Tooling and test leftovers
+__pycache__/
+.playwright-mcp/
+
+# Snapshots taken before a theme deploy, so a bad push can be undone locally.
+# They are copies of files already tracked — committing them doubles the repo.
+pexx-shopify/_theme-backup-*/
+
+# A separate site that happens to live in this folder. README §"separate,
+# untouched" — it is not part of pexx-website and must not be committed.
+mimansa-journeys-build/
+
+# Screenshots dropped at the repo root while working
+/*.png
+/*.jpg
+
+# Local, per-machine Claude Code settings
+.claude/settings.local.json
