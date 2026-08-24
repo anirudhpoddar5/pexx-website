@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PEXX journal slide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prata&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- ================= EDIT THIS BLOCK ONLY =================
+     This is the PEXX Instagram journal look, matched to the live feed:
+     full-bleed photo, warm dark scrim heaviest on the left, wordmark and
+     tagline top-left, big serif headline with one phrase in gold, a small
+     diamond rule, and a quiet small-caps footnote.
+
+     `headline` accepts inline HTML: <b> for the gold phrase, <i> for italic.
+     `bullets` and `cta` are optional — use them on later carousel slides.
+========================================================== -->
+<script>
+  window.SLIDE = {
+    image: "photo.jpg",
+    headline: "Can you tell when a <b>block print</b> is actually handmade?",
+    label: "",                    // optional small-caps label above a list
+    bullets: [],                  // optional, small-caps list with diamond marks
+    footnote: "Most fabrics look authentic at first glance.<br>Very few truly are.",
+    cta: ""                       // e.g. "How to Identify Genuine Hand Block Printed Fabric"
+  };
+</script>
+
+<style>
+  :root{
+    --cream:#f3ede3;
+    --cream-soft:rgba(243,237,227,.74);
+    --gold:#c9a063;
+    --dark:#241a12;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%}
+  body{overflow:hidden;font-family:"Jost","Helvetica Neue",Arial,sans-serif}
+
+  .slide{
+    position:relative;width:100%;height:100%;
+    background:#241a12 center/cover no-repeat;
+    display:flex;flex-direction:column;
+    color:var(--cream);
+  }
+  /* the scrim: heavy on the left where the type sits, opening to the photo on
+     the right. Two layers — a horizontal wash and a vertical one — so type
+     stays readable whatever the photo does. */
+  .slide::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(100deg,
+      rgba(28,20,13,.94) 0%, rgba(30,22,14,.88) 34%,
+      rgba(32,23,15,.62) 62%, rgba(36,26,17,.30) 100%);
+  }
+  .slide::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to bottom,
+      rgba(24,17,11,.55) 0%, rgba(24,17,11,0) 26%,
+      rgba(24,17,11,0) 68%, rgba(24,17,11,.55) 100%);
+  }
+  .inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;padding:8.5% 8% 8.5%}
+
+  /* --- masthead --- */
+  .mark{
+    font-family:'Prata',Georgia,serif;
+    font-size:clamp(26px,4.6vmin,54px);
+    letter-spacing:.34em;font-weight:400;text-indent:.34em;
+  }
+  .rule{
+    display:flex;align-items:center;gap:.5em;
+    margin:.55em 0 .5em;width:min(54%,300px);
+  }
+  .rule i{flex:1 1 auto;height:1px;background:var(--gold);opacity:.8;display:block}
+  .rule s{color:var(--gold);text-decoration:none;font-size:clamp(7px,1.05vmin,12px);line-height:1}
+  .tagline{
+    font-size:clamp(10px,1.5vmin,17px);
+    letter-spacing:.26em;text-transform:uppercase;
+    color:var(--cream-soft);
+  }
+
+  /* --- headline --- */
+  h1{
+    font-family:'Prata',Georgia,serif;
+    font-weight:400;
+    font-size:clamp(34px,7.4vmin,86px);
+    line-height:1.13;
+    letter-spacing:.004em;
+    margin-top:auto;
+    max-width:13ch;
+  }
+  h1 b{color:var(--gold);font-weight:400}
+  h1{font-weight:400}
+  h1 i{font-style:italic}
+
+  /* --- optional list --- */
+  .label{
+    margin-top:1.5em;
+    font-size:clamp(10px,1.5vmin,17px);
+    letter-spacing:.2em;text-transform:uppercase;color:var(--cream-soft);
+  }
+  ul{list-style:none;margin-top:.85em}
+  li{
+    font-size:clamp(12px,1.8vmin,20px);
+    letter-spacing:.15em;text-transform:uppercase;
+    margin-bottom:.62em;padding-left:1.5em;position:relative;
+    color:var(--cream);
+  }
+  li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:.72em;top:.12em}
+
+  /* --- footer --- */
+  .foot{margin-top:auto;padding-top:1.6em}
+  .foot .rule{margin-bottom:1.05em}
+  .note{
+    font-size:clamp(12px,1.85vmin,21px);
+    letter-spacing:.17em;text-transform:uppercase;line-height:1.95;
+    color:var(--cream-soft);
+  }
+  .cta-label{
+    font-size:clamp(11px,1.65vmin,18px);
+    letter-spacing:.2em;text-transform:uppercase;color:var(--cream-soft);
+    margin-bottom:.5em;
+  }
+  .cta{
+    font-family:'Prata',Georgia,serif;
+    font-size:clamp(23px,4.4vmin,50px);
+    line-height:1.22;color:var(--gold);max-width:16ch;
+  }
+
+  /* stories: same look, more room top and bottom for the safe zones */
+  @media (max-aspect-ratio: 3/5){
+    .inner{padding:17% 9% 15%}
+    h1{font-size:clamp(34px,6.2vmin,76px)}
+  }
+</style>
+</head>
+<body>
+  <div class="slide" id="slide">
+    <div class="inner">
+      <div class="mark">PEXX</div>
+      <div class="rule"><i></i><s>◆</s><i></i></div>
+      <div class="tagline">Slow. Soulful. Handmade.</div>
+
+      <h1 id="headline"></h1>
+
+      <div class="label" id="label" hidden></div>
+      <ul id="bullets" hidden></ul>
+
+      <div class="foot">
+        <div class="rule"><i></i><s>◆</s><i></i></div>
+        <div class="note" id="note" hidden></div>
+        <div id="ctaWrap" hidden>
+          <div class="cta-label">Read the full journal</div>
+          <div class="cta" id="cta"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+  const s = window.SLIDE;
+  document.getElementById('slide').style.backgroundImage = `url("${s.image}")`;
+  document.getElementById('headline').innerHTML = s.headline;
+  if (s.label) { const el = document.getElementById('label'); el.textContent = s.label; el.hidden = false; }
+  if (s.bullets && s.bullets.length) {
+    const ul = document.getElementById('bullets');
+    ul.innerHTML = s.bullets.map(b => `<li>${b}</li>`).join('');
+    ul.hidden = false;
+  }
+  if (s.footnote) { const n = document.getElementById('note'); n.innerHTML = s.footnote; n.hidden = false; }
+  if (s.cta) { document.getElementById('cta').textContent = s.cta; document.getElementById('ctaWrap').hidden = false; }
+</script>
+</body>
+</html>

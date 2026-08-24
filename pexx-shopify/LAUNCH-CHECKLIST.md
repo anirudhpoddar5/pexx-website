@@ -26,7 +26,7 @@
 
 ## 3. Shipping ✅
 - [x] ✅ Domestic **Standard Shipping ₹99** set.
-- [x] ✅ **Free shipping over ₹999** (automatic discount, active). Homepage trust bar already matches.
+- [x] ✅ **Free shipping over ₹750** (automatic discount, active; lowered from ₹999 on 14 Aug 2026 and set to combine with the 15% codes). Trust bar + PDP line updated to match.
 
 ## 4. Taxes / GST 🧑
 - [ ] **Settings → Taxes and duties → India** → enter **GSTIN**

@@ -14,7 +14,7 @@
 1. Browse — homepage → category tiles (Little / Carry / Gifting) → collection
 2. PDP — benefit accordions, trust band, recommendations → add to cart
 3. Cart — drawer, gift-wrap (₹99), gift message note, WELCOME15 from popup
-4. Checkout — Shopify checkout; Razorpay + COD (pending activation); free ship ≥₹999, else ₹99
+4. Checkout — Shopify checkout; Razorpay + COD (pending activation); free ship ≥₹750, else ₹99
 5. Bulk — Return Gifts page → enquiry form with product pre-fill
 
 **Messaging hierarchy (locked, §11):** print/colour → skin-safe → made-to-keep → honest price → craft last. Never discount-first.
@@ -42,7 +42,7 @@
 ### Commerce / ops (done)
 - Collections: Little, Carry, Gifting + occasion smart-collections
 - **11 test products** with variant demos (Size / Pack / single)
-- Shipping: Standard ₹99 + automatic free-shipping ≥₹999
+- Shipping: Standard ₹99 + automatic free-shipping ≥₹750
 - WELCOME15 discount (15%, once per customer) — live
 - Email auth complete & verified: SPF, Shopify DKIM CNAMEs ×6, DMARC (`p=none`), Google DKIM
 - Markets: US + UK active (INR-only — USD/GBP blocked without Shopify Payments)
@@ -192,7 +192,7 @@
 |---|---|---|---|
 | 1 | **Abandoned-checkout + welcome flows** (Shopify Email) | Abandoned email sends ≤4h after abandon; welcome email fires on popup signup; both render on mobile | S |
 | 2 | **Judge.me reviews** (post first orders) | Stars on product cards + PDP; review request email 7 days post-delivery | S |
-| 3 | **PDP delivery estimate** — "Ships in 3 days from Jaipur · Free over ₹999" near ATC | Line visible above the fold on mobile PDP | S |
+| 3 | **PDP delivery estimate** — "Ships in 3 days from Jaipur · Free over ₹750" near ATC | Line visible above the fold on mobile PDP | S |
 | 4 | **WhatsApp per-product prefill** — PDP button includes product title in wa.me text | Enquiry from a PDP names the product without customer typing it | S |
 | 5 | **Popup polish** — focus trap, autofocus email, don't fire until 2nd pageview | Keyboard-only user can complete + close; bounce sessions never see it | S |
 
@@ -290,7 +290,7 @@ Everything above is S/M effort for a small team inside 2–3 weeks. Explicitly *
 
 | Change | Why | Type |
 |---|---|---|
-| Delivery line near ATC: "Ships in 3 days from Jaipur · Free over ₹999" | #1 pre-purchase question, answered at decision point | theme (S) — already §8.2 |
+| Delivery line near ATC: "Ships in 3 days from Jaipur · Free over ₹750" | #1 pre-purchase question, answered at decision point | theme (S) — already §8.2 |
 | Age/Occasion filters live at import + linked from collection descriptions | Gifters shop by age/occasion, not product type | config + content (S) |
 | Question-style accordion labels (from §C) | Doubles as UX clarity + AEO | content-only |
 | 404 page category links | Recovers dead-end sessions post-migration | theme (S) |

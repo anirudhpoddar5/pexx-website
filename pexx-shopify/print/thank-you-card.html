@@ -1,0 +1,258 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>PEXX Thank You Card — A4 print sheet</title>
+<style>
+  /* ---------------------------------------------------------------
+     PEXX thank-you card. 4in x 2.75in landscape, 8 per A4 sheet.
+     Single-sided. Cards sit flush to the sheet edges with white
+     alleys between them, so every cut has margin on both sides and
+     the four outer edges are the paper's own factory edges.
+     Print from Chrome: A4, Margins "None", Scale 100%,
+     "Print backgrounds" ON.
+     --------------------------------------------------------------- */
+
+  :root {
+    --ink:   #1a1815;
+    --soft:  #4a443d;
+    --terra: #9c4322;
+    --cut:   #ddd6cc;
+    --hair:  #c4b8a8;
+    --frame: #8a7d6d;
+
+    --serif: "Didot", "Bodoni 72", "Playfair Display", Georgia, serif;
+    --sans:  "Avenir Next", "Avenir", "Futura", "Helvetica Neue", sans-serif;
+
+    --card-w: 101.6mm;   /* 4in    */
+    --card-h: 69.85mm;   /* 2.75in */
+    --gap-x: 6.8mm;      /* 210 - 2 x 101.6  */
+    --gap-y: 5.8667mm;   /* (297 - 4 x 69.85) / 3 */
+  }
+
+  @page { size: A4 portrait; margin: 0; }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #eceae6;
+    font-family: var(--sans);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .sheet {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    background: #fff;
+    margin: 10mm auto;
+    box-shadow: 0 2mm 8mm rgba(0,0,0,.18);
+    overflow: hidden;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .sheet { margin: 0; box-shadow: none; }
+    .howto { display: none; }
+  }
+
+  /* cut guides: hairlines on both edges of every alley.
+     Cut on the lines and the strip between them falls away. */
+  .cut { position: absolute; background: var(--cut); }
+  .cut.v { top: 0; height: 297mm; width: 0.15mm; }
+  .cut.h { left: 0; width: 210mm; height: 0.15mm; }
+
+  .grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(2, var(--card-w));
+    grid-template-rows: repeat(4, var(--card-h));
+    column-gap: var(--gap-x);
+    row-gap: var(--gap-y);
+  }
+
+  .card {
+    position: relative;
+    width: var(--card-w);
+    height: var(--card-h);
+    background: #fff;
+    color: var(--ink);
+    overflow: hidden;
+    display: flex;
+  }
+  /* double frame, thick over thin. Inset far enough that a 1mm
+     cutting error only changes the white margin, never clips it. */
+  .card::before,
+  .card::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+  }
+  .card::before { inset: 3.6mm; border: 0.3mm solid var(--frame); }
+  .card::after  { inset: 4.9mm; border: 0.12mm solid var(--frame); }
+
+  /* ------------------------------ left ------------------------- */
+  .left {
+    width: 33mm;
+    flex: none;
+    border-right: 0.2mm solid var(--hair);
+    margin: 9.5mm 6mm 9.5mm 8mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  /* divider ornament: a small terracotta lozenge capping each end */
+  .left::before,
+  .left::after {
+    content: "";
+    position: absolute;
+    right: -0.8mm;
+    width: 1.6mm; height: 1.6mm;
+    transform: rotate(45deg);
+    background: var(--terra);
+  }
+  .left::before { top: -0.8mm; }
+  .left::after  { bottom: -0.8mm; }
+
+  .wordmark {
+    font-family: var(--serif);
+    font-size: 14pt;
+    letter-spacing: 0.26em;
+    text-indent: 0.13em;   /* half the tracking, so it optically centres */
+    line-height: 1;
+  }
+  .tagline {
+    margin-top: 3mm;
+    font-size: 4pt;
+    letter-spacing: 0.16em;
+    text-indent: 0.08em;
+    color: var(--terra);
+    text-transform: uppercase;
+  }
+
+  /* ------------------------------ right ------------------------ */
+  .right {
+    flex: 1;
+    padding: 9.5mm 8mm 9.5mm 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .headline {
+    font-family: var(--serif);
+    font-size: 12.5pt;
+    line-height: 1.14;
+  }
+  /* double rule, thick over thin — classic stationery */
+  .rule {
+    width: 12mm;
+    height: 0;
+    padding-top: 0.8mm;
+    border-top: 0.45mm solid var(--terra);
+    border-bottom: 0.15mm solid var(--terra);
+    margin: 3mm 0 3.2mm;
+  }
+  .body {
+    font-size: 6.8pt;
+    line-height: 1.62;
+    color: var(--soft);
+  }
+  .body p + p { margin-top: 1.9mm; }
+
+  .foot {
+    margin-top: auto;
+    padding-top: 3.5mm;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 3mm;
+  }
+  .ask {
+    font-size: 5pt;
+    letter-spacing: 0.18em;
+    color: var(--terra);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .origin {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 5.6pt;
+    color: var(--soft);
+    white-space: nowrap;
+  }
+
+  /* ----------------------------- screen ------------------------ */
+  .howto {
+    max-width: 210mm;
+    margin: 14mm auto 4mm;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #33302b;
+  }
+  .howto h2 { font-family: var(--serif); font-size: 20px; margin-bottom: 6px; }
+  .howto ul { margin: 8px 0 0 18px; }
+  .howto li { margin-bottom: 4px; }
+  .howto code { background: #fff; padding: 1px 4px; border-radius: 3px; }
+</style>
+
+<div class="howto">
+  <h2>How to print</h2>
+  <ul>
+    <li><strong>Paper:</strong> matte or satin, 250–300gsm. Printed side only — the branded back never shows.</li>
+    <li><strong>Chrome → Print:</strong> Paper size <code>A4</code>, Margins <code>None</code>, Scale <code>100%</code> (not "Fit"), <code>Print backgrounds</code> ticked.</li>
+    <li><strong>Cutting:</strong> there's a ~6mm white alley between cards. Cut on the two grey hairlines either side of each alley and the strip falls away, leaving cards at exactly 4″ × 2.75″. The frame sits 3.6mm inside the trim, so a 1mm wobble only changes the white margin — it never clips the border.</li>
+    <li><strong>Outer edges:</strong> the cards run flush to the sheet, so the four outside edges are the paper's own factory edges — nothing to cut there.</li>
+  </ul>
+</div>
+
+<div class="sheet"><div class="grid"></div></div>
+
+<template id="tpl">
+  <div class="card">
+    <div class="left">
+      <div class="wordmark">PEXX</div>
+      <div class="tagline">Slow · Soulful · Handmade</div>
+    </div>
+    <div class="right">
+      <div class="headline">Made for<br>little moments.</div>
+      <div class="rule"></div>
+      <div class="body">
+        <p>Thank you for choosing something made slowly.</p>
+        <p>This piece began as plain cloth and was block-printed by hand, one press at a time, so no two are ever quite alike.</p>
+        <p>May it travel with you or settle into your home, and be loved for a long while.</p>
+      </div>
+      <div class="foot">
+        <div class="ask">@poddar.exports</div>
+        <div class="origin">Block-printed in India</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  const CW = 101.6, CH = 69.85, GX = 6.8, GY = (297 - 4 * CH) / 3;
+
+  const sheet = document.querySelector('.sheet');
+  const grid  = sheet.querySelector('.grid');
+  const node  = document.getElementById('tpl').content;
+  for (let i = 0; i < 8; i++) grid.appendChild(node.cloneNode(true));
+
+  // hairlines on both edges of each alley (outer edges need none — factory cut)
+  for (const x of [CW, CW + GX]) {
+    const l = document.createElement('div');
+    l.className = 'cut v';
+    l.style.left = x + 'mm';
+    sheet.appendChild(l);
+  }
+  for (let r = 1; r <= 3; r++) {
+    for (const y of [r * CH + (r - 1) * GY, r * (CH + GY)]) {
+      const l = document.createElement('div');
+      l.className = 'cut h';
+      l.style.top = y + 'mm';
+      sheet.appendChild(l);
+    }
+  }
+</script>

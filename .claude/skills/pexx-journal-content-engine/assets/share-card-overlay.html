@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PEXX share card — overlay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ============ EDIT THESE FIVE THINGS ONLY ============ -->
+<script>
+  window.CARD = {
+    eyebrow: "PEXX Journal",
+    headline: "What to gift a new baby in India",
+    body: "Everyone brings clothes. Here is what actually gets used.",
+    footer: "shop.poddarexp.com",
+    image: "photo.jpg"
+  };
+</script>
+<!-- =====================================================
+     The second layout. Same brand, different rhythm: the photo fills the
+     frame and the type sits on it. Alternate this with share-card.html down
+     the feed so a run of posts doesn't read as seven identical tiles.
+
+     Use it for photos that fill well — a product shot, a close crop. For a
+     wide 16:9 hero with detail at the edges, use share-card.html instead,
+     which never crops.
+
+     Open at the size you want and screenshot:
+       1080 x 1350  Instagram post
+       1080 x 1920  Instagram story
+     ===================================================== -->
+
+<style>
+  :root{
+    --bg:#f3ede3; --ink:#fbf7f0; --accent:#e6c79a; --scrim:#231c16;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%}
+  body{background:var(--bg);font-family:"Manrope","Helvetica Neue",Arial,sans-serif;overflow:hidden}
+  .card{
+    position:relative;width:100%;height:100%;
+    background:var(--bg) center/cover no-repeat;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    color:var(--ink);
+  }
+  /* the scrim is what makes the type readable on any photo */
+  .card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to bottom,
+      rgba(35,28,22,0) 38%, rgba(35,28,22,.55) 62%, rgba(35,28,22,.88) 100%);
+  }
+  .text{position:relative;z-index:1;padding:0 8% 7%}
+  .eyebrow{
+    font-size:clamp(11px,1.5vmin,17px);
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;margin-bottom:3%;
+  }
+  h1{
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-weight:500;
+    font-size:clamp(30px,6.6vmin,74px);
+    line-height:1.05;text-wrap:balance;margin-bottom:3%;
+  }
+  p{
+    font-size:clamp(13px,2.2vmin,25px);
+    line-height:1.5;max-width:34ch;
+    color:rgba(251,247,240,.86);
+  }
+  .foot{
+    position:relative;z-index:1;
+    margin:0 8%;padding:4% 0 6%;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid rgba(251,247,240,.28);
+  }
+  .mark{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(18px,3.2vmin,38px);letter-spacing:.34em;font-weight:600}
+  .url{font-size:clamp(10px,1.5vmin,17px);letter-spacing:.14em;text-transform:uppercase;color:rgba(251,247,240,.72)}
+  /* stories: keep the type clear of the bottom safe zone */
+  @media (max-aspect-ratio: 3/5){
+    .text{padding-bottom:4%}
+    .foot{padding-bottom:16%}
+  }
+</style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="text">
+      <div class="eyebrow" id="eyebrow"></div>
+      <h1 id="headline"></h1>
+      <p id="body"></p>
+    </div>
+    <div class="foot">
+      <span class="mark">PEXX</span>
+      <span class="url" id="footer"></span>
+    </div>
+  </div>
+<script>
+  const c = window.CARD;
+  document.getElementById('eyebrow').textContent = c.eyebrow;
+  document.getElementById('headline').textContent = c.headline;
+  document.getElementById('body').textContent = c.body;
+  document.getElementById('footer').textContent = c.footer;
+  document.getElementById('card').style.backgroundImage = `url("${c.image}")`;
+</script>
+</body>
+</html>

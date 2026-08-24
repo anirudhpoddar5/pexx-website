@@ -1,0 +1,98 @@
+{
+  "_note": "Draft FAQ blocks for the five journal posts that have none. Every answer is drawn from the post it belongs to — no new claims. Approve, then merge into data/posts.json and run scripts/build_blog.py. Nothing here is live.",
+
+  "from-block-to-home-the-life-of-one-cloth": [
+    {
+      "question": "How is hand block printed fabric made?",
+      "answer": "A motif is carved into a block of seasoned teak, colour is mixed by hand, and the block is pressed onto prepared cloth one impression at a time. A multi-colour design needs a separate block and a separate pass for each colour, with drying time between passes."
+    },
+    {
+      "question": "How many block impressions does one metre of fabric take?",
+      "answer": "A single metre of hand block printed fabric takes between 1,500 and 2,500 individual block presses, each positioned by hand and aligned by eye. A four-colour metre is roughly a full working day for one craftsman."
+    },
+    {
+      "question": "Why do colours vary between production runs?",
+      "answer": "Natural dye is drawn from mineral, bark, root and earth, and each batch behaves slightly differently depending on temperature, humidity and the mineral content of the water used that day. This is why no two production runs are exactly the same colour."
+    },
+    {
+      "question": "How long does it take to hand print a metre of cloth?",
+      "answer": "About six hours for one craftsman to print one metre in four colours, because each colour is a separate pass and the cloth must dry between passes. The carving of the blocks happens before any of that begins."
+    }
+  ],
+
+  "why-tiny-imperfections-in-hand-block-prints-are-a-sign-of-authenticity": [
+    {
+      "question": "Are small variations in a block print a defect?",
+      "answer": "No. Small variations in alignment, colour and pressure are normal signs of authentic hand block printing. They are usually the clearest evidence that the fabric was printed by hand rather than produced by a machine."
+    },
+    {
+      "question": "Why are hand block prints never perfectly identical?",
+      "answer": "The artisan places each carved block beside the previous impression by eye, so tiny shifts in spacing and slight overlaps build up across thousands of repeats. Machine-level registration is not achievable by hand, and its absence is what identifies the print as handmade."
+    },
+    {
+      "question": "Why does colour intensity vary across the same cloth?",
+      "answer": "Fabric does not absorb dye evenly from one section to another. Block pressure, the amount of pigment on the block's surface and changes in humidity all create gentle tonal variation, which is why hand printed colour looks alive rather than flat."
+    },
+    {
+      "question": "How can you tell a hand block print from a machine print?",
+      "answer": "Look for slight misalignment in the repeat, variation in colour intensity, soft dye edges where the block lifted, and dye that has penetrated the cloth rather than sitting on the surface. A perfectly even, perfectly registered surface usually indicates screen or digital printing."
+    }
+  ],
+
+  "block-printing-process": [
+    {
+      "question": "What is hand block printing?",
+      "answer": "Hand block printing is a textile technique in which a motif carved into a wooden block is inked and pressed onto cloth by hand, one impression at a time, until the repeat covers the fabric. Every impression carries its own pressure and alignment."
+    },
+    {
+      "question": "How many blocks does one design need?",
+      "answer": "It depends on the pattern. A design typically needs separate blocks for outlines, fillers and accent colours, so a multi-colour print is built from several blocks and several passes rather than one. Registration between those passes is what holds the pattern together."
+    },
+    {
+      "question": "Why is fabric prepared before block printing?",
+      "answer": "The cloth is washed, stretched and readied so the print lands evenly and the dye is absorbed consistently. Natural cotton is used because it holds colour softly while still showing the texture of the hand behind each layer."
+    },
+    {
+      "question": "Why does a handmade print look different from a machine print?",
+      "answer": "Because the spacing is judged by eye and the pressure comes from a person, a hand printed surface carries consistency without sterility — visible block edges, slight depth in layered colour and a texture that industrial printing removes by design."
+    }
+  ],
+
+  "craftsmanship-at-scale": [
+    {
+      "question": "Can hand block printing be produced at scale?",
+      "answer": "Yes, provided there is enough structure around the work. Scaling handcrafted production is not about removing the hand from the process; it is about building systems that let craftsmanship stay visible, reliable and commercially viable."
+    },
+    {
+      "question": "How is quality controlled in handmade textile production?",
+      "answer": "Through sampling, colour approval, wash testing and finishing reviews before anything is packed. Trained eyes matter as much as checklists, because registration, print clarity and handfeel all require judgement rather than measurement."
+    },
+    {
+      "question": "What checks happen before a textile is exported?",
+      "answer": "Sampling and colour approval come first, then wash testing and a finishing review. These steps create consistency across a production run without flattening the variation that makes block printed work distinctive."
+    },
+    {
+      "question": "Does scaling production make a handmade textile less handmade?",
+      "answer": "Not if the systems are built around the hand rather than in place of it. The purpose of the structure is to keep the product aligned with both the design intent and the buyer's expectation, while the judgement stays human."
+    }
+  ],
+
+  "the-palette-that-earns-its-place-on-a-bed": [
+    {
+      "question": "Why do some floral block prints look flat?",
+      "answer": "Usually because every tone belongs to the same colour family. A warm ground with a warm flower and a warm stem blends into a pleasant haze, so the motif stops travelling across the cloth and the eye has nothing to follow."
+    },
+    {
+      "question": "What colours work for AW 2026/27 block print bedding?",
+      "answer": "A warm near-neutral ground, a deep red-brown anchor for the main motif, a mid-tone for secondary flowers and borders, a warm accent inside the petals, an earthy olive for foliage, and one cooler shade to stop the palette becoming monotone."
+    },
+    {
+      "question": "How many colours should a block printed bedcover use?",
+      "answer": "Around six, each with a defined role — ground, anchor, mid-tone, accent, foliage and a cool counterweight. Every colour beyond that is another block, another pass and another drying cycle, so each one has to earn its place."
+    },
+    {
+      "question": "What does a grounding colour do in a print?",
+      "answer": "It holds the composition without competing with it. The palest tone carries the space between motifs, which is what allows the deeper anchor colour to make the print readable from across a room."
+    }
+  ]
+}

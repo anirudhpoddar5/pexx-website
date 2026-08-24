@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>PEXX share card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- ============ EDIT THESE FIVE THINGS ONLY ============ -->
+<script>
+  window.CARD = {
+    eyebrow: "PEXX Journal",
+    headline: "What to gift a new baby in India",
+    body: "Everyone brings clothes. The baby is out of them in six weeks. Here is what actually gets used.",
+    footer: "shop.poddarexp.com",
+    image: "photo.jpg"        // an edited photo — Tier A or edited Tier B, never a render
+    // the photo's own ratio is read off the file automatically — nothing is cropped
+  };
+</script>
+<!-- =====================================================
+     HOW TO USE
+     1. Put the edited photo next to this file, or change `image` to its path.
+     2. Open it in a browser sized to the card you want:
+          1080 x 1350  Instagram, LinkedIn carousel, Pinterest
+          1200 x 1200  LinkedIn single image
+          1200 x  630  og:image and WhatsApp link previews
+        The layout adapts to whatever the window is.
+     3. Screenshot the window. That is the card.
+     ===================================================== -->
+
+<style>
+  :root{
+    --bg:#f3ede3;
+    --bg-alt:#fbf7f0;
+    --ink:#2b241f;
+    --muted:#6f655b;
+    --accent:#b48d59;
+    --line:#e4d9ca;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{width:100%;height:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Manrope","Helvetica Neue",Arial,sans-serif;
+    display:flex;
+    overflow:hidden;
+  }
+  .card{
+    width:100%;height:100%;
+    background:var(--bg);
+    display:flex;flex-direction:column;
+    padding:5.5%;
+    gap:0;
+  }
+  .photo{
+    /* The panel takes the PHOTO's own ratio, so nothing is ever cropped.
+       It used to stretch to fill and crop to fit, which cut 16:9 heroes to
+       ribbons on a 4:5 post and butchered them on a 9:16 story. */
+    flex:0 0 auto;
+    width:100%;
+    aspect-ratio:var(--ratio, 16/9);
+    border-radius:2px;
+    overflow:hidden;
+    background:var(--bg-alt) center/cover no-repeat;
+    border:1px solid var(--line);
+  }
+  .inner{flex:1 1 auto;display:flex;flex-direction:column;min-height:0}
+  .text{flex:0 0 auto;padding-top:5%}
+  .eyebrow{
+    font-size:clamp(11px,1.5vmin,17px);
+    letter-spacing:.22em;text-transform:uppercase;
+    color:var(--accent);font-weight:600;
+    margin-bottom:2.4%;
+  }
+  h1{
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-weight:500;
+    font-size:clamp(28px,6.2vmin,72px);
+    line-height:1.06;
+    letter-spacing:.3px;
+    text-wrap:balance;
+    margin-bottom:2.6%;
+  }
+  p{
+    font-size:clamp(13px,2.2vmin,25px);
+    line-height:1.5;
+    color:var(--muted);
+    max-width:38ch;
+  }
+  .foot{
+    /* margin-top:auto anchors this to the bottom — do not add a second
+       margin-top below it, the later declaration wins and the anchor dies */
+    flex:0 0 auto;
+    margin-top:auto;
+    padding-top:5%;
+    display:flex;align-items:center;justify-content:space-between;
+    border-top:1px solid var(--line);
+  }
+  .mark{
+    font-family:"Cormorant Garamond",Georgia,serif;
+    font-size:clamp(18px,3.2vmin,38px);
+    letter-spacing:.34em;
+    font-weight:600;
+  }
+  .url{
+    font-size:clamp(10px,1.5vmin,17px);
+    letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  }
+  /* stories are tall and have safe zones top and bottom — give them room */
+  @media (max-aspect-ratio: 3/5){
+    .card{padding:13% 9%}
+    .text{padding-top:9%}
+    h1{font-size:clamp(30px,5.4vmin,64px)}
+    p{font-size:clamp(14px,2.4vmin,28px)}
+  }
+
+  /* wide, short cards (og:image) put the photo beside the text instead */
+  @media (min-aspect-ratio: 3/2){
+    .card{flex-direction:row;gap:5%;align-items:stretch}
+    .photo{flex:0 0 42%;width:auto;aspect-ratio:auto;align-self:stretch}
+    .inner{flex:1 1 auto;display:flex;flex-direction:column;padding-top:0}
+    .text{padding-top:0}
+    p{max-width:32ch}
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="photo" id="photo"></div>
+    <div class="inner">
+      <div class="text">
+        <div class="eyebrow" id="eyebrow"></div>
+        <h1 id="headline"></h1>
+        <p id="body"></p>
+      </div>
+      <div class="foot">
+        <span class="mark">PEXX</span>
+        <span class="url" id="footer"></span>
+      </div>
+    </div>
+  </div>
+<script>
+  const c = window.CARD;
+  document.getElementById('eyebrow').textContent = c.eyebrow;
+  document.getElementById('headline').textContent = c.headline;
+  document.getElementById('body').textContent = c.body;
+  document.getElementById('footer').textContent = c.footer;
+  const ph = document.getElementById('photo');
+  ph.style.backgroundImage = `url("${c.image}")`;
+  // read the real dimensions off the file and give the panel that exact ratio
+  const probe = new Image();
+  probe.onload = () => ph.style.setProperty('--ratio', `${probe.naturalWidth}/${probe.naturalHeight}`);
+  probe.src = c.image;
+</script>
+</body>
+</html>
