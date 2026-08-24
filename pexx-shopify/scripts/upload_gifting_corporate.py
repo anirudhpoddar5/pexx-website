@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Upload the Corporate gifting photos to Shopify Files; merge refs into .asset-refs.json.
 
-Source files live outside the repo (~/Desktop/ECOM Final/Gifts_Corporate). Unlike
+Source files live outside the repo (~/Desktop/PEXX/ecom/Gifts_Corporate). Unlike
 upload_assets.py, this MERGES into the existing .asset-refs.json instead of
 overwriting it — that file already has unrelated refs (logo, hero, etc.) in it.
 """
@@ -13,7 +13,7 @@ SHOP = "pexx-7935.myshopify.com"
 GQL = f"https://{SHOP}/admin/api/2025-01/graphql.json"
 REFS_PATH = os.path.join(ROOT, ".asset-refs.json")
 
-SRC_DIR = os.path.expanduser("~/Desktop/ECOM Final/Gifts_Corporate")
+SRC_DIR = os.path.expanduser("~/Desktop/PEXX/ecom/Gifts_Corporate")
 
 # (source filename, shop_images filename, mime type)
 FILES = [

@@ -10,8 +10,8 @@ SHOP = "pexx-7935.myshopify.com"
 GQL = f"https://{SHOP}/admin/api/2025-01/graphql.json"
 REFS_PATH = os.path.join(ROOT, ".asset-refs.json")
 
-WEDDING_DIR = os.path.expanduser("~/Desktop/ECOM Final/Gifts_Wedding")
-GENERAL_DIR = os.path.expanduser("~/Desktop/ECOM Final/Gifts_General")
+WEDDING_DIR = os.path.expanduser("~/Desktop/PEXX/ecom/Gifts_Wedding")
+GENERAL_DIR = os.path.expanduser("~/Desktop/PEXX/ecom/Gifts_General")
 
 # (source dir, source filename, shop_images filename, mime type)
 FILES = [

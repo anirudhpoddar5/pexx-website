@@ -504,7 +504,7 @@
             "pexx_trust_delivery": {
               "type": "custom-liquid",
               "settings": {
-                "custom_liquid": "<div style=\"margin:10px 0 0; font-family:var(--font-body--family); font-size:13px; line-height:1.6;\"><p style=\"margin:0 0 4px; color:#2B241F;\">Ships in 3 days from Jaipur &middot; Free over &#8377;999</p><p style=\"margin:0 0 4px; color:#6F655B;\">COD available &middot; 10-day returns &middot; Skin-safe dyes</p><p style=\"margin:0; color:#9E3B2F;\">Use code <strong>WELCOME15</strong> for 15% off your first order &mdash; applied at checkout</p></div>"
+                "custom_liquid": "<div style=\"margin:10px 0 0; font-family:var(--font-body--family); font-size:13px; line-height:1.6;\"><p style=\"margin:0 0 4px; color:#2B241F;\">Ships in 3 days from Jaipur &middot; Free over &#8377;750</p><p style=\"margin:0 0 4px; color:#6F655B;\">COD available &middot; 10-day returns &middot; Skin-safe dyes</p><p style=\"margin:0; color:#9E3B2F;\">Use code <strong>WELCOME15</strong> for 15% off your first order &mdash; applied at checkout</p></div>"
               }
             }
           },

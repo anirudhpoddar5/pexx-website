@@ -25,6 +25,8 @@
   >
     {% content_for 'blocks' %}
 
+    {% render 'pexx-share-row', article: article %}
+
     {% if blog.comments_enabled? %}
       <div class="blog-post-comments-container">
         <h2 class="h3">{{- 'blogs.article.comments_heading' | t: count: article.comments_count -}}</h2>
@@ -107,6 +109,15 @@
   .blog-post-comments-pagination a:hover {
     border-bottom: 1px solid var(--color-foreground);
   }
+  .pexx-share { display: flex; flex-wrap: wrap; align-items: center; gap: var(--gap-2xs);
+    width: 100%; max-width: var(--normal-content-width); margin: var(--margin-lg) auto 0; }
+  .pexx-share__label { font-size: var(--font-size--body-sm); letter-spacing: 0.14em;
+    text-transform: uppercase; color: rgb(var(--color-foreground-rgb) / var(--opacity-subdued-text)); }
+  .pexx-share__btn { padding: var(--padding-2xs) var(--padding-xs); border: 1px solid var(--color-border);
+    background: transparent; color: var(--color-foreground); font: inherit;
+    font-size: var(--font-size--body-sm); text-decoration: none; cursor: pointer; }
+  .pexx-share__btn:hover { border-color: var(--color-foreground); }
+  .pexx-share__btn:focus-visible { outline: 2px solid var(--color-foreground); outline-offset: 2px; }
 {% endstylesheet %}
 
 {% schema %}

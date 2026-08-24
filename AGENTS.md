@@ -25,7 +25,7 @@ never the copies here.
    publishing a theme, sending a campaign, raising ad spend, changing prices or
    discounts. Discounts stack: check `combinesWith` on both sides.
 5. **Every product image ships at 1600px.** Originals and restore scripts are
-   in `~/Desktop/ECOM Final/_image-restore/`. View every image in a set before
+   in `~/Desktop/PEXX/ecom/_image-restore/`. View every image in a set before
    listing it — AI-generated sets have shipped wrong-product and
    self-contradicting images.
 

@@ -1,0 +1,26 @@
+{%- comment -%}
+  Share row for journal articles. WhatsApp first — it is where India actually
+  shares. Every link points at the canonical URL so shares consolidate.
+  Pinterest is only offered when the article has a featured image, because a
+  pin without an image is a dead pin.
+{%- endcomment -%}
+{%- liquid
+  assign u = canonical_url | url_encode
+  assign t = article.title | strip_html | url_encode
+  assign img = ''
+  if article.image
+    assign img = article.image | image_url: width: 1000, height: 1500, crop: 'center' | prepend: 'https:' | url_encode
+  endif
+-%}
+<div class="pexx-share">
+  <span class="pexx-share__label">Share</span>
+  <a class="pexx-share__btn" href="https://wa.me/?text={{ t }}%20{{ u }}" target="_blank" rel="noopener nofollow">WhatsApp</a>
+  <a class="pexx-share__btn" href="https://www.facebook.com/sharer/sharer.php?u={{ u }}" target="_blank" rel="noopener nofollow">Facebook</a>
+  {%- if img != blank -%}
+    <a class="pexx-share__btn" href="https://www.pinterest.com/pin/create/button/?url={{ u }}&amp;media={{ img }}&amp;description={{ t }}" target="_blank" rel="noopener nofollow">Save</a>
+  {%- endif -%}
+  <a class="pexx-share__btn" href="https://www.linkedin.com/sharing/share-offsite/?url={{ u }}" target="_blank" rel="noopener nofollow">LinkedIn</a>
+  <a class="pexx-share__btn" href="https://twitter.com/intent/tweet?url={{ u }}&amp;text={{ t }}" target="_blank" rel="noopener nofollow">X</a>
+  <button class="pexx-share__btn" type="button" data-url="{{ canonical_url }}"
+    onclick="var b=this;navigator.clipboard.writeText(b.dataset.url).then(function(){b.textContent='Link copied'},function(){b.textContent='Press Ctrl+C'}).then(function(){setTimeout(function(){b.textContent='Copy link'},2000)})">Copy link</button>
+</div>
