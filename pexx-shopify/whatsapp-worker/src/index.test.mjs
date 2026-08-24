@@ -28,8 +28,10 @@ assert.notEqual(wrong, expected, "different secrets must not produce the same si
 function extractPhone(...candidates) {
 	for (const raw of candidates) {
 		if (!raw) continue;
-		const digits = raw.replace(/[^\d+]/g, "");
+		let digits = raw.replace(/[^\d+]/g, "");
 		if (digits.startsWith("+")) return digits;
+		if (digits.startsWith("00")) digits = digits.slice(2);
+		if (digits.length === 11 && digits.startsWith("0")) digits = digits.slice(1);
 		if (digits.length === 10) return `+91${digits}`;
 		if (digits.length > 10) return `+${digits}`;
 	}
@@ -40,6 +42,8 @@ assert.equal(extractPhone("9876543210"), "+919876543210");
 assert.equal(extractPhone("+1 555-0100"), "+15550100");
 assert.equal(extractPhone(null, undefined, "9876543210"), "+919876543210");
 assert.equal(extractPhone(null, undefined), null);
+assert.equal(extractPhone("09876543210"), "+919876543210", "leading domestic trunk 0 must be stripped");
+assert.equal(extractPhone("00919876543210"), "+919876543210", "leading 00 international prefix must be stripped");
 
 function isCashOnDelivery(order) {
 	const names = order.payment_gateway_names || [];
@@ -57,25 +61,39 @@ function bufferToBase64Url(buf) {
 	return base64.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
 }
 
-async function signCodToken(secret, orderId, exp) {
-	const key = await crypto.subtle.importKey(
-		"raw",
-		new TextEncoder().encode(secret),
-		{ name: "HMAC", hash: "SHA-256" },
-		false,
-		["sign"],
-	);
-	const payload = `${orderId}.${exp}`;
+function base64UrlToBuffer(base64Url) {
+	const padded = base64Url + "=".repeat((4 - (base64Url.length % 4)) % 4);
+	const base64 = padded.replace(/-/g, "+").replace(/_/g, "/");
+	return Uint8Array.from(atob(base64), (c) => c.charCodeAt(0));
+}
+
+async function importCodKey(secret, usage) {
+	return crypto.subtle.importKey("raw", new TextEncoder().encode(secret), { name: "HMAC", hash: "SHA-256" }, false, [usage]);
+}
+
+async function signCodToken(secret, action, orderId, exp) {
+	const key = await importCodKey(secret, "sign");
+	const payload = `${action}.${orderId}.${exp}`;
 	const signature = await crypto.subtle.sign("HMAC", key, new TextEncoder().encode(payload));
 	return bufferToBase64Url(signature);
 }
 
-// COD confirm/cancel link signing: same order+expiry must always verify, tampering must not.
-const codSig = await signCodToken("cod-secret", 12345, 1999999999);
-assert.equal(await signCodToken("cod-secret", 12345, 1999999999), codSig, "same inputs must produce the same signature");
-assert.notEqual(await signCodToken("cod-secret", 99999, 1999999999), codSig, "different order id must change the signature");
-assert.notEqual(await signCodToken("cod-secret", 12345, 1888888888), codSig, "different expiry must change the signature");
-assert.notEqual(await signCodToken("wrong-secret", 12345, 1999999999), codSig, "different secret must change the signature");
+async function verifyCodToken(secret, action, orderId, exp, sig) {
+	const key = await importCodKey(secret, "verify");
+	const payload = `${action}.${orderId}.${exp}`;
+	return crypto.subtle.verify("HMAC", key, base64UrlToBuffer(sig), new TextEncoder().encode(payload));
+}
+
+// COD confirm/cancel link signing: same action+order+expiry must always verify, tampering must not.
+const codSig = await signCodToken("cod-secret", "confirm", 12345, 1999999999);
+assert.equal(await signCodToken("cod-secret", "confirm", 12345, 1999999999), codSig, "same inputs must produce the same signature");
+assert.notEqual(await signCodToken("cod-secret", "cancel", 12345, 1999999999), codSig, "different action must change the signature");
+assert.notEqual(await signCodToken("cod-secret", "confirm", 99999, 1999999999), codSig, "different order id must change the signature");
+assert.notEqual(await signCodToken("cod-secret", "confirm", 12345, 1888888888), codSig, "different expiry must change the signature");
+assert.notEqual(await signCodToken("wrong-secret", "confirm", 12345, 1999999999), codSig, "different secret must change the signature");
+
+assert.equal(await verifyCodToken("cod-secret", "confirm", 12345, 1999999999, codSig), true, "valid token must verify");
+assert.equal(await verifyCodToken("cod-secret", "cancel", 12345, 1999999999, codSig), false, "a confirm signature must not verify as cancel");
 
 const REFERRAL_SENT_TAG = "thankyou15-sent";
 function shouldSendReferralEmail(order) {
@@ -86,5 +104,12 @@ assert.equal(shouldSendReferralEmail({ email: "a@b.com", tags: [] }), true);
 assert.equal(shouldSendReferralEmail({ email: "a@b.com", tags: ["thankyou15-sent"] }), false, "must skip once already tagged");
 assert.equal(shouldSendReferralEmail({ email: null, tags: [] }), false, "must skip when no email on order");
 assert.equal(shouldSendReferralEmail(null), false, "must skip when order lookup failed");
+// getOrderBasicInfo (shared by referral email, shipped-WhatsApp, delivered-WhatsApp) now also
+// carries orderName/firstName — shouldSendReferralEmail only cares about email+tags, unaffected.
+assert.equal(
+	shouldSendReferralEmail({ email: "a@b.com", firstName: "Asha", orderName: "#1042", tags: [] }),
+	true,
+	"extra order fields (firstName/orderName) must not affect the email/tags check",
+);
 
 console.log("ok — signature + phone parsing + COD detection + link signing + referral-email dedupe checks passed");

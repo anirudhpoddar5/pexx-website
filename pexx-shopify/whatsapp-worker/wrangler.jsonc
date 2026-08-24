@@ -5,11 +5,12 @@
   "compatibility_date": "2026-07-01",
   "vars": {
     "WA_PHONE_NUMBER_ID": "1309459488906906",
-    "WA_TEMPLATE_ORDER_CONFIRMED": "order_confirmed",
-    "WA_TEMPLATE_ORDER_DISPATCHED": "order_dispatched",
+    "WA_TEMPLATE_ORDER_CONFIRMED": "order_confirmed_v3",
+    "WA_TEMPLATE_ORDER_DISPATCHED": "order_shipped_v3",
+    "WA_TEMPLATE_ORDER_DELIVERED": "order_delivered_v3",
     "SHOPIFY_SHOP": "pexx-7935.myshopify.com",
     "WORKER_BASE_URL": "https://pexx-whatsapp-worker.anirudh6174.workers.dev",
-    "POSTHOG_PROJECT_KEY": "phc_D5b8h2jDgPP4dr9sPsiUStd4DmEshdhzm4kqVSDoQPWe",
+    "POSTHOG_PROJECT_KEY": "phc_oMq5gM3FUDskhKKZxQMCgYhJYi9hc8wXZim7QUztweBE",
     "POSTHOG_HOST": "https://us.i.posthog.com"
   }
   // Secrets (set via `wrangler secret put <NAME>`, not committed here):
