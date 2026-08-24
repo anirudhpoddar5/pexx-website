@@ -15,7 +15,7 @@ Also writes sitemap.xml, since it already knows every URL.
   python3 scripts/build_blog.py --check    # verify, exit 1 if anything is stale
   python3 scripts/build_blog.py --self-check
 """
-import argparse, datetime, html, json, pathlib, re, sys, urllib.parse
+import argparse, datetime, html, json, pathlib, re, sys, urllib.parse, urllib.request
 
 SITE = "https://www.poddarexp.com"
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -214,7 +214,30 @@ def sitemap(posts):
     return "\n".join(out) + "\n"
 
 
-def build(root, check=False):
+def indexnow(root, urls):
+    """Tell Bing, Yandex, Naver, the Internet Archive and Amazon in one call.
+    Google is not an IndexNow participant — it gets the sitemap instead."""
+    keys = list(root.glob("[0-9a-f]" * 32 + ".txt"))
+    if not keys:
+        print("indexnow: no key file at the site root, skipping")
+        return
+    key = keys[0].stem
+    payload = json.dumps({
+        "host": "www.poddarexp.com",
+        "key": key,
+        "keyLocation": f"{SITE}/{key}.txt",
+        "urlList": urls,
+    }).encode()
+    req = urllib.request.Request("https://api.indexnow.org/indexnow", data=payload,
+                                 headers={"Content-Type": "application/json; charset=utf-8"})
+    try:
+        with urllib.request.urlopen(req, timeout=20) as r:
+            print(f"indexnow: {r.status} for {len(urls)} urls")
+    except Exception as e:
+        print(f"indexnow: failed ({e}) — not fatal, the sitemap still covers it")
+
+
+def build(root, check=False, ping=False):
     root = pathlib.Path(root)
     template = (root / "blog" / "post.html").read_text()
     posts = json.loads((root / "data" / "posts.json").read_text())
@@ -255,6 +278,12 @@ def build(root, check=False):
             stale.append("sitemap.xml")
         return stale, skipped
     sm_path.write_text(sm)
+
+    if ping:
+        urls = [f"{SITE}/blog/{p['slug']}/" for p in posts if p.get("slug")]
+        urls += [f"{SITE}/{p}".replace("/index.html", "/") for p in STATIC_PAGES]
+        indexnow(root, urls)
+
     return built, skipped
 
 
@@ -307,11 +336,14 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=ROOT)
     ap.add_argument("--check", action="store_true", help="fail if any page is out of date")
+    ap.add_argument("--ping", action="store_true",
+                    help="after building, submit every URL to IndexNow (Bing, Yandex, Naver, "
+                         "Internet Archive, Amazon). Google is not a participant — it uses the sitemap.")
     ap.add_argument("--self-check", action="store_true")
     a = ap.parse_args()
     if a.self_check:
         self_check(); sys.exit()
-    result, skipped = build(a.root, check=a.check)
+    result, skipped = build(a.root, check=a.check, ping=a.ping)
     if a.check:
         if result:
             print("stale: " + ", ".join(result)); sys.exit(1)
