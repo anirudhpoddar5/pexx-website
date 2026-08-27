@@ -107,7 +107,48 @@ waiting on him.
 
 ---
 
-## 6. Standards hygiene
+## 6. Build for a thousand companies, not for ours
+
+**Owner's instruction, 2026-08-26, after it was breached three times in one
+session:** *"ANY DECISION U MAKE, KEEP IT COMPANY AGNOSTIC AND BUILT FOR 1000
+COMPANIES!! NOT JUST ONE. IF ANYTHING U FEEL IS GETTING VERY SPECIFIC, BEST TO
+DEVELOP AS CUSTOMIZATION/FLEXIBLE BUILD."*
+
+StitchLogic, Ethica and Vetro are public multi-tenant products. The owner's own
+factory is ONE tenant and it is the tenant whose data you can see, which is
+exactly why it keeps getting mistaken for the requirement.
+
+- **Never decide from one tenant's data.** Do not ask "does your data have X?"
+  to decide whether to build X, and do not query a live account to "see the
+  size" — first ask whether the answer could change the build. It usually
+  cannot. Decide from the RULE: if the rule is that a field drives a
+  calculation, then a missing value fires a warning, whether today's count is
+  zero or three hundred.
+- **Never remove a feature because our account does not use it.** A field the
+  owner leaves empty is a field another company fills daily. It renders blank,
+  or hides itself for a tenant with no data — it does not leave the product.
+- **Anything that varies by company is derived at runtime from that company's
+  own configuration**, never hardcoded from ours: pipeline stages and their
+  column labels from `pipeline_stages.short_code`, units from `factories`,
+  shift columns from `companies.entry_mode`, buyers from `buyers`, compliance
+  sections from that tenant's own set. A screen must be correct for a
+  single-unit sewing-only workshop and a seven-stage multi-unit exporter, from
+  the same code.
+- **When a requirement genuinely is specific, build it as configuration, not as
+  a branch.** A settings toggle, a per-tenant row, a preset the company picks —
+  not an `if (company.name === …)`, not a constant that happens to match one
+  factory's process, and not a column set copied from one customer's
+  spreadsheet. A customer's spreadsheet is a FORMAT reference: take its shape,
+  generate its columns from the tenant's own config.
+- **Sample-of-one is a review question.** Before calling anything done: what does
+  this do for a company configured differently from ours? Write the answer down.
+
+This is about BREADTH — many companies, configured differently. It is distinct
+from, and additional to, §5's volume concern (10x/100x rows).
+
+---
+
+## 7. Standards hygiene
 
 - Canonical standards live in `~/Projects/standards/`. Each repo carries a
   committed copy at `.agents/standards/` because a cloud session clones one
@@ -122,9 +163,9 @@ waiting on him.
 
 ---
 
-## 7. Review block
+## 8. Review block
 
-**Last reviewed: 2026-08-10 — re-check quarterly (next: 2026-11-10).**
+**Last reviewed: 2026-08-26 — re-check quarterly (next: 2026-11-26).**
 
 At each review, check and date the answers:
 

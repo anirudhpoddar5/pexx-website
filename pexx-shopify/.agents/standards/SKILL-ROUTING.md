@@ -43,12 +43,22 @@ StitchLogic, Ethica and Vetro share **one Supabase project**. See
 | Any chart, graph, dashboard, KPI tile | `dataviz` — read **before** the first line of chart code |
 | Before merging | `/code-review`, then `/security-review` |
 | Full QA sweep of an app | `qa-audit` |
-| Page is slow / Core Web Vitals | `web-perf` |
+| A page or site loads slowly / Core Web Vitals | `web-perf` |
 | Isolating work from the current branch | `superpowers:using-git-worktrees` |
 | Finishing a branch — merge, PR, cleanup | `superpowers:finishing-a-development-branch` |
 | Anything touching a Cloudflare Worker | `cloudflare` + `workers-best-practices` + `wrangler` |
 | Anything calling the Claude API | `claude-api` — never answer model/pricing questions from memory |
+| Anything touching Supabase — schema, auth, RLS, edge functions, CLI | `supabase` |
+| Writing or reviewing a migration, or any RLS policy | `supabase` + `postgres-best-practices` — PRODUCT-TRIO outranks both |
+| A slow query, index, locking or connection problem | `postgres-best-practices` |
+| Verifying a change in a real browser (BASELINE step 2) | `webapp-testing` |
+| Writing or fixing a Playwright / e2e suite | `webapp-testing` — never trust a green run, see BASELINE |
 | Verifying work is actually done | `superpowers:verification-before-completion` |
+
+Measured 27 Aug 2026 across 99 sessions in 30 days: Supabase came up 408 times
+with no row and no skill installed; `webapp-testing` was installed and invoked
+**zero** times while browser tools were called ~9,400 times by hand. Both were
+missing rows, not missing tools.
 
 ## PEXX — commerce and marketing
 
@@ -113,11 +123,11 @@ Reel *content and hooks* stay with `social`. This table is how the video gets
 
 | Task | Skill |
 |---|---|
-| A document or report someone else will read | `artifact-design` |
+| A write-up, summary, brief or report someone else will read | `artifact-design` |
 | Diagrams inside that document | `artifact-diagramming` |
-| Spreadsheets | `anthropic-skills:xlsx` |
-| Word docs / PDFs | `anthropic-skills:docx`, `anthropic-skills:pdf` |
-| Slides | `anthropic-skills:pptx` |
+| Excel, spreadsheet, xlsx, csv, a data report with numbers | `anthropic-skills:xlsx` |
+| Word doc, PDF, invoice, letter | `anthropic-skills:docx`, `anthropic-skills:pdf` |
+| Slides, deck, presentation | `anthropic-skills:pptx` |
 | Something recurring on a schedule | `/schedule` (cloud cron) or `/loop` (this session) |
 | Too many permission prompts | `/fewer-permission-prompts` |
 | Changing hooks, permissions, settings.json | `update-config` |
