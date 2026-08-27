@@ -53,6 +53,7 @@ StitchLogic, Ethica and Vetro share **one Supabase project**. See
 | A slow query, index, locking or connection problem | `postgres-best-practices` |
 | Verifying a change in a real browser (BASELINE step 2) | `webapp-testing` |
 | Writing or fixing a Playwright / e2e suite | `webapp-testing` — never trust a green run, see BASELINE |
+| Deploying, shipping, releasing or pushing to production | `vercel:deploy` for Trakr/Ethica/Vetro/Growise, `wrangler` for Fabrios — check the Deployment table below |
 | Verifying work is actually done | `superpowers:verification-before-completion` |
 
 Measured 27 Aug 2026 across 99 sessions in 30 days: Supabase came up 408 times
